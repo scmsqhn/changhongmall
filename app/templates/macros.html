@@ -193,7 +193,7 @@
 
 {% endmacro %}
 
-{% macro render_table_phone(comment) %}
+{% macro th_render_table_phone(comment) %}
 <div class="swiper-wrapper"> 
       <div class="swiper-slide"> 
        <a href="{{comment[0][0]}}"> <img class="lazyLoad" src="../../../Content/H5/img/loading-slide.jpg" data-src="{{comment[0][1]}}" alt="0810-秒杀" /></a> 
@@ -205,6 +205,20 @@
        <a href="{{comment[2][0]}}"> <img class="lazyLoad" src="../../../Content/H5/img/loading-slide.jpg" data-src="{{comment[2][1]}}" alt="0721童装" /></a> 
       </div> 
 </div> 
+{% endmacro %}
+
+{% macro render_table_phone(comment) %}
+    <div class="swiper-wrapper"> 
+        {% for i in comment%}
+          {% if loop.index < 7 %}
+            <div class="swiper-slide"> 
+                <a href="{{i[0]}}"> 
+                    <img class="lazyLoad" src="" data-src="{{i[1]}}" alt="" />
+                </a> 
+            </div> 
+          {% endif %}
+        {% endfor %}
+    </div> 
 {% endmacro %}
 
 

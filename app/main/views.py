@@ -5,6 +5,7 @@ sys.path.append('..')
 sys.path.append('../..')
 from . import main
 import app
+from app.whooshsearch import WhooshSearch
 from flask import Flask
 import chardet
 import traceback
@@ -40,6 +41,7 @@ import sqlalchemy
 from sqlalchemy.orm import sessionmaker, scoped_session
 import jieba
 import jieba.analyse
+from app import globalvar
 #"""Table = \
 #u'<table  border="0" cellpadding="0" cellspacing="0"  align="center">
 #  <tr>
@@ -121,7 +123,7 @@ def sortPicDat(alldata):
 def data2Pic_9Tb():
     TABLENUM = current_app.config['TABLENUM']
     alldata = HostPageTable.query.all()
-    #rint alldata
+#    print alldata
 #    pass # print alldata.__dict__
     formatData = sortData(alldata)
     tablelist = []
@@ -430,6 +432,54 @@ def handle_search(search):
 #    print finalOutput
     return finalOutput
     
+
+def handle_search_whoosh(search):
+    # that's how v search
+    # get all the matched word to product name
+    # get the join of the every matchde product name belong to word
+    # sort the word in join table with the num of word appeared
+    # qin
+    if search=="null":
+        return []
+    print search
+    wsSearch = globalvar.get_whoosh()
+    output = []
+    #search_result = wsSearch.search("indexer", u"content", search)
+    search_result = wsSearch.search("indexer", u"content", search,  output)
+    #print search_result
+    engine=sqlalchemy.create_engine('mysql://root:root@localhost:3306/ultrax?charset=utf8')
+    #Config.SQLALCHEMY_DATABASE_URI)
+    Session=scoped_session(sessionmaker(bind=engine))
+    sess=Session()
+    finalOutput = []
+    counter=0
+    for i in search_result:
+        print i 
+        lineOutput = []
+        counter+=1
+        print i['path']
+        print type(i['path'])
+        CMD = u'SELECT code, couponlink, img, name , price, couponvalue FROM goods WHERE code="%s"' % i['path']
+        sqlData = sess.execute(CMD)
+        sqlData = sqlData.cursor._rows
+        #print sqlData
+        sqlData = list(sqlData)
+        sqlData = list(sqlData[0])
+    
+        sqlData[3] = sqlData[3].encode('utf-8')
+        sqlData[5] = sqlData[5].encode('utf-8')
+
+        lineOutput.append(sqlData[1])
+        lineOutput.append(sqlData[2])
+        lineOutput.append(sqlData[3])
+        lineOutput.append(sqlData[4])
+        lineOutput.append(sqlData[5])
+
+        #if counter%5==0:
+        finalOutput.append(lineOutput)
+            #print '2  [x] ', len(lineOutput)
+    return finalOutput
+
 @main.route('/9tb', methods=['GET', 'POST'])
 def tb9():
     data = request.args.get('data')
@@ -470,7 +520,7 @@ def search():
 def crawl():
     # postdata is html style use direct by qq
         
-    searchInput = request.args.get('search', 'null', type=str)
+    searchInput = request.args.get('KeyWord', 'null', type=str)
     searchData = handle_search(searchInput)
     goodsData = get_goods_dat()
     datas = goodsData
@@ -483,16 +533,26 @@ def crawl():
     
 '''
 
+
 @main.route('/', methods=['GET', 'POST'])
 def crawl():
-    searchInput = request.args.get('search', 'null', type=str)
-    searchData = handle_search(searchInput)
-    goodsData = get_goods_dat()
+    searchInput = request.args.get('keyWord', 'null')
+    print searchInput
+    goodsData = []
+    if searchInput == "null":
+        goodsData = get_goods_dat()
+    else:
+        goodsData = handle_search_whoosh(searchInput)
+        if len(goodsData)==0:
+             goodsData = get_goods_dat()
+    print "[x] show  goodsData" , goodsData
     datas = goodsData
     huodongData = get_huodong_dat()
     views=getPic()
     return render_template('meguo_phone.html', pics=views, datas=datas, huodong=huodongData, dev="p")
 #    return render_template('taobao.html')
+
+
        
 @main.route('/craw', methods=['GET', 'POST'])
 def index():

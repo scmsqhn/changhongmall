@@ -20,7 +20,10 @@ import time
 import sqlalchemy
 from sqlalchemy.orm import sessionmaker, scoped_session
 from werkzeug.contrib.fixers import ProxyFix
-
+from app.whooshsearch import WhooshSearch
+import traceback
+import jieba
+import chardet
 
 bootstrap = Bootstrap()
 mail = Mail()
@@ -31,6 +34,9 @@ pagedown = PageDown()
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
 login_manager.login_view = 'auth.login'
+
+
+
 
 def create_app(config_name):
     app = Flask(__name__)
@@ -62,6 +68,49 @@ def create_app(config_name):
 
     from .api_1_0 import api as api_1_0_blueprint
     app.register_blueprint(api_1_0_blueprint, url_prefix='/api/v1.0')
+
+    from app.whooshsearch import WhooshSearch
+    globalvar.set_whoosh(WhooshSearch())
+    wsSearch = globalvar.get_whoosh()
+    engine=sqlalchemy.create_engine('mysql://root:root@localhost:3306/ultrax?charset=utf8')
+    #Config.SQLALCHEMY_DATABASE_URI)
+    Session=scoped_session(sessionmaker(bind=engine))
+    sess=Session()
+    CMD=u'SELECT couponlink,name,code FROM goods' # [0,1]=[code,name]
+    sqlData = sess.execute(CMD)
+    sqlData = sqlData.cursor._rows
+    sqlData = list(sqlData)
+    codelist = []
+    for i in sqlData:
+        import chardet
+        codedict = {}
+        #codec0 = chardet.detect(i[0])["encoding"]
+        #codec1 = chardet.detect(i[1])["encoding"]
+        #codec2 = chardet.detect(i[2])["encoding"]
+        #i[0] = i[0].decode(codec0)
+        #i[1] = i[1].decode(codec1)
+        #i[2] = i[2].decode(codec2)
+        #print i[0],i[1],i[2]
+        #print codec1, codec2, codec3
+        import chardet
+        type="utf8"
+        codedict[u"title"] = i[0]
+        tmp = jieba.cut_for_search(i[1])
+        ii  = " ".join(tmp)
+        try:
+            codectmp = chardet.detect(ii)["encoding"]
+            codedict[u"content"] = ii.decode(codectmp)
+        except ValueError:
+            codedict[u"content"] = ii
+            
+        
+        codedict[u"path"] = i[2]
+        import json
+        print json.dumps(codedict)
+        codelist.append(codedict)
+    wsSearch.insert_index()
+    wsSearch.add_path_2_index("indexer", codelist)
+    #results = wsSearch.search("indexer", u"content", u"dido")
 
     return app
 

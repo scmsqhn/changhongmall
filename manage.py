@@ -26,6 +26,7 @@ import jieba
 import jieba.analyse
 import app
 
+from app import globalvar
 
 
 COV = None
@@ -58,7 +59,7 @@ manager.add_command("shell", Shell(make_context=make_shell_context))
 manager.add_command('db', MigrateCommand)
 
 @manager.command
-def index(length=25, profile_dir=None):
+def index():
   try:
     """Run the unit tests."""
     engine=sqlalchemy.create_engine('mysql://root:root@localhost:3306/ultrax?charset=utf8')
@@ -144,6 +145,10 @@ def deploy():
 
 
 if __name__ == '__main__':
-
+  try:
+    from app.whooshsearch import WhooshSearch
     app.wsgi_app = ProxyFix(app.wsgi_app)
     manager.run()
+  except:
+    traceback.print_exc()
+

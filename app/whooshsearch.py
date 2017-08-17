@@ -10,8 +10,8 @@ import os
 class WhooshSearch(object):
 
     def __init__(self):
-        self.ixdict = {}
         self.schema = Schema(title = TEXT(stored = True), path = ID(stored=True), content = TEXT)
+        self.insert_index(label="indexer")
 
     def insert_index(self, label="indexer"):
         if not os.path.exists(label):
@@ -29,15 +29,24 @@ class WhooshSearch(object):
     def index_add_path(self, index="indexer", datalist=[]):
         ix = self.ix
         writer = ix.writer()
+        f = open("recordindex.txt", "a+")
         for i in datalist:
             title = i["title"]
             content = i["content"]
             path = i["path"]
-            #print type(path)
-            #print type(content)
-            #print type(title)
+            #print "[x]", type(path), path
+            print "[x]", type(content), content
+            #print "[x]", type(title), title
             writer.add_document(title=title, path=path, content=content)
+            f.write(str(type(title)))
+            f.write(str(type(content)))
+            f.write(str(type(path)))
+            f.write(path.encode("utf8"))
+            f.write(content.encode('utf8'))
+            f.write(path.encode("utf8"))
         writer.commit()
+        f.close()
+
     def insert_demo_data(self):
         ix = self.ix
         writer = ix.writer()
@@ -54,19 +63,36 @@ class WhooshSearch(object):
       data["path"] = path
       return data
 
-    def search(self, index="indexer", searchfrom="", searchwhat=""):
-        ix = self.ix
-        with ix.searcher() as searcher:
+
+    def search(self, index="indexer", searchfrom="", searchwhat="", results=None):
+        try:
+            ix = self.ix
+            searcher = ix.searcher()
+            print searchfrom, type(searchfrom)
+            print searchwhat, type(searchwhat)
             query =QueryParser(searchfrom, ix.schema).parse(searchwhat)
             #ok query =QueryParser(u"content", ix.schema).parse(u"one")
             #query =QueryParser(u"content", ix.schema).parse(u"qin")
-            results =searcher.search(query)
-            for  i in results:
-                print i
+            res = searcher.search(query)
+            results = res
+        except:
+            traceback.print_exc()
+
+        finally:
+            searcher.close
             return results
 
 
-if __name__ == "__main__":
+
+
+
+
+
+
+
+
+
+if "__name__" == "__main__":
   try:
     woshsearch = WhooshSearch()
     woshsearch.insert_index()
