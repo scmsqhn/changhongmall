@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>问题解答</title>
+<script type="text/javascript" src="static/scripts/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="static/scripts/ajaxfileupload.js"></script>
+<script type="text/javascript" src="static/scripts/jquery.cookie.js"></script>
+<script type="text/javascript" src="static/scripts/answer.js"></script>
+<script type="text/javascript" src="static/scripts/calendar.js"></script>
+<script type="text/javascript" src="static/scripts/popup.js"></script>
+<script type="text/javascript" src="static/scripts/reply.js"></script>
+<link rel="stylesheet" type="text/css" href="static/styles/calendar.css">
+<link rel="stylesheet" type="text/css" href="static/styles/table.css">
+<link rel="stylesheet" type="text/css" href="static/styles/popup.css">
+<style type="text/css">
+.replyTable{
+	border-collapse:collapse;
+	border:1px solid gray;
+}
+.replyTable td{
+	text-align:center;
+	border:1px solid gray;
+}
+a{text-decoration: NONE;}
+</style>
+</head>
+<body>
+	<table id="search_well"  style="width:100%;border: solid thin #C0C0C0">
+		<tbody><tr style="height:30px">
+			<td align="center" style="width:8%;">问题类型：</td>
+			<td style="width:20%;">
+				<div id="classId">
+				<select id="class" style="width:180px" onchange="resetPageNum()">
+					<option>所有类型</option>
+				</select></div>
+			</td>
+			<td align="center" style="width:8%;">机型：</td>
+			<td style="width:20%;">
+				<div id="projectDiv">
+					<select id="phoneModel" style="width:180px" onchange="resetPageNum()">
+						<option>所有机型</option>
+					</select>
+				</div>
+			</td>
+			<td align="center" style="width:8%;">时间：</td>
+			<td><input type="text" class="tcal" id="begintime">
+			-
+			<input type="text" class="tcal" id="endtime"></td>
+		</tr>
+		<tr style="height:30px">
+			<td align="center" style="width:8%;">问题状态：</td>
+			<td style="width:20%;">
+				<div id="statusDIV">
+				<select id="status" style="width:180px" onchange="resetPageNum()">
+					<option>所有状态</option>
+					<option value="0">未回复</option>
+					<option value="1">待回复</option>
+					<option value="2">已回复</option>
+					<option value="3">关闭</option>
+				</select></div>
+			</td>
+			<td align="center" style="width:8%;">昵称：</td>
+			<td style="width:20%;">
+			<input type="text" id="userAlias" style="width:180px"></td>
+			<td align="left" colspan="4" style="width:65%;">
+			<div style="align:center;">
+			<input type="radio" checked="checked" value="0" name="headId"></input>全部
+			<input type="radio"  value="1" name="headId"></input>置顶
+			<input type="button" style="background-image:url(static/Image/select.png);width:73px;height:24px;
+			border:0px;margin-left:25px;" onclick="getThemeList()"></input>
+			</div>
+			</td>		
+		</tr>
+		<tr style="height:30px">
+			<td align="center" style="width:8%;">问题审核状态：</td>
+			<td style="width:20%;">
+				<div id="auditDiv">
+				<select id="audit" style="width:180px" onchange="resetPageNum()">
+					<option>所有状态</option>
+					<option value="0">未审核</option>
+					<option value="1">审核未通过</option>
+					<option value="2">审核通过</option>					
+				</select>
+				</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	<div id="result" style="margin-top:18px;">
+		<table  id="datagrid" class="table" style="width:100%">
+			<thead>
+				<tr>
+					<th width='8%'>提问时间 </th>
+					<th width='8%'>回复时间</th>
+					<th width='8%'>机型</th>
+					<th width='6%'>版本</th>
+					<th width='7%'>昵称</th>
+					<th width='22%'>提问内容</th>
+					<th width='10%'>联系方式</th>
+					<th width='5%'>问题状态</th>
+					<th width='5%'>回复数量</th>
+					<th width='7%'>问题审核状态</th>
+					<th width='5%'>问题类型</th>
+					<th width='8%'>操作</th>
+				</tr>
+			</thead>
+			<tbody id="tablevlue"></tbody>
+		</table>
+	</div>
+	<table style="width:100%"><tbody><tr><td style="width:50%"></td>
+	<td style="width:20%" align="left">
+		<div align="right" style="font-size:13px;"><span>共有<strong id="totalNUm"></strong>
+		条记录，当前第<strong id="currentPage"></strong>页,共<strong id="totalPage"></strong>页
+		</span></div>
+	</td>
+	<td style="width:10%;font-size:13px;" align="center">
+		<label>每页显示</label><select id="perpageshownum" onchange="refreshPage()">
+			<option value="10">10条</option>
+			<option value="20">20条</option>
+			<option value="30">30条</option>
+			<option value="50">50条</option>
+			<option value="100">100条</option>
+			</select>
+	</td>
+	<td style="width:8%;font-size:13px;" align="center">
+		跳转到<input type="text" id="jumpto" style="width:20%">
+		<input type="button" id="jumptoBtn" value="go" onclick="jumptoPage();">
+	</td>
+	<td style="width:12%" align="right">
+		<input type="button" id="pre_page" value="上一页"></input>
+		<input type="button" id="next_page" value="下一页"></input>
+	</td>
+	</tr></tbody>
+	</table>
+	<div id="fade2" class="black_overlay">
+	</div>
+	<div id="MyDiv2" style="width:680px;display: none;
+		position: absolute;
+		top: 15%;
+		left: 30%;
+		border: 1px solid lightblue;
+		background-color:#FFFFFF;
+		z-index:1002;">
+		<div class="modal-header"  style="height:15px;background:#F5F5F5;">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="CloseDiv('MyDiv2','fade2');">×</button>
+	        <font size="2em">回复</font>
+    	</div>
+    	<div class="modal-divCenter" style="height:8%;display: none;" >
+    		<input id="themeId" type="text">
+    		<input id="userId" type="text" value="<%=username%>">
+    	</div>
+    	<div id="replyId">
+    		<div>
+    		<table class="" width="100%" style="margin:0">
+    			<tr>
+    				<td width="70%" style="font-size:13px;">
+    				主题内容：<span id="quesContent"></span> &nbsp;&nbsp;&nbsp;
+    				</td>
+    				<td width="30%" style="font-size:13px;">昵称：<span id="quesUser"></span>&nbsp;&nbsp;&nbsp;</td></tr>
+				<tr id="ques_imgTr" style="display: none;"><td  width='20%' style="font-size:13px;">
+				 	主题图片：<a id="ques_imgA" href="" target=cont><span ><img id="quesPicture" src="" style="width:30px;height: 20px"/></span></a> 
+					</td>
+				</tr>
+				
+    		</table>
+    		</div>
+    		<div>
+    			<table class="table" id="table" width="100%">
+    				<thead>
+    					<tr>
+    						<td width='25%'>昵称</td>
+    						<td width='55%'>回复</td>
+    						<td width='10%'>图片</td>
+    						<td width='10%'>回复状态</td>
+    					</tr>
+    				</thead>
+    				<tbody id="replyList"></tbody>
+    			</table>
+    		</div>
+    		<div>
+    			<table class="replyTable" width='100%' >
+    				<tr>
+    					<td width='50%'>图片</td>
+    					<td width='50%'>
+    						<input type="file" id=uploadfile name="file1" />
+    						<input type="text" id=imagURL style="display: none;">
+    					</td>
+    				</tr>
+    				<tr>
+    					<td width='50%'>回复</td>
+    					<td width='50%'><textarea id="replyBody" rows="3" cols="" style="width:90%;"></textarea></td>
+    				</tr>   				
+    			</table>
+    			<div style="margin-top:10px">
+    				<table width='100%'>
+    					<tr>
+    					<td width='50%' align="right"><input id="btnReply" type="button" value="确定" onclick="reply();">
+    					</td>
+    					<td width='50%' align="left"><input id="btnCacel" type="button" value="取消" onclick="CloseDiv('MyDiv2','fade2');">
+    					</td>
+    					</tr>
+    				</table>
+    			</div>   			
+    		</div>
+    	</div>
+	</div>
+	<div id="fade3" class="black_overlay">
+	</div>
+	<div id="MyDiv3" style="width:580px;display: none;
+		position: absolute;
+		top: 15%;
+		left: 30%;
+		border: 1px solid lightblue;
+		background-color:#FFFFFF;
+		z-index:1002;">
+		<div class="modal-header"  style="height:15px;background:#F5F5F5;">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="CloseDiv('MyDiv3','fade3');">×</button>
+	        <font size="2em">审核</font>
+    	</div>
+    	<div>
+    		<input type="text" id="themeId1" style="display: none;">
+    		<input type="radio" checked="checked" value="2" name="checkState"></input>审核通过
+			<input type="radio"  value="1" name="checkState"></input>审核未通过
+    	</div>
+    	<div style="background:#F5F5F5;margin-top:10px">
+    		<table width='100%'>
+    			<tr>
+    			<td width='50%' align="right"><input id="btnReply" type="button" value="确定" onclick="upCheckThemeState()">
+    			</td>
+    			<td width='50%' align="left"><input id="btnCacel" type="button" value="取消" onclick="CloseDiv('MyDiv3','fade3');">
+    			</td>
+    			</tr>
+    		</table>
+    	</div> 
+	</div>
+</body>
+</html>

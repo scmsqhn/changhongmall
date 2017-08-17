@@ -1,0 +1,52 @@
+<head>
+    <script type="text/javascript" src="static/scripts/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="static/scripts/jquery.cookie.js"></script>
+    <script type="text/javascript" src="static/scripts/getimeiinfo.js"></script>
+    <script type="text/javascript" src="static/scripts/calendar.js"></script>
+    <script type="text/javascript" src="static/scripts/popup.js"></script>
+    <script type="text/javascript" src="static/scripts/reply.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/styles/calendar.css">
+    <link rel="stylesheet" type="text/css" href="static/styles/table.css">
+    <link rel="stylesheet" type="text/css" href="static/styles/popup.css">
+    <style type="text/css">
+
+        .replyTable td {
+            text-align: center;
+            border: 1px solid gray;
+        }
+
+        a {
+            text-decoration: NONE;
+        }
+    </style>
+</head>
+<div>
+	<table id="search-well" style="width:100%;border: solid thin #C0C0C0">
+		<tbody>
+			<tr>
+				<td align="center" style="width:8%;">IMEI:</td>
+				<td style="width:30%;">
+				<input type="text" id="imeic"></td>
+				<td><input type="button" style="background-image:url(static/Image/select.png);width:73px;height:24px;
+				border:0px;margin-left:25px;" onclick="getIMEIinfo();">
+				</td>				
+			</tr>
+		</tbody>
+	</table>
+	
+	<div id="result" style="margin-top:18px;">
+		<table  id="datagrid" class="table" style="width:100%">
+			<thead>
+				<tr>
+				    <th width='15%'>IMEI</th>
+					<th width='15%'>激活时间</th>
+					<th width='15%'>省</th>
+					<th width='15%'>市</th>
+					<th width='15%'>区/县</th>
+					<th width='15%'>机型</th>
+			</tr>
+			</thead>
+			<tbody id="tablevlue"></tbody>
+		</table>
+	</div>
+</div>

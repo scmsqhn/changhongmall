@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% import "navi_left.html" as navi_left_html %}
+{% import "test_navi_left.html" as test_navi_left_html %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
+
+{% block title %}Flasky{% endblock %}
+{% block meta %}
+    charset="UTF-8"
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" type="text/css" href="static/styles/table.css">
+    <link rel="stylesheet" type="text/css" href="static/styles/popup.css">
+{% endblock %}
+
+{% block content %}
+    {{navi_left_html}}
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<!--
+<script type="text/javascript">
+            function showAtRight(url){
+                $.ajax({
+                    type :"GET",
+                    url : url,
+                    dataType:"html",
+                    success : function(data) {//返回数据根据结果进行相应的处理
+                        $("#content").html(data);
+                    },
+                    error:function(){
+                        $("#content").html("获取数据失败！");
+                    }
+                });
+            }
+</script>
+-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="static/scripts/data-script.js"></script>
+<script type="text/javascript">
+    var $SCRIPT_ROOT = {{request.script_root|tojson|safe}};
+</script>
+
+<script type="text/javascript" src="static/scripts/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="static/scripts/apkmanager.js"></script>
+<script type="text/javascript" src="static/scripts/popup.js"></script>
+<script type="text/javascript" src="static/scripts/ajaxfileupload.js"></script>
+
+{% endblock %}

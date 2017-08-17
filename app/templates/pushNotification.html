@@ -1,0 +1,157 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="static/styles/pushStyle.css">
+<script type="text/javascript" src="static/scripts/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="static/scripts/push.js"></script>
+</head>
+<div>
+	<div id="main" class="notifypush">
+		<div class="single-header">
+			<h2 class="f1">推送通知</h2>
+		</div>
+		<form class="notifypush-form">
+			<div class="module">
+				<div class="form-group">
+					<label class="control-label">展示内容：</label>
+					<div class="control">
+						<label class="checkbox-inline">
+							<input type="radio" value=1 name="notifyStyle" checked="checked">默认</label>
+						<!-- <label class="checkbox-inline">
+							<input type="radio" value=0 name="notifyStyle">安卓</label>
+						<label class="checkbox-inline">
+							<input type="radio" value=4 name="notifyStyle">图片</label> -->
+					</div>
+				</div>
+			<div class="notifytype-text">
+				<div class="form-group">
+					<label class="control-label">
+						<span class="required">*</span>
+						通知标题：
+					</label>
+					<div class="controls">
+						<input id="input-title" class="form-control" type="text" name="title" maxlength="20">
+						<span class="help-inline" id="title-span">0/20</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">
+						<span class="required">*</span>
+						通知内容：
+					</label>
+					<div class="controls">
+						<textarea id="push-content" class="form-control" rows="3" style="width:50%"
+						onkeydown="textarealimit()" onkeyup="textarealimit()" onfocus="textarealimit()" 
+						onblur="textarealimit();" name="content" maxlength="50"></textarea>
+						<span class="help-inline" id="content-span">0/50</span>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label">
+						<span class="required">*</span>
+						目标用户：
+				</label>
+				<div class="controls">
+					<label class="checkbox-inline"><input type="radio" value="0" name="targetUser" id="targetUser" checked="checked">全部用户</label>
+					<label class="checkbox-inline"><input type="radio" value="1" name="targetUser" id="targetUser" >标签用户</label>
+					<div class="userTag" id="tag">
+						<label >选择表签:</label>
+						<input class="btn-general" type="button" id="btn-provinve" value="省市地区">
+						<input class="btn-general" type="button" id="btn-phonetype" value="机型">
+						<div class="popover-content" id="div-provinve">
+							<!-- <input class="btn-general" type="button" value="省"> -->
+						</div>
+							<!-- <div class="popover-content" id="div-city">
+								<input class="btn-general" type="button" value="市">
+							</div>
+							<div class="popover-content" id="div-district">
+								<input class="btn-general" type="button" value="县">
+							</div> -->
+							<div class="province-content"></div>
+							<div class="city-content"></div>
+							<div class="district-content"></div>
+						<div class="popover-content" id="div-phonetype">
+							<!-- <label><input type="checkbox">全部机型</label> -->
+						</div>
+						<input id="selected-province" class="form-control">
+						<input id="selected-phonetype" class="form-control">
+					</div>
+					
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label">
+						<span class="required">*</span>
+						后续动作：
+				</label>
+				<div class="controls">
+					<label class="checkbox-inline"><input type="radio" value=0 name="successor" checked="checked">打开应用</label>
+					<label class="checkbox-inline"><input type="radio" value=1 name="successor">打开链接</label>
+				
+				<div class="popover-content" id="urlDiv">
+					<label class="">
+					<span class="required">*</span>
+						链接地址：
+					</label>
+					<input type="text" name="input-url" id="input-url" class="form-control">
+				</div>
+				</div>
+			</div>
+			<!-- <div class="form-group">
+				<label class="control-label">
+						<span class="required">*</span>
+						推送方式：
+				</label>
+				<div class="controls">
+					<label class="checkbox-inline"><input type="radio" value="0" name="pushStyle" checked="checked">按时间</label>
+				<div class="popover-content">
+				<label class="checkbox-inline"><input type="radio" value="0" name="send-time" checked="checked">即时</label>
+				<label class="checkbox-inline"><input type="radio" value="1" name="send-time">定时</label>
+				<input type="text" id="sendtime" name="sendtime">
+				</div>
+				</div>
+			</div> -->
+			<div class="form-group">
+				<label class="control-label">
+						是否进入离线模式：
+				</label>
+				<div class="controls">
+					<label class="checkbox-inline"><input type="radio" value="true" name="isOffline" checked="checked">是</label>
+					<label class="checkbox-inline"><input type="radio" value="false" name="isOffline">否</label>
+				</div>
+			</div>
+			<div class="form-group" id="div-offline">
+				<label class="control-label">
+						<span class="required">*</span>
+						有效时长：
+				</label>
+				<div class="controls" >
+					<input id="offline-time" type="text" name="offlineTime" value=2 >
+				</div>
+			</div>
+			</div>
+			<!-- <div class="module otherset">
+				<div class="otherset-top">
+					<label>高级设置</label>
+				</div>
+				<div class="otherset-body">
+					<div>
+					<label>定速推送</label>
+					<label class="checkbox"><input type="radio" value="false" name="hasPushSpeed" checked="checked">关闭</label>
+					<label class="checkbox"><input type="radio" value="true" name="hasPushSpeed">开启</label>
+					</div>
+					<div>
+					<label>联网方式</label>
+					<label class="checkbox"><input type="radio" value="0" name="pushNetWorkType" checked="checked">不限</label>
+					<label class="checkbox"><input type="radio" value="1" name="pushNetWorkType">仅WIFI</label>
+					</div>
+				</div>
+			</div> -->
+		</form>
+		<div class="form-group">
+				<div class="controls">
+					<input id="prepare-send-btn" type="button"  value="发送" onclick="pushNotifiction();">
+				</div>
+			</div>
+	</div>
+</div> 

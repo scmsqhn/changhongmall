@@ -1,0 +1,95 @@
+{% extends 'page_base.html' %}
+
+{% block head %}
+{{ super() }}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>激活数据</title>
+    <style type="text/css">
+        .replyTable td {
+            text-align: center;
+            border: 1px solid gray;
+        }
+        a                                                      {
+            text-decoration: NONE;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="styles/table.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/popup.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/select2.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/daterangepicker-bs2.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/calendar.css"/>
+    <link href="{{ url_for('static', filename = 'styles/calendar.css'}}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block page_content %}
+<!--
+{% import "timeindex.html" as timeindex_html %}
+-->
+<table id="search_well" style="width:100%;border: solid thin #C0C0C0">
+    <tbody>
+    <tr style="height:30px">
+        <td align="center" style="width:6%;">时间</td>
+        <td><input type="text" class="tcal" id="begintime"> - <input
+                type="text" class="tcal" id="endtime"></td>
+
+        <td align="right" colspan="4" style="width:6%;">
+            <div style="align:right;">
+                <input type="button"
+                       style="background-image:url(static/Image/select.png);width:73px;height:24px;border:0px;margin-right:25px;"
+                       onclick="getIMEIList()"/>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div id="wait-anima">
+    <table width="100%"><tr align=center><td><input type="image" src="static/Image/wait_img.jpg" ></td></tr></table>
+</div>
+<div id="result" style="margin-top:18px;">
+    <table id="datagrid" class="table" style="width:100%">
+        <thead id="tabletile"></thead>
+        <tbody id="tablevlue"></tbody>
+    </table>
+</div>
+<div></div>
+
+<div id="export" align="right">
+    <a data-type="xls" href="javascript:;">导出excel</a>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+    <script type="text/javascript" src="../static/scripts/calendar.js"></script>
+    <script type="text/javascript" src="../static/scripts/data-script.js"></script>
+    <script type="text/javascript" src="../static/scripts/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="../static/scripts/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../static/scripts/getimeiinfo3.js"></script>
+    <script type="text/javascript" src="../static/scripts/popup.js"></script>
+    <script type="text/javascript" src="../static/scripts/reply.js"></script>
+    <script type="text/javascript" src="../static/scripts/tableExport.js"></script>    
+    <script type="text/javascript" src="../static/scripts/My97DatePicker"></script>    
+    <script type="text/javascript" src="../static/scripts/My97DatePicker/My97DatePicker/WdatePicker.js"></script>
+    <script src="{{url_for('static', filename='script/calendar.js'}}}"></script>
+
+    <script>
+      var $exportLink = document.getElementById('export');
+      $exportLink.addEventListener('click', function(e){
+        e.preventDefault();
+        if(e.target.nodeName === "A"){
+          tableExport('datagrid', 'data', e.target.getAttribute('data-type'));
+        }
+      }, false);
+    </script>
+    <script type="text/javascript" src="../static/admin/form.js"></script>
+ 
+
+    <script type="text/javascript" src="../static/bootstrap-daterangepicker-master/daterangepicker.js"></script>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+    
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+    
+{% endblock %}

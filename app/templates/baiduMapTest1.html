@@ -1,0 +1,565 @@
+<div>
+        <table id="search-well" style="width:100%;border: solid thin #C0C0C0">
+        <tbody>
+            <tr>
+                <td align="right" style="width:10%">机型：</td>
+                <td style="width:30%">
+                    <div id="phoneModelDiv">
+                        <select id="phone" style="width:180px" >
+                            
+                        </select>
+                    </div>
+                </td>
+
+                <td><input type="button" style="background-image:url(static/Image/select.png);width:73px;height:24px;
+                border:0px;margin-left:25px;" ></input>
+                </td>            
+            </tr>
+        </tbody>
+        </table>
+        <div id="allmap"></div>
+        <div style="width:697px;height:550px;border:#ccc solid 1px;" id="dituContent"></div>
+        </body>    
+        <script type="text/javascript">
+        
+        (function(){
+        //级别为5需要显示的点
+var markerArrLess = [{title:"北京",content:"北京",type:"T02",point:"116.452562|40.126229",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"天津",content:"天津",type:"T02",point:"117.191903|39.137096",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"河北",content:"河北",type:"T02",point:"114.907189|38.871972",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"山西",content:"山西",type:"T02",point:"112.478746|38.52595",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"内蒙古",content:"内蒙古",type:"T02",point:"111.961896|42.377353",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"辽宁",content:"辽宁",type:"T02",point:"122.48515|41.994235",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"吉林",content:"吉林",type:"T02",point:"127.711707|42.837306",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"黑龙江",content:"黑龙江",type:"T02",point:"128.006064|47.167662",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"上海",content:"上海",type:"T02",point:"121.383037|31.354053",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"江苏",content:"江苏",type:"T02",point:"119.469718|33.66109",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"浙江",content:"浙江",type:"T02",point:"120.058432|28.923686",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"安徽",content:"安徽",type:"T02",point:"117.041275|33.32195",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"福建",content:"福建",type:"T02",point:"117.997935|26.963181",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"江西",content:"江西",type:"T02",point:"115.71667|27.522297",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"山东",content:"山东",type:"T02",point:"119.690486|36.533461",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"河南",content:"河南",type:"T02",point:"112.625924|34.365849",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"湖北",content:"湖北",type:"T02",point:"113.43368|30.786409",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"湖南",content:"湖南",type:"T02",point:"112.145295|28.422714",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"广东",content:"广东",type:"T02",point:"114.980778|23.990974",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"广西",content:"广西",type:"T02",point:"108.725697|24.193655",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"海南",content:"海南",type:"T02",point:"110.048578|19.561434",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"重庆",content:"重庆",type:"T02",point:"106.518021|29.729805",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"四川",content:"四川",type:"T02",point:"103.204783|30.786409",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"贵州",content:"贵州",type:"T02",point:"107.253913|27.522297",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"云南",content:"云南",type:"T02",point:"102.027356|25.037254",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"西藏",content:"西藏",type:"T02",point:"90.179497|29.956863",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"陕西",content:"陕西",type:"T02",point:"108.063394|34.365849",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"甘肃",content:"甘肃",type:"T02",point:"103.646318|36.979895",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"宁夏",content:"宁夏",type:"T02",point:"105.929308|37.30163",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"新疆",content:"新疆",type:"T02",point:"86.794394|44.045862",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ,{title:"青海",content:"青海",type:"T02",point:"99.356299|36.757237",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+        ],
+        //其他点
+    markerArrAll = [{title:"我的标记",content:"成都",point:"104.015702|30.624948",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"德阳",content:"德阳",point:"104.36525|31.196031",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"绵阳",content:"绵阳",point:"104.64121|31.543325",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"眉山",content:"眉山",point:"103.831729|30.146429",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"雅安",content:"雅安",point:"103.00385|30.066446",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"乐山",content:"乐山",point:"103.739742|29.649484",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"资阳",content:"资阳",point:"104.56762|30.226346",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"遂宁",content:"遂宁",point:"105.561074|30.640858",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"内江",content:"内江",point:"105.027553|29.649484",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"自贡",content:"自贡",point:"104.769991|29.408131",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"广元",content:"广元",point:"105.840765|32.498232",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"巴中",content:"巴中",point:"106.723835|31.919479",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"广安",content:"广安",point:"106.595054|30.496326",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"泸州",content:"泸州",point:"105.436024|28.90623",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"宜宾",content:"宜宾",point:"104.608146|28.809048",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"攀枝花",content:"攀枝花",point:"101.692174|26.648208",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"重庆",content:"重庆",point:"106.512266|29.616077",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"南充",content:"南充",point:"106.070731|30.877944",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"达州",content:"达州",point:"107.450528|31.242227",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"遵义",content:"遵义",point:"106.898609|27.783141",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"铜仁",content:"铜仁",point:"109.14308|27.783141",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"贵阳",content:"贵阳",point:"106.585855|26.697794",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"毕节",content:"毕节",point:"105.279647|27.34043",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"六盘水",content:"六盘水",point:"104.819715|26.631674",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"安顺",content:"安顺",point:"105.923553|26.317073",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"昭通",content:"昭通",point:"103.679082|27.389709",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"曲靖",content:"曲靖",point:"103.752672|25.551836",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"昆明",content:"昆明",point:"102.796012|24.932705",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"玉溪",content:"玉溪",point:"102.520053|24.39469",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"丽江",content:"丽江",point:"100.201993|26.912419",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"保山",content:"保山",point:"99.153347|25.200829",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"临沧",content:"临沧",point:"100.073212|23.938929",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"普洱",content:"普洱",point:"100.919488|22.869173",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"百色",content:"百色",point:"106.585855|23.955838",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"河池",content:"河池",point:"108.039242|24.748028",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"桂林",content:"桂林",point:"110.136534|25.284495",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"柳州",content:"柳州",point:"109.400642|24.37784",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"贺州",content:"贺州",point:"111.553125|24.445229",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"来宾",content:"来宾",point:"109.179874|23.786644",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"贵港",content:"贵港",point:"109.566217|23.175708",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"梧州",content:"梧州",point:"111.240371|23.51547",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"南宁",content:"南宁",point:"108.333598|22.886221",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"玉林",content:"玉林",point:"110.136534|22.698573",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"崇左",content:"崇左",point:"107.321747|22.442269",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"钦州",content:"钦州",point:"108.627955|22.031186",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"北海",content:"北海",point:"109.106285|21.550061",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"拉萨",content:"拉萨",point:"91.076934|29.680361",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"日喀则",content:"日喀则",point:"88.850861|29.326287",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"昌都县",content:"昌都县",point:"97.148042|31.178975",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"乌鲁木齐",content:"乌鲁木齐",point:"87.56305|43.856662",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"克拉玛依",content:"克拉玛依",point:"84.877045|45.613704",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"韶关",content:"韶关",point:"113.558431|24.865582",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"清远",content:"清远",point:"113.043306|23.735842",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"河源",content:"河源",point:"114.680666|23.803574",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"梅州",content:"梅州",point:"116.07886|24.327274",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"揭阳",content:"揭阳",point:"116.336423|23.617227",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"广州",content:"广州",point:"113.227279|23.175708",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"东莞",content:"东莞",point:"113.724006|23.09063",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"惠州",content:"惠州",point:"114.404706|23.175708",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"汕尾",content:"汕尾",point:"115.342969|22.83507",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"云浮",content:"云浮",point:"112.031455|22.954392",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"江门",content:"江门",point:"113.061704|22.630272",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"湛江",content:"湛江",point:"110.320507|21.326129",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"茂名",content:"茂名",point:"110.890823|21.722079",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"阳江",content:"阳江",point:"111.939469|21.911058",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"澳门",content:"澳门",point:"113.503239|22.23688",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"深圳",content:"深圳",point:"114.018363|22.579024",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"香港",content:"香港",point:"114.128747|22.322496",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"汕尾",content:"汕尾",point:"115.342969|22.852123",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"海口",content:"海口",point:"110.173328|20.114464",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"防城港",content:"防城港",point:"108.342797|21.704886",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"潮州",content:"潮州",point:"116.621587|23.677346",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"汕头",content:"汕头",point:"116.676779|23.380471",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"龙岩",content:"龙岩",point:"116.989533|25.109517",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"漳州",content:"漳州",point:"117.615041|24.58069",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"泉州",content:"泉州",point:"118.645289|24.933496",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"莆田",content:"莆田",point:"118.994838|25.502541",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"三明",content:"三明",point:"117.615041|26.301272",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"南平",content:"南平",point:"118.16696|26.698573",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"福州",content:"福州",point:"119.270798|26.135322",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"宁德",content:"宁德",point:"119.52836|26.731618",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"厦门",content:"厦门",point:"118.074973|24.504957",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"台北",content:"台北",point:"121.533665|25.076009",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"高雄",content:"高雄",point:"120.310245|22.690841",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"赣州",content:"赣州",point:"114.910638|25.877627",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"吉安",content:"吉安",point:"114.96583|27.152097",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"萍乡",content:"萍乡",point:"113.825198|27.661119",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"新余",content:"新余",point:"114.892241|27.873872",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"抚州",content:"抚州",point:"116.32723|27.988256",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"鹰潭",content:"鹰潭",point:"117.044725|28.314394",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"上饶",content:"上饶",point:"117.909398|28.493341",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"景德镇",content:"景德镇",point:"117.155108|29.318985",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"九江",content:"九江",point:"115.996079|29.737332",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"南昌",content:"南昌",point:"115.830503|28.736866",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"郴州",content:"郴州",point:"112.978922|25.811032",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"永州",content:"永州",point:"111.599125|26.475262",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"衡阳",content:"衡阳",point:"112.537387|26.921442",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"邵阳",content:"邵阳",point:"111.433549|27.283684",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"娄底",content:"娄底",point:"111.967071|27.726626",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"湘潭",content:"湘潭",point:"112.976622|27.841168",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"怀化",content:"怀化",point:"109.980163|27.62835",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"长沙",content:"长沙",point:"112.92373|28.265537",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"益阳",content:"益阳",point:"112.335017|28.590819",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"张家界",content:"张家界",point:"110.458492|29.173766",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"常德",content:"常德",point:"111.672714|29.060675",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"岳阳",content:"岳阳",point:"113.1261|29.399572",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"温州",content:"温州",point:"120.678191|28.061725",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"丽水",content:"丽水",point:"119.887107|28.533968",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"衢州",content:"衢州",point:"118.838461|29.036425",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"金华",content:"金华",point:"119.638744|29.109158",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"台州",content:"台州",point:"121.404884|28.704429",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"绍兴",content:"绍兴",point:"120.558608|30.057944",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"宁波",content:"宁波",point:"121.533665|29.913798",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"舟山",content:"舟山",point:"122.17757|30.02593",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"杭州",content:"杭州",point:"120.135471|30.313681",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"潮州",content:"湖州",point:"120.080279|30.934216",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"嘉兴",content:"嘉兴",point:"120.724184|30.775488",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"黄山",content:"黄山",point:"118.332535|29.753387",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"池州",content:"池州",point:"117.48626|30.711923",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"铜陵",content:"铜陵",point:"117.780617|30.997633",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"宣城",content:"宣城",point:"118.737276|30.981783",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"芜湖",content:"芜湖",point:"118.406125|31.393023",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"马鞍山",content:"马鞍山",point:"118.498111|31.723857",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"合肥",content:"合肥",point:"117.2103|31.865279",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"淮南",content:"淮南",point:"116.971135|32.662527",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"阜阳",content:"阜阳",point:"115.812106|32.942214",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"蚌埠",content:"蚌埠",point:"117.375876|32.957726",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"宿州",content:"宿州",point:"116.952738|33.699063",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"毫州",content:"亳州",point:"115.775311|33.883399",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"淮北",content:"淮北",point:"116.768765|34.006068",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"上海",content:"上海",point:"121.460076|31.282482",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"苏州",content:"苏州",point:"120.577006|31.345664",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"无锡",content:"无锡",point:"120.301046|31.550711",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"常州",content:"常州",point:"119.951498|31.849577",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"南通",content:"南通",point:"120.88976|32.022159",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"南京",content:"南京",point:"118.774071|32.116157",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"扬州",content:"扬州",point:"119.399579|32.444379",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"盐城",content:"盐城",point:"120.153868|33.375511",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"淮安",content:"淮安",point:"119.013235|33.652916",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"宿迁",content:"宿迁",point:"118.258946|33.990744",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"徐州",content:"徐州",point:"117.247095|34.250868",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"连云港",content:"连云港",point:"119.197208|34.631933",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"泰州",content:"泰州",point:"119.923902|32.475576",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"咸宁",content:"咸宁",point:"114.275931|29.889753",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"黄石",content:"黄石",point:"115.011823|30.257796",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"荆州",content:"荆州",point:"112.197037|30.401435",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"武汉",content:"武汉",point:"114.275931|30.640361",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"宣昌",content:"宜昌",point:"111.258775|30.735765",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"荆门",content:"荆门",point:"112.17864|31.084762",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"孝感",content:"孝感",point:"113.94478|30.942146",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"随州",content:"随州",point:"113.356067|31.747442",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"襄阳",content:"襄阳",point:"112.086653|32.061337",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"十堰",content:"十堰",point:"110.762048|32.685868",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"信阳",content:"信阳",point:"114.073561|32.202236",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"南阳",content:"南阳",point:"112.509791|33.027496",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"驻马店",content:"驻马店",point:"113.999972|33.073979",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"平顶山",content:"平顶山",point:"113.181292|33.7836",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"周口",content:"周口",point:"114.680672|33.675992",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"许昌",content:"许昌",point:"113.834396|34.07499",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"商丘",content:"商丘",point:"115.637331|34.456861",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"洛阳",content:"洛阳",point:"112.436202|34.654742",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"郑州",content:"郑州",point:"113.595232|34.806634",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"三门峡",content:"三门峡",point:"111.185186|34.806634",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"焦作",content:"焦作",point:"113.208888|35.260616",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"新乡",content:"新乡",point:"113.889588|35.351106",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"鹤壁",content:"鹤壁",point:"114.257534|35.802025",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"濮阳",content:"濮阳",point:"115.011823|35.802025",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"安阳",content:"安阳",point:"114.349521|36.160911",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"安康",content:"安康",point:"109.014305|32.732532",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"汉中",content:"汉中",point:"107.008999|33.104954",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"商洛",content:"商洛",point:"109.897375|33.906413",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"宝鸡",content:"宝鸡",point:"107.192972|34.426376",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"西安",content:"西安",point:"108.903921|34.411129",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"铜仁",content:"铜川",point:"108.922318|34.958244",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"延安",content:"延安",point:"109.45584|36.636859",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"榆林",content:"榆林",point:"109.695005|38.337365",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"陇南",content:"陇南",point:"104.874913|33.444947",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"天水",content:"天水",point:"105.702791|34.624329",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"平凉",content:"平凉",point:"106.641053|35.576886",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"庆阳",content:"庆阳",point:"107.597713|35.757048",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"定西",content:"定西",point:"104.598953|35.636985",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"益州",content:"兰州",point:"103.789472|36.101211",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"白银",content:"白银",point:"104.120624|36.592364",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"武威",content:"武威",point:"102.593648|37.988744",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"金昌",content:"金昌",point:"102.152113|38.568844",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"张掖",content:"张掖",point:"100.422767|38.972128",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"嘉峪关",content:"嘉峪关",point:"98.270283|39.778882",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"固原",content:"固原",point:"106.199518|36.071344",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"中卫",content:"中卫",point:"105.150872|37.535959",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"吴忠",content:"吴忠",point:"106.181121|38.032414",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"银川",content:"银川",point:"106.199518|38.525499",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"石嘴山",content:"石嘴山",point:"106.346697|39.043901",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"海东",content:"海东",point:"102.060126|36.547843",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"西宁",content:"西宁",point:"101.747372|36.666508",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"运城",content:"运城",point:"110.964418|35.079328",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"晋城",content:"晋城",point:"112.804148|35.531781",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"临汾",content:"临汾",point:"111.479542|36.131067",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"长治",content:"长治",point:"113.098504|36.235472",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"吕梁",content:"吕梁",point:"111.111596|37.565255",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"太原",content:"太原",point:"112.509791|37.915904",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"阳泉",content:"阳泉",point:"113.54004|37.915904",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"忻州",content:"忻州",point:"112.712161|38.467664",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"朔州",content:"朔州",point:"112.427003|39.380249",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"大同",content:"大同",point:"113.337669|40.139909",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"宜春",content:"宜春",point:"114.404713|27.83299",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"枣庄",content:"枣庄",point:"117.311485|34.844563",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"临沂",content:"临沂",point:"118.323337|35.132246",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"菏泽",content:"菏泽",point:"115.434961|35.26816",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"济宁",content:"济宁",point:"116.575594|35.449023",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"日照",content:"日照",point:"119.482366|35.464076",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"泰安",content:"泰安",point:"117.072321|36.228019",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"青岛",content:"青岛",point:"120.347039|36.108676",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"聊城",content:"聊城",point:"115.968483|36.495869",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"济南",content:"济南",point:"117.072321|36.688737",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"淄博",content:"淄博",point:"118.010583|36.866338",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"潍坊",content:"潍坊",point:"119.132818|36.733176",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"德州",content:"德州",point:"116.318031|37.47",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"滨州",content:"滨州",point:"117.936994|37.41132",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"东营",content:"东营",point:"118.636091|37.484662",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"烟台",content:"烟台",point:"121.414083|37.513979",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"威海",content:"威海",point:"122.076385|37.543284",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"莱芜",content:"莱芜",point:"117.670233|36.235472",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"邯郸",content:"邯郸",point:"114.524295|36.659097",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"邢台",content:"邢台",point:"114.469103|37.117227",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"衡水",content:"衡水",point:"115.64653|37.777306",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"石家庄",content:"石家庄",point:"114.4875|38.068785",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"保定",content:"保定",point:"115.462557|38.90747",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"廊坊",content:"廊坊",point:"116.658381|39.565616",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"天津",content:"天津",point:"117.191903|39.137096",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"北京",content:"北京",point:"116.400819|39.934855",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"张家口",content:"张家口",point:"114.855446|40.793299",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"承德",content:"承德",point:"117.946192|41.002702",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"秦皇岛",content:"秦皇岛",point:"119.565154|39.977331",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"唐山",content:"唐山",point:"118.16696|39.665223",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"沧州",content:"沧州",point:"116.80556|38.34461",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"葫芦岛",content:"葫芦岛",point:"120.816171|40.751338",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"朝阳",content:"朝阳",point:"120.429827|41.599285",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"锦州",content:"锦州",point:"121.110527|41.128023",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"阜新",content:"阜新",point:"121.644049|42.053394",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"盘锦",content:"盘锦",point:"122.048789|41.169743",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"营口",content:"营口",point:"122.232762|40.695349",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"大连",content:"大连",point:"121.607254|38.950582",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"鞍山",content:"鞍山",point:"122.968654|41.141933",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"沈阳",content:"沈阳",point:"123.410189|41.847383",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"本溪",content:"本溪",point:"123.649354|41.516371",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"丹东",content:"丹东",point:"124.29326|40.062203",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"铁岭",content:"铁岭",point:"123.722943|42.272399",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"通化",content:"通化",point:"125.930619|41.778564",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"白山",content:"白山",point:"126.390551|41.984798",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"辽源",content:"辽源",point:"125.121138|42.92483",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"四平",content:"四平",point:"124.330054|43.194644",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"长春",content:"长春",point:"125.286714|43.863945",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"吉林",content:"吉林",point:"126.519333|43.877255",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"松原",content:"松原",point:"124.808384|45.180096",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"白城",content:"白城",point:"122.821476|45.646582",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"牡丹江",content:"牡丹江",point:"129.610078|44.591534",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"鸡西",content:"鸡西",point:"130.953081|45.323045",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"七台河",content:"七台河",point:"130.971478|45.814082",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"哈尔滨",content:"哈尔滨",point:"126.500935|45.839806",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"大庆",content:"大庆",point:"125.084343|46.618653",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"绥化",content:"绥化",point:"126.94247|46.681999",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"佳木斯",content:"佳木斯",point:"130.309176|46.833727",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"鹤岗",content:"鹤岗",point:"130.290778|47.386386",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"伊春",content:"伊春",point:"128.818995|47.772294",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"齐齐哈尔",content:"齐齐哈尔",point:"123.906916|47.398879",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"呼伦贝尔",content:"呼伦贝尔",point:"119.749127|49.251255",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"通辽",content:"通辽",point:"122.214365|43.677295",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"赤峰",content:"赤峰",point:"118.884454|42.299721",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"乌兰察布",content:"乌兰察布",point:"113.107703|41.044502",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"呼和浩特",content:"呼和浩特",point:"111.709509|40.87714",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"包头",content:"包头",point:"109.832984|40.695349",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"鄂尔多斯",content:"鄂尔多斯",point:"109.759395|39.636779",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"巴彦淖尔",content:"巴彦淖尔",point:"107.367747|40.793299",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"乌海",content:"乌海",point:"106.779033|39.693655",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"双鸭山",content:"双鸭山",point:"131.146253|46.669336",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"三亚",content:"三亚",point:"109.492634|18.297575",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"安庆",content:"安庆",point:"117.053923|30.540881",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"延吉",content:"延吉",point:"129.513493|42.92483",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"兴安盟",content:"兴安盟",point:"120.572406|46.50444",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"锡林浩特",content:"锡林浩特",point:"116.083466|43.95705",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"海晏县",content:"海晏县",point:"100.979285|36.925445",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"同仁县",content:"同仁县",point:"102.009534|35.524261",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"合作",content:"合作",point:"102.911001|35.01124",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"马尔康县",content:"马尔康县",point:"102.193507|31.943753",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"玛沁县",content:"玛沁县",point:"100.224996|34.494952",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"德令哈",content:"德令哈",point:"97.355018|37.396643",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"玉树",content:"玉树",point:"97.005469|33.019747",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"康定",content:"康定",point:"101.954342|30.041938",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"西昌",content:"西昌",point:"102.267096|27.922909",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"大理",content:"大理",point:"100.224996|25.627703",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"楚雄",content:"楚雄",point:"101.549601|25.059251",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"文山",content:"文山",point:"104.217209|23.405944",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"兴义",content:"兴义",point:"104.897909|25.126268",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"都匀",content:"都匀",point:"107.510326|26.29298",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"吉首",content:"吉首",point:"109.644412|28.184059",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"林芝县",content:"林芝县",point:"94.356258|29.657017",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"乃东县",content:"乃东县",point:"91.762239|29.254469",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"那曲县",content:"那曲县",point:"92.038199|31.487668",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"噶尔县",content:"噶尔县",point:"80.098353|32.522351",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"和田",content:"和田",point:"79.91438|37.131959",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"喀什",content:"喀什",point:"75.995756|39.480124",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"阿图什",content:"阿图什",point:"76.161332|39.736282",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"伊宁",content:"伊宁",point:"81.27578|43.930464",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"昌吉",content:"昌吉",point:"87.254902|44.036738",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"塔城",content:"塔城",point:"82.968332|46.757917",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"阿勒泰",content:"阿勒泰",point:"88.119575|47.846655",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"吐鲁番",content:"吐鲁番",point:"89.186618|42.978889",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"哈密",content:"哈密",point:"93.509983|42.85719",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"库尔勒",content:"库尔勒",point:"86.169461|41.737236",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ,{title:"漯河",content:"漯河",point:"113.986174|33.637528",isOpen:0,icon:{w:11,h:11,l:0,t:0,x:6,lb:5}}
+        ];
+
+        //
+        var target = null;
+        var label = null;
+        //创建InfoWindow
+    function createInfoWindow(i,markers){
+        var json = markers[i];
+        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_type'>"+json.type+"</div><div class='iw_poi_content'>"+json.content+'台'+"</div>");
+        return iw;
+        }
+        //创建一个Icon
+    function createIcon(json){
+        var icon = new BMap.Icon("static/Image/icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
+        return icon;
+        }
+        //创建marker
+    function addMarker(markers){
+        for(var i=0;i<markers.length;i++){
+            var json = markers[i];
+            var p =json.point.split("|");
+            var point = new BMap.Point(p[0],p[1]);
+            var iconImg = createIcon(json.icon);
+            var marker = new BMap.Marker(point,{icon:iconImg});
+            var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+            label.setStyle({
+                borderColor:"#808080",
+                color:"#333",
+                //cursor:"pointer",
+                opacity:0
+                });
+            marker.setLabel(label);
+            marker.iw = createInfoWindow(i,markers);
+            marker.addEventListener("click",function(){
+                var iw = this.iw;
+                this.openInfoWindow(iw);
+                });
+            marker.iw.addEventListener("open",function(){
+                marker.getLabel().hide();
+                });
+            marker.iw.addEventListener("close",function(){
+                marker.getLabel().show();
+                });
+            map.addOverlay(marker);
+        /*label.addEventListener("click",function(){
+        marker.openInfoWindow(iw);
+        })*/
+            if(!!json.isOpen){
+                label.hide();
+                marker.openInfoWindow(iw);
+                }
+
+            }
+        }
+        //创建地图函数：
+    function createMap(){
+        var map = new BMap.Map("allmap",{minZoom:5,maxZoom:5});//在百度地图容器中创建一个地图
+        var point = new BMap.Point(109.422495,30.801796);//定义一个中心点坐标
+        map.centerAndZoom(point,5); //设定地图的中心点和坐标并将地图显示在地图容器中
+        //map.enableScrollWheelZoom(true);
+        window.map = map;//将map变量存储在全局
+        }
+
+        //地图事件设置函数：
+    function setMapEvent(){
+        map.disableDragging();//启用地图拖拽事件，默认启用
+        //map.enableScrollWheelZoom(true);//启用地图滚轮放大缩小
+        var isClear = false;
+        /*window.addEventListener('mousewheel',function(e){
+            var zoom = map.getZoom();
+            if(e.wheelDelta>0){
+                zoom++
+            }else {
+                zoom--
+            }
+
+            if(isClear&&zoom>5){
+                map.clearOverlays();
+                addMarker(markerArrAll);
+                //console.log(isClear)
+                isClear = false;
+            }else if(!isClear&&zoom<6){
+                map.clearOverlays();
+                addMarker(markerArrLess);
+                //console.log(isClear)
+                isClear = true
+            }
+        });
+        window.addEventListener('dblclick',function(){
+            if(isClear){
+                map.clearOverlays();
+                addMarker(markerArrAll);
+                isClear = false
+            }
+        });*/
+        map.disableDoubleClickZoom();//启用鼠标双击放大，默认启用
+        map.disableKeyboard();//启用键盘上下左右键移动地图
+        }
+
+
+        //创建和初始化地图函数：
+    function initMap(){
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMarker(markerArrLess);//向地图中添加marker
+        }
+
+    $(document).ready(function(){
+        getPhoneModel();
+        ajaxData();
+    });
+
+    function getQueryURL() {
+        var url = "servlet/UserHome?from=get_phonevsprovince";
+
+        var begintime = $("#begintime").val();
+        var endtime = $("#endtime").val();
+        if (begintime != "" && typeof(begintime) != "undefined") {
+            url += "&begintime=" + begintime;
+            }
+        if (endtime != "" && typeof(endtime) != "undefined") {
+        url += "&endtime=" + endtime;
+            }
+        return url;
+        }
+
+    function getPhoneModel(){
+        $.ajax({
+            type:"GET",    
+            url:encodeURI(getQueryURL()),
+            dataType:"json",
+            success: function(msg){
+                setPhoneModelList(msg);
+            }    
+        })
+    }
+    
+    function setPhoneModelList(msg){
+        var data = eval(msg.data);
+        var phonemodel = [];
+        for(var i=0;i<data.length;i++){
+            var phonelist = data[i].phone
+            phonemodel[i] = phonelist
+            htm = $("<option>"+phonelist+"</option>");
+            $("#phone").append(htm);
+        }
+    }
+
+            //选择机型
+
+    function switchphone2(original){
+
+        var phoneModel = $("#phone").val() + "";
+        for(i = 0 ; i <target.length ; i++){
+            var phone = target[i].phone + "";
+            if(phone == phoneModel){
+                for(m = 0; m < 31; m++){
+                    original[m].type = phoneModel;
+                    original[m].content = target[i].numbers[m];
+                }
+            }
+        }
+    }
+
+            //拉取数据
+
+    function ajaxData(){
+        var $result = $.ajax({
+            type: "GET",
+            url: encodeURI(getQueryURL()),
+            dataType: "json",
+            success: function (msg) {
+                var data = eval(msg.data);
+                target = data;
+                var phonemodel = [];
+                switchphone2(markerArrLess);
+                initMap();//创建和初始化地图
+                $('#search-well').find('input').on('click',function(){
+                    switchphone2(markerArrLess);//刷新数据
+                    initMap();//创建和初始化地图
+                })
+
+            },
+            error:function(){
+                alert('获取数据失败')
+            }
+        });
+        return $result
+    }
+
+    
+        var $result = ajaxData();
+        console.log($result)
+})();
+        </script>
+        </html>

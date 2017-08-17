@@ -1,0 +1,1353 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="zh-cn" />
+<style>
+    body {background: url('')   ; min-width: 1000px;}
+</style>
+<script>
+    var G = {};
+    var main = "https://www.vmall.com",
+        loginDomain = "https://hwid1.vmall.com/CAS/remoteLogin",
+        loginUrl = "https://hwid1.vmall.com/CAS/portal/login.html",
+        serviceUrl = "https://www.vmall.com/account/caslogin",
+        amsDomain = "https://act.vmall.com";
+    /*var main = "https://edpomstest.vmall.com",
+     loginDomain = "https://cassite1old.hwcloudtest.cn:18443/casserver/remoteLogin",
+     loginUrl= "https://cassite1old.hwcloudtest.cn:18443/oauth2/portal/login.jsp",
+     serviceUrl="https://edpomstest.vmall.com/account/caslogin",
+     amsDomain = "https://amsfronttestlf.vmall.com";*/
+    // 定时切换商品链接
+    var prdLinkJumpTime = 0;
+</script>
+<title>【华为818品智节】-华为商城</title>
+<meta name="keywords" content="华为818、华为商城、华为手机、华为商城促销" />
+<meta name="description" content="华为商城是华为旗下面向全国服务的电子商务平台官网，我们提供正品华为手机&#x28;HUAWEI P10、HUAWEI Mate9、HUAWEI nova2、华为畅享7、华为畅享7plus&#x29;、平板电脑、配件等全新华为产品，品质保证！" />
+<meta name="mobile-agent" content="" />
+<link rel="shortcut icon" href="//www.vmall.com/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="//res8.vmallres.com/activity/template/daily-v2/pc/css/common.css"></head>
+<body><div id="page"><div layoutCode="layoutArea" layoutInstanceId="4853">
+	<!--mod14-header-导航 -start -->
+<style>
+    .mod14-carnival-header-wrp {max-width: 1920px; overflow: hidden; margin: 0 auto;}
+    .mod14-carnival-header {margin: 0 auto;}
+    .mod14-carnival-logo {float: left;}
+    .mod14-carnival-menu {font-size: 14px; color: #fff; float: right;}
+    .mod14-carnival-menu li {float: left;}
+    .mod14-carnival-menu li a {float: left; line-height: 1; vertical-align: middle;}
+</style>
+<!--设置快速定位id-->
+<div id="part-0" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px）； 高度height； 背景background(默认没有)-->
+<!--背景background: 背景图片url('./bj1.jpg')  关于平铺(no-repeat    repeat  repeat-x   repeat-y ）  背景图片所靠位置(top right bottom left) 背景图片是否居中（center 不设置就去掉center） 背景颜色#FFF； -->
+<div class="mod14-carnival-header-wrp" style=" min-width:1000px; height:50px; background:url('https://res2.vmallres.com/pimages/tms/2017080310054906226014.jpg') no-repeat top center #FFFFFF;">
+    <!--模块宽度-->
+    <div class="mod14-carnival-header clearfix" style="width:1000px;">
+        <!--logo 上边距; 左边距 -->
+        <div class="mod14-carnival-logo"
+             style="margin-top:4px; margin-left:0px;">
+            <a href="//www.vmall.com" target="_blank">
+                <img src="" alt="">
+            </a>
+        </div>
+        <!--文字上边距; 右边距 -->
+        <div class="mod14-carnival-menu"
+             style="margin-top:18px; margin-right:5px;">
+            <ul>
+                <!-- onmouseout="this.style.cssText='是鼠标移开的样式，可以和style="的样式一样； onmouseover="this.style.cssText='是鼠标移上去的样式-->
+                <!-- 改文字大小，文字颜色，-->
+                        <li><a href="https://www.vmall.com/huawei" target="_blank" style="color:#ffffff;font-size:14px; padding: 0 13px;"
+                               onmouseout="this.style.cssText='color:#ffffff;font-size:14px; padding: 0 13px;'"
+                               onmouseover="this.style.cssText='color:#bbb;font-size:14px; padding: 0 13px; '">华为专区</a>
+                        </li>
+                        <li><a href="https://www.vmall.com/product/205641589.html" target="_blank" style="color:#ffffff;font-size:14px; padding: 0 13px;"
+                               onmouseout="this.style.cssText='color:#ffffff;font-size:14px; padding: 0 13px;'"
+                               onmouseover="this.style.cssText='color:#bbb;font-size:14px; padding: 0 13px; '">HUAWEI P10</a>
+                        </li>
+                        <li><a href="https://www.vmall.com/product/549981984.html" target="_blank" style="color:#ffffff;font-size:14px; padding: 0 13px;"
+                               onmouseout="this.style.cssText='color:#ffffff;font-size:14px; padding: 0 13px;'"
+                               onmouseover="this.style.cssText='color:#bbb;font-size:14px; padding: 0 13px; '">华为畅享7 Plus</a>
+                        </li>
+                        <li><a href="https://www.vmall.com/product/248236075.html" target="_blank" style="color:#ffffff;font-size:14px; padding: 0 13px;"
+                               onmouseout="this.style.cssText='color:#ffffff;font-size:14px; padding: 0 13px;'"
+                               onmouseover="this.style.cssText='color:#bbb;font-size:14px; padding: 0 13px; '">HUAWEI Mate 9</a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--mod14-header-导航 -end --><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1000px; background:url('')   ; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1000px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href=""
+                   style="width:; height:; left:; top:;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('','',this);"
+                   couponValue="" couponType=""
+                   style="width:; height:; left:; top:;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+                <img src="https://res2.vmallres.com/pimages/tms/2017080409285407609640.jpg" alt=""/>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod18-code1-左浮动 -start -->
+<style>
+/*左侧浮层*/
+.mod18-carnival-code1 {width: 1000px; margin: 0 auto; height: 0; position: relative;}
+.mod18-carnival-code-left {position: absolute; z-index: 10;}
+.event-carnival-code-left img {margin: 0 auto; display: block;}
+.mod18-carnival-code1-wrp {position: relative;}
+.mod18-carnival-code1-wrp .href {position: absolute; background: url(about:blank); display: block;}
+.tool-Fixed {position: fixed !important; top: 10px; z-index: 500;}
+</style>
+<!-- 20151220-荣耀圣诞-event-carnival-左侧浮动-start -->
+<div class="mod18-carnival-code1">
+    <!--模块左边距left:- ; 上边距top: -->
+    <div class="mod18-carnival-code-left" id="event-float-layout-left"
+         style="left:-165px; top:10px; ">
+        <div id="event-float-left">
+            <div class="mod18-carnival-code1-wrp">
+                <!-- 图片下边距margin-bottom-->
+                <p>
+                    <!--这里的a 标签可以默认没有-->
+                                <img src="https://res6.vmallres.com/pimages/tms/2017080410563301095332.png" alt=""/>
+                </p>
+
+                <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+                <!-- 普通链接 -->
+                        <a href=""
+                           target="_blank"
+                           style="width:; height:; left:; top:;"
+                           class="href"></a>
+
+                <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                        <a href="javascript:;"
+                           onClick="Md.coupon.getCoupon('','',this);"
+                           couponValue=""
+                           couponType=""
+                           style="width:; height:; left:; top:;"
+                           class="href"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--mod18-code1-左浮动 -end --><!--mod15-img-单张图片 -start -->
+<style>
+	.mod15-carnival-img-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+	.mod15-carnival-img{position:relative; left:50%; *zoom:1; _position:relative;}
+	.mod15-carnival-img-href{position:relative; margin:0 auto; height:0; z-index:1;}
+	.mod15-carnival-img-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs" ></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod15-carnival-img-wrp" style="min-width:1200px; background:url('') no-repeat top center #FFFFFF; padding-top:0px;">
+	<!--模块宽度width:  (这个是用来定义坐标点的)-->
+	<div class="mod15-carnival-img-href" style="width:1200px;">
+				<!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+				<a href="https://www.vmall.com/product/98966557.html" style="width:200px; height:385px; left:0px; top:0px;" target="_blank"></a>
+				<!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+				<a href="https://www.vmall.com/product/877078156.html" style="width:200px; height:385px; left:200px; top:0px;" target="_blank"></a>
+				<!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+				<a href="https://www.vmall.com/product/87443107.html" style="width:200px; height:385px; left:400px; top:0px;" target="_blank"></a>
+				<!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+				<a href="https://www.vmall.com/product/248236075.html" style="width:200px; height:385px; left:600px; top:0px;" target="_blank"></a>
+				<!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+				<a href="https://www.vmall.com/product/549981984.html" style="width:200px; height:385px; left:800px; top:0px;" target="_blank"></a>
+				<!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+				<a href="https://www.vmall.com/product/417236260.html" style="width:200px; height:385px; left:1000px; top:0px;" target="_blank"></a>
+	</div>
+	<!--图片宽度width: ;   margin-left的值是width的一半-->
+	<div class="mod15-carnival-img" style="width:1920px; margin-left:-960px; ">
+		<!--这里的a 标签可以默认没有-->
+				<img src="https://res7.vmallres.com/pimages/tms/2017080310062109791650.jpg" alt=""/>
+	</div>
+</div>
+<!--mod15-img-单张图片 -end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="part-1" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1000px; background:url('')   ; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1000px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href=""
+                   style="width:; height:; left:; top:;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('','',this);"
+                   couponValue="" couponType=""
+                   style="width:; height:; left:; top:;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+            <a href="https://www.vmall.com/notice-3249" target="_blank">
+                <img src="https://res1.vmallres.com/pimages/tms/2017080512532608357141.jpg" alt=""/>
+            </a>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod19-code1-右浮动 -start -->
+<style>
+    .mod4-code{width:1000px; margin:0 auto; height:0; position:relative; }
+    .mod19-carnival-code {position: absolute; z-index: 10; width: 120px;}
+    .mod19-carnival-code img {margin: 0 auto;display: block;}
+    .mod19-carnival-code-nav {width: 120px; margin: 0 auto; text-align: center; padding-top:10px;}
+    .mod19-carnival-code-nav a {display: block; width: 90px; line-height:28px; padding:1px 0 0 30px; font-size: 14px; background:transparent url('//res2.vmallres.com/ecsale/images/20151225_china/bg4.png') no-repeat left center; text-align:left;}
+    .mod19-carnival-code-nav a:hover {text-decoration:none; background-color:rgba(0,0,0,.2);}
+    .tool-Fixed {position: fixed !important; top: ; z-index: 500;}
+</style>
+
+<div class="mod4-code">
+    <!--模块上边距top: ； 模块往右偏移right:；-->
+    <div class="mod19-carnival-code" id="event-float-layout" style="top:10px; right:-200px;">
+        <div id="event-float">
+            <!--文字背景颜色background-color:-->
+            <div class="mod19-carnival-code-nav" style="background-color:;display:block">
+                <!--文字颜color:-->
+                        <a href="" target="_blank" style="color:;" ></a>
+                <!--<a href="#event-carnival-part-6">实名享特权</a>-->
+            </div>
+                    <p><a href="" target="_self"><img src="https://res6.vmallres.com/pimages/tms/2017073104095605427318.png" alt=""/></a></p>
+                    <p><a href="#part-1" target="_self"><img src="https://res2.vmallres.com/pimages/tms/2017073104101902041632.png" alt=""/></a></p>
+                    <p><a href="#part-2" target="_self"><img src="https://res9.vmallres.com/pimages/tms/2017073104102605815528.png" alt=""/></a></p>
+                    <p><a href="#part-3" target="_self"><img src="https://res4.vmallres.com/pimages/tms/2017073104103009559452.png" alt=""/></a></p>
+                    <p><a href="#part-4" target="_self"><img src="https://res8.vmallres.com/pimages/tms/2017073104103508615537.png" alt=""/></a></p>
+                    <p><a href="#part-5" target="_self"><img src="https://res2.vmallres.com/pimages/tms/2017073104104008770148.png" alt=""/></a></p>
+                    <p><a href="#part-6" target="_self"><img src="https://res8.vmallres.com/pimages/tms/2017073104104708052342.png" alt=""/></a></p>
+                    <p><a href="#part-0" target="_self"><img src="https://res5.vmallres.com/pimages/tms/2017073104105402853436.png" alt=""/></a></p>
+            <p  style="display:none"><a href="javascript:window.scrollTo( 0, 0 );"><img src="" alt="返回顶部" /></a></p>
+        </div>
+    </div>
+</div>
+<!--mod19-code1-右浮动 -end --><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   ; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href=""
+                   style="width:; height:; left:; top:;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C1708000137','BH00132',this);"
+                   couponValue="" couponType=""
+                   style="width:300px; height:150px; left:0px; top:0px;"></a>
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C1708000137','BH00133',this);"
+                   couponValue="" couponType=""
+                   style="width:300px; height:150px; left:300px; top:0px;"></a>
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C1708000137','BH00129',this);"
+                   couponValue="" couponType=""
+                   style="width:300px; height:150px; left:600px; top:0px;"></a>
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C1708000137','BH00135',this);"
+                   couponValue="" couponType=""
+                   style="width:300px; height:150px; left:900px; top:0px;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+                <img src="https://res2.vmallres.com/pimages/tms/2017080502051803738417.jpg" alt=""/>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   ; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href="https://www.vmall.com/notice-3207"
+                   style="width:300px; height:30px; left:900px; top:150px;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C1708000137','BH00134',this);"
+                   couponValue="" couponType=""
+                   style="width:300px; height:150px; left:0px; top:0px;"></a>
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C1708000137','BH00130',this);"
+                   couponValue="" couponType=""
+                   style="width:300px; height:150px; left:300px; top:0px;"></a>
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C1708000137','BH00131',this);"
+                   couponValue="" couponType=""
+                   style="width:300px; height:150px; left:600px; top:0px;"></a>
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C1708000137','BH00136',this);"
+                   couponValue="" couponType=""
+                   style="width:300px; height:150px; left:900px; top:0px;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+                <img src="https://res4.vmallres.com/pimages/tms/2017080310072704642695.jpg" alt=""/>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod15-img-单张图片 -start -->
+<style>
+	.mod15-carnival-img-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+	.mod15-carnival-img{position:relative; left:50%; *zoom:1; _position:relative;}
+	.mod15-carnival-img-href{position:relative; margin:0 auto; height:0; z-index:1;}
+	.mod15-carnival-img-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="part-2" class="hrefs" ></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod15-carnival-img-wrp" style="min-width:1000px; background:url('') no-repeat top center #991d1d; padding-top:0px;">
+	<!--模块宽度width:  (这个是用来定义坐标点的)-->
+	<div class="mod15-carnival-img-href" style="width:1000px;">
+				<!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+				<a href="//www.vmall.com" style="width:200px; height:100px; left:20px; top:20px;" target="_blank"></a>
+	</div>
+	<!--图片宽度width: ;   margin-left的值是width的一半-->
+	<div class="mod15-carnival-img" style="width:1920px; margin-left:-960px; ">
+		<!--这里的a 标签可以默认没有-->
+				<img src="https://res0.vmallres.com/pimages/tms/2017072903354807305539.jpg" alt=""/>
+	</div>
+</div>
+<!--mod15-img-单张图片 -end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href=""
+                   style="width:; height:; left:; top:;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C1708000136','BH00132',this);"
+                   couponValue="" couponType=""
+                   style="width:165px; height:100px; left:375px; top:0px;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+            <a href="https://www.vmall.com/product/98966557.html" target="_blank">
+                <img src="https://res2.vmallres.com/pimages/tms/2017080410595503643277.jpg" alt=""/>
+            </a>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href=""
+                   style="width:; height:; left:; top:;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C170700012d','BH00123',this);"
+                   couponValue="" couponType=""
+                   style="width:165px; height:100px; left:375px; top:0px;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+            <a href="https://www.vmall.com/product/87443107.html" target="_blank">
+                <img src="https://res5.vmallres.com/pimages/tms/2017080310075404871139.jpg" alt=""/>
+            </a>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href=""
+                   style="width:; height:; left:; top:;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C1708000136','BH00135',this);"
+                   couponValue="" couponType=""
+                   style="width:165px; height:100px; left:375px; top:0px;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+            <a href="https://www.vmall.com/product/248236075.html" target="_blank">
+                <img src="https://res0.vmallres.com/pimages/tms/2017080411001709557500.jpg" alt=""/>
+            </a>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href=""
+                   style="width:; height:; left:; top:;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C1708000136','BH00133',this);"
+                   couponValue="" couponType=""
+                   style="width:165px; height:100px; left:375px; top:0px;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+            <a href="https://www.vmall.com/product/205641589.html" target="_blank">
+                <img src="https://res8.vmallres.com/pimages/tms/2017080411003009283946.jpg" alt=""/>
+            </a>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href="https://www.vmall.com/product/658610591.html"
+                   style="width:160px; height:320px; left:210px; top:0px;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C1708000136','BH00129',this);"
+                   couponValue="" couponType=""
+                   style="width:165px; height:100px; left:375px; top:0px;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+            <a href="https://www.vmall.com/product/877078156.html" target="_blank">
+                <img src="https://res1.vmallres.com/pimages/tms/2017080310084604498590.jpg" alt=""/>
+            </a>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href="https://www.vmall.com/product/673771333.html"
+                   style="width:600px; height:445px; left:0px; top:0px;"
+                   target="_blank"></a>
+                <a href="https://www.vmall.com/product/549981984.html"
+                   style="width:600px; height:445px; left:600px; top:0px;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C1708000136','BH00134',this);"
+                   couponValue="" couponType=""
+                   style="width:165px; height:100px; left:80px; top:150px;"></a>
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C1708000136','BH00136',this);"
+                   couponValue="" couponType=""
+                   style="width:165px; height:100px; left:675px; top:150px;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+                <img src="https://res0.vmallres.com/pimages/tms/2017080411004403738919.jpg" alt=""/>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href="https://www.vmall.com/product/249702255.html"
+                   style="width:600px; height:445px; left:0px; top:0px;"
+                   target="_blank"></a>
+                <a href="https://www.vmall.com/product/22309363.html"
+                   style="width:600px; height:445px; left:600px; top:0px;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C1708000136','BH00131',this);"
+                   couponValue="" couponType=""
+                   style="width:165px; height:100px; left:80px; top:150px;"></a>
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C1708000136','BH00136',this);"
+                   couponValue="" couponType=""
+                   style="width:165px; height:100px; left:675px; top:150px;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+                <img src="https://res0.vmallres.com/pimages/tms/2017080411005801336346.jpg" alt=""/>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href="https://www.vmall.com/product/499588076.html"
+                   style="width:600px; height:445px; left:0px; top:0px;"
+                   target="_blank"></a>
+                <a href="https://www.vmall.com/product/461751298.html"
+                   style="width:600px; height:445px; left:600px; top:0px;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C1708000136','BH00136',this);"
+                   couponValue="" couponType=""
+                   style="width:165px; height:100px; left:80px; top:150px;"></a>
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C1708000136','BH00130',this);"
+                   couponValue="" couponType=""
+                   style="width:165px; height:100px; left:675px; top:150px;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+                <img src="https://res5.vmallres.com/pimages/tms/2017080310095905789078.jpg" alt=""/>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href=""
+                   style="width:; height:; left:; top:;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('','',this);"
+                   couponValue="" couponType=""
+                   style="width:; height:; left:; top:;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+            <a href="https://www.vmall.com/item/221281208/index" target="_blank">
+                <img src="https://res1.vmallres.com/pimages/tms/2017072904241809591643.jpg" alt=""/>
+            </a>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="part-3" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1000px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1000px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href=""
+                   style="width:; height:; left:; top:;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C17060000e7','BH00052',this);"
+                   couponValue="" couponType=""
+                   style="width:100px; height:80px; left:400px; top:0px;"></a>
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C17060000e7','BH00052',this);"
+                   couponValue="" couponType=""
+                   style="width:100px; height:80px; left:900px; top:0px;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+                <img src="https://res5.vmallres.com/pimages/tms/2017072904243203669096.jpg" alt=""/>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href=""
+                   style="width:; height:; left:; top:;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('','',this);"
+                   couponValue="" couponType=""
+                   style="width:; height:; left:; top:;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+            <a href="https://www.vmall.com/product/798789671.html" target="_blank">
+                <img src="https://res4.vmallres.com/pimages/tms/2017080310104305094629.jpg" alt=""/>
+            </a>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href="https://www.vmall.com/product/889979598.html"
+                   style="width:150px; height:320px; left:210px; top:0px;"
+                   target="_blank"></a>
+                <a href="https://www.vmall.com/product/21046116.html"
+                   style="width:150px; height:320px; left:360px; top:0px;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('','',this);"
+                   couponValue="" couponType=""
+                   style="width:; height:; left:; top:;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+            <a href="https://www.vmall.com/product/417236260.html" target="_blank">
+                <img src="https://res3.vmallres.com/pimages/tms/2017080310105702423413.jpg" alt=""/>
+            </a>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href="https://www.vmall.com/product/142312570.html"
+                   style="width:210px; height:320px; left:0px; top:0px;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('','',this);"
+                   couponValue="" couponType=""
+                   style="width:; height:; left:; top:;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+            <a href="https://www.vmall.com/product/312318362.html" target="_blank">
+                <img src="https://res8.vmallres.com/pimages/tms/2017080310111205365593.jpg" alt=""/>
+            </a>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href="https://www.vmall.com/product/658947392.html"
+                   style="width:300px; height:325px; left:0px; top:0px;"
+                   target="_blank"></a>
+                <a href="https://www.vmall.com/product/241920871.html"
+                   style="width:300px; height:325px; left:300px; top:0px;"
+                   target="_blank"></a>
+                <a href="https://www.vmall.com/product/3487.html"
+                   style="width:300px; height:325px; left:600px; top:0px;"
+                   target="_blank"></a>
+                <a href="https://www.vmall.com/product/746829270.html"
+                   style="width:300px; height:325px; left:900px; top:0px;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('','',this);"
+                   couponValue="" couponType=""
+                   style="width:; height:; left:; top:;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+                <img src="https://res2.vmallres.com/pimages/tms/2017080310113103443942.jpg" alt=""/>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href="https://www.vmall.com/product/495136506.html"
+                   style="width:300px; height:325px; left:0px; top:0px;"
+                   target="_blank"></a>
+                <a href="https://www.vmall.com/product/538499714.html"
+                   style="width:300px; height:325px; left:300px; top:0px;"
+                   target="_blank"></a>
+                <a href="https://www.vmall.com/product/1847.html"
+                   style="width:300px; height:325px; left:600px; top:0px;"
+                   target="_blank"></a>
+                <a href="https://www.vmall.com/product/310439420.html"
+                   style="width:300px; height:325px; left:900px; top:0px;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('','',this);"
+                   couponValue="" couponType=""
+                   style="width:; height:; left:; top:;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+                <img src="https://res5.vmallres.com/pimages/tms/2017080310114803496289.jpg" alt=""/>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href="https://www.vmall.com/product/314884726.html"
+                   style="width:160px; height:285px; left:620px; top:0px;"
+                   target="_blank"></a>
+                <a href="https://www.vmall.com/product/190355030.html"
+                   style="width:160px; height:285px; left:780px; top:0px;"
+                   target="_blank"></a>
+                <a href="https://www.vmall.com/product/886153777.html"
+                   style="width:160px; height:285px; left:940px; top:0px;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C17060000e7','BH00052',this);"
+                   couponValue="" couponType=""
+                   style="width:100px; height:80px; left:400px; top:0px;"></a>
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C17060000e7','BH00052',this);"
+                   couponValue="" couponType=""
+                   style="width:100px; height:80px; left:900px; top:0px;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+                <img src="https://res5.vmallres.com/pimages/tms/2017080310120104769566.jpg" alt=""/>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="part-4" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1000px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1000px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href=""
+                   style="width:; height:; left:; top:;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C17060000e7','BH00052',this);"
+                   couponValue="" couponType=""
+                   style="width:100px; height:80px; left:400px; top:0px;"></a>
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C17060000e7','BH00052',this);"
+                   couponValue="" couponType=""
+                   style="width:100px; height:80px; left:900px; top:0px;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+                <img src="https://res3.vmallres.com/pimages/tms/2017072904343805952798.jpg" alt=""/>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href=""
+                   style="width:; height:; left:; top:;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('','',this);"
+                   couponValue="" couponType=""
+                   style="width:; height:; left:; top:;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+            <a href="https://www.vmall.com/product/291811909.html" target="_blank">
+                <img src="https://res1.vmallres.com/pimages/tms/2017072904345204115680.jpg" alt=""/>
+            </a>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href="https://www.vmall.com/product/75380481.html"
+                   style="width:300px; height:325px; left:000px; top:0px;"
+                   target="_blank"></a>
+                <a href="https://www.vmall.com/product/706470980.html"
+                   style="width:300px; height:325px; left:300px; top:0px;"
+                   target="_blank"></a>
+                <a href="https://www.vmall.com/product/944393591.html"
+                   style="width:300px; height:325px; left:600px; top:0px;"
+                   target="_blank"></a>
+                <a href="https://www.vmall.com/product/973611543.html"
+                   style="width:300px; height:325px; left:900px; top:0px;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('','',this);"
+                   couponValue="" couponType=""
+                   style="width:; height:; left:; top:;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+                <img src="https://res4.vmallres.com/pimages/tms/2017073107172600553130.jpg" alt=""/>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href="https://www.vmall.com/product/315672466.html"
+                   style="width:300px; height:325px; left:0px; top:0px;"
+                   target="_blank"></a>
+                <a href="https://www.vmall.com/product/28039329.html"
+                   style="width:300px; height:325px; left:300px; top:0px;"
+                   target="_blank"></a>
+                <a href="https://www.vmall.com/product/815.html"
+                   style="width:300px; height:325px; left:600px; top:0px;"
+                   target="_blank"></a>
+                <a href="https://www.vmall.com/product/935597826.html"
+                   style="width:300px; height:325px; left:900px; top:0px;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('','',this);"
+                   couponValue="" couponType=""
+                   style="width:; height:; left:; top:;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+                <img src="https://res9.vmallres.com/pimages/tms/2017073107423903565400.jpg" alt=""/>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="part-5" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1000px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1000px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href=""
+                   style="width:; height:; left:; top:;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C17060000e7','BH00052',this);"
+                   couponValue="" couponType=""
+                   style="width:100px; height:80px; left:400px; top:0px;"></a>
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('C17060000e7','BH00052',this);"
+                   couponValue="" couponType=""
+                   style="width:100px; height:80px; left:900px; top:0px;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+                <img src="https://res9.vmallres.com/pimages/tms/2017072904414906425444.jpg" alt=""/>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #FFFFFF; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href="http://www2.huishoubao.com/static/818/hw-pc/index.php?pid=1032"
+                   style="width:600px; height:300px; left:0px; top:0px;"
+                   target="_blank"></a>
+                <a href="https://www.vmall.com/notice-3055"
+                   style="width:600px; height:300px; left:600px; top:0px;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('','',this);"
+                   couponValue="" couponType=""
+                   style="width:; height:; left:; top:;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+                <img src="https://res4.vmallres.com/pimages/tms/2017080205350702304769.jpg" alt=""/>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #FFFFFF; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href=""
+                   style="width:; height:; left:; top:;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('','',this);"
+                   couponValue="" couponType=""
+                   style="width:; height:; left:; top:;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+            <a href="https://www.vmall.com/notice-3261" target="_blank">
+                <img src="https://res1.vmallres.com/pimages/tms/2017080405161905403833.jpg" alt=""/>
+            </a>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1200px; background:url('')   #FFFFFF; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1200px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href=""
+                   style="width:; height:; left:; top:;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('','',this);"
+                   couponValue="" couponType=""
+                   style="width:; height:; left:; top:;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+            <a href="https://sale.vmall.com/shwdms.html" target="_blank">
+                <img src="https://res4.vmallres.com/pimages/tms/2017073005502206199759.jpg" alt=""/>
+            </a>
+    </div>
+</div>
+<!--mod22领券模块 end--><!--mod28-eggs-抽奖砸蛋-end-->
+<style>
+    /*背景background */
+    .mod28-carnival-eggs-wrp{ overflow:hidden; width:100%;min-width:1200px; position:relative; background:url('https://res3.vmallres.com/pimages/tms/2017073104284001067692.jpg') bottom center no-repeat #00afdc;}
+    /*模块宽度width和上面的min-width的值一样； 高度height:  (这个是用来定义坐标点的)*/
+    .mod28-carnival-eggs{ width:1200px;height:316px; position:relative; margin:0 auto;  }
+    /*蛋的宽width 高height*/
+    .mod28-carnival-eggs ul li{ width:125px; height:168px;position:absolute; display:block; overflow:hidden;cursor:pointer;}
+    .mod28-carnival-eggs ul li div{width:100%; height:100%; }
+    .mod28-carnival-eggs ul li div img{width:100%; height:100%; }
+    /*锤子的图片background； 宽width ； 高height*/
+    .mod28-carnival-eggs-hammer{ background:url('//res.vmallres.com/pimages//notice/2016/20160418145537385.png') no-repeat; width:151px; height:147px; left:900px; top:30px; position:absolute; z-index:2; text-indent:-9999px; display:block}
+    /*攻略弹窗:宽度width； 高度height，左边距left，上边距top ，背景 background()*/
+    .mod28-carnival-eggs-raiders{width:; height:; left:;top:;position:absolute; background-color:; display:none; overflow:hidden; z-index:2}
+    /*文字颜色color，文字大小font-size*/
+    .mod28-carnival-eggs-raiders ul{margin:0 auto; padding:40px 30px; color:; font-size:; line-height:1.5;}
+    .mod28-carnival-eggs-raiders ul li{float:left; width:100%; height:auto; position:relative; cursor:none;}
+    /*攻略按钮:宽度width； 高度height，左边距left，上边距top */
+    .mod28-carnival-eggs-raiders-btn{width:; height:; left:;top:;position:absolute; background: url(about:blank); display:block; z-index:2}
+
+
+</style>
+<!--设置快速定位id-->
+<div id="part-6" class="hrefs" ></div>
+<div class="mod28-carnival-eggs-wrp" >
+    <div class="mod28-carnival-eggs" >
+        <p class="mod28-carnival-eggs-hammer" >锤子</p>
+        <ul class="clearfix" id="mod28-eggs">
+                    <li style="left:365px; top:60px;" data-activityCode='P170700004e'>
+                        <div class="eggs-start"><img src="https://res2.vmallres.com/pimages/tms/2017072904502206297890.png" ></div><!--砸之前-->
+                        <div class="eggs-ing" style=" display:none"><img src="https://res6.vmallres.com/pimages/tms/2017072904524902563202.png" ></div><!--砸的过程,还有套图片，你看下用带锤子的，还是不带锤子的图片-->
+                        <div class="eggs-end" style=" display:none"><img src="https://res9.vmallres.com/pimages/tms/2017072904531003420627.png" ></div><!--砸之后-->
+                    </li>
+                    <li style="left:540px; top:60px;" data-activityCode='P170700004e'>
+                        <div class="eggs-start"><img src="https://res1.vmallres.com/pimages/tms/2017072904502706985895.png" ></div><!--砸之前-->
+                        <div class="eggs-ing" style=" display:none"><img src="https://res3.vmallres.com/pimages/tms/2017072904530606963602.png" ></div><!--砸的过程,还有套图片，你看下用带锤子的，还是不带锤子的图片-->
+                        <div class="eggs-end" style=" display:none"><img src="https://res3.vmallres.com/pimages/tms/2017072904531400117544.png" ></div><!--砸之后-->
+                    </li>
+                    <li style="left:710px; top:60px;" data-activityCode='P170700004e'>
+                        <div class="eggs-start"><img src="https://res0.vmallres.com/pimages/tms/2017072904503308617039.png" ></div><!--砸之前-->
+                        <div class="eggs-ing" style=" display:none"><img src="https://res3.vmallres.com/pimages/tms/2017072904530304386536.png" ></div><!--砸的过程,还有套图片，你看下用带锤子的，还是不带锤子的图片-->
+                        <div class="eggs-end" style=" display:none"><img src="https://res3.vmallres.com/pimages/tms/2017072904531709501976.png" ></div><!--砸之后-->
+                    </li>
+        </ul>
+        <!--攻略-->
+        <div class="mod28-carnival-eggs-raiders">
+            <ul  class="clearfix">
+                        <li></li>
+            </ul>
+        </div>
+        <!--攻略按钮-->
+        <div class="mod28-carnival-eggs-raiders-btn">
+        </div>
+    </div>
+</div>
+<script>
+
+    var Egg = {};
+    //砸金蛋抽奖活动编码
+    Egg.activityCode = "P170700004e";
+
+
+    //配置微博分享参数（分享获得抽奖次数）
+    Egg.shareMap = {
+        title : "",//#318Vmall四周年#3月10-14日，Vmall四周年店庆砸金蛋
+        pic : "",//http://res.vmallres.com/ecsale/images/20160303_318/share.jpg
+        url : ""//http://sale.vmall.com/318.html#cid=5503
+    };
+
+</script>
+<!--mod28-eggs-抽奖砸蛋-end--><!--mod22领券模块 start -->
+<style>
+    .mod22-carnival-coupons-wrp{ overflow:hidden; margin:0 auto; position:relative;}
+    .mod22-carnival-coupons{position:relative;left:50%;*zoom:1;_position:relative;}
+    .mod22-carnival-coupons-href{position:relative; margin:0 auto; height:0; z-index:1;}
+    .mod22-carnival-coupons-href a{position:absolute; background: url(about:blank); display:block;}
+</style>
+<!--设置快速定位id-->
+<div id="" class="hrefs"></div>
+<!--设置最小宽度min-width: 和下面的模块宽度width: 值一样（默认1000px);   背景background （跟上面的一样） -->
+<div class="mod22-carnival-coupons-wrp"
+     style="min-width:1000px; background:url('')   #991d1d; padding-top:;">
+    <!--模块宽度width:  (这个是用来定义坐标点的)-->
+    <div class="mod22-carnival-coupons-href" style="width:1000px;">
+        <!--热点 宽度width； 高度height；  到坐标点的左边距left； 到坐标点的上边距-->
+        <!-- 普通链接 -->
+                <a href="https://www.vmall.com/huawei"
+                   style="width:600px; height:140px; left:0px; top:0px;"
+                   target="_blank"></a>
+                <a href="https://www.vmall.com/notice-3207"
+                   style="width:600px; height:140px; left:600px; top:0px;"
+                   target="_blank"></a>
+        <!-- 领取优惠券：优惠券批次id； 优惠券名称； 优惠券类型：0普通优惠券，1实名认证券；热点区； -->
+                <a href="javascript:;"
+                   onClick="Md.coupon.getCoupon('','',this);"
+                   couponValue="" couponType=""
+                   style="width:; height:; left:; top:;"></a>
+    </div>
+    <!--图片宽度width: ;   margin-left的值是width的一半-->
+    <div class="mod22-carnival-coupons"
+         style="width:1920px; margin-left:-960px; ">
+        <!--这里的a 标签可以默认没有-->
+                <img src="https://res8.vmallres.com/pimages/tms/2017073104252800556498.jpg" alt=""/>
+    </div>
+</div>
+<!--mod22领券模块 end-->
+</div>
+</div>
+</body>
+<script src="//res9.vmallres.com/js/common/base/jquery-1.4.4.min.js"></script>
+<script src="//res9.vmallres.com/activity/template/daily-v2/pc/js/daily-pc-module.js?20161221"></script>
+
+</html>
+

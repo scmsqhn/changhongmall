@@ -1,0 +1,73 @@
+<div>
+	<input type="button" value="添加应用" onclick="ShowDiv('MyDiv','fade')">
+	<div style="border-style:solid; border-width:1px; border-color:#000">
+	<div id="apps-promotion">
+	<h4>apps</h4>
+	<table  id="appspromotion" class="table" style="width:100%">
+			<thead>
+				<tr>
+					<th width='10%'>应用名</th>
+					<th width='10%'>应用包名</th>
+					<th width='30%'>图标地址</th>
+					<th width='30%'>下载地址</th>
+					<th width='10%'>是否推送</th>
+					<th width='10%'>操作</th>
+					</tr>
+			</thead>
+			<tbody id="apps-table"></tbody>
+		</table>
+	</div>
+	<div id="games-promotion">
+	<h4>games</h4>
+	<table  id="gamespromotion" class="table" style="width:100%">
+			<tbody id="games-table"></tbody>
+		</table>
+	</div>
+	</div>
+	<div id="fade" class="black_overlay"></div>
+	<div id="MyDiv" style="width:580px;display: none;
+		position: absolute;
+		top: 15%;
+		left: 30%;
+		border: 1px solid lightblue;
+		background-color:#FFFFFF;
+		z-index:1002;">
+		<div class="modal-header"  style="height:15px;background:#F5F5F5;">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="CloseDiv('MyDiv','fade');">×</button>
+	        <font size="2em">添加应用</font>
+    	</div>
+    	<div class="modal-divCenter" style="width:100%">
+    		<table  class="tablePopup" style="margin:0;width:100%">
+    			<tr>
+    				<td style="width:40%" align="right" >应用名：</td>
+    				<td style="width:60%"><input id="name" type="text">
+    				</td>
+    			</tr>
+    			<tr><td style="width:40%" align="right" >应用包名：</td>
+    			<td style="width:60%"><input id="pkg" type="text"></td>
+    			</tr>
+    			<tr><td style="width:40%" align="right" >图标地址：</td>
+    			<td style="width:60%"><input id="logo" type="text"></td>
+    			</tr>
+    			<tr><td style="width:40%" align="right" >下载地址：</td>
+    			<td style="width:60%"><input id="url" type="text"></td>
+    			</tr>
+    			<tr><td style="width:40%" align="right" >应用类型：</td>
+    			<td style="width:60%"><input id="type" type="radio" name="promotion-type" value="1" checked="checked">apps
+    				<input id="type" type="radio" name="promotion-type" value="2">games</td>
+    			</tr>
+    			<tr><td style="width:40%" align="right" >是否推送：</td>
+    			<td style="width:60%"><input id="push" type="radio" name="promotion-push" value="1" checked="checked">是
+    				<input id="push" type="radio" name="promotion-push" value="0">否</td>
+    			</tr>
+    		</table>
+    	</div>
+    	<div style="height:50px;background:#F5F5F5;margin-top:10px">
+    	<table style="width:100%;margin-top:10px"><tr>
+    		<td style="width:50%" align="right"><input type="button" value="确定" onclick="addPromotion()"></td>
+    		<td style="width:50%" align="left"><input type="button" value="取消" onclick="CloseDiv('MyDiv','fade');"></td>
+    		</tr>
+    	</table>
+    	</div>
+	</div>
+</div>

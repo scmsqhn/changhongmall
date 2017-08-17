@@ -1,0 +1,136 @@
+<head>
+    <script type="text/javascript" src="static/scripts/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="static/scripts/jquery.cookie.js"></script>
+    <script type="text/javascript" src="static/scripts/getimeiinfogroup.js"></script>
+    <script type="text/javascript" src="static/scripts/calendar.js"></script>
+    <script type="text/javascript" src="static/scripts/popup.js"></script>
+    <script type="text/javascript" src="static/scripts/reply.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/styles/calendar.css">
+    <link rel="stylesheet" type="text/css" href="static/styles/table.css">
+    <link rel="stylesheet" type="text/css" href="static/styles/popup.css">
+    <style type="text/css">
+
+        .replyTable td {
+            text-align: center;
+            border: 1px solid gray;
+        }
+
+        a {
+            text-decoration: NONE;
+        }
+    </style>
+</head>
+<div>
+	<table id="search-well" style="width:100%;border: solid thin #C0C0C0">
+		<tbody>
+			<tr>
+				<!--
+				<td align="center" style="width:8%;">IMEI1:</td>
+				<td style="width:30%;">
+				<input type="text" id="imeic"></td>
+
+				<td><input type="button" style="background-image:url(static/Image/select.png);width:73px;height:24px;
+				border:0px;margin-left:25px;" onclick="getIMEIinfo();"></input>
+				</td>	
+				-->
+			</tr>
+		</tbody>
+	</table>
+	
+	<div id="result" style="margin-top:18px;">
+		<table  id="datagrid" class="table" style="width:100%">
+			<thead>
+				<tr>
+				    <th width='15%'>IMEI</th>
+					<th width='15%'>激活时间</th>
+					<th width='15%'>省</th>
+					<th width='15%'>市</th>
+					<th width='15%'>区/县</th>
+					<th width='15%'>机型</th>
+			</tr>
+			</thead>
+			<tbody id="tablevlue">
+				<tr>  
+					<td width='15%'><input type="text" id="imei1" onblur="getIMEIinfo1()"></td>
+					<td width='15%' type="text" id ="activeTime1"></td>
+					<td width='15%' id = "province1"></td>
+					<td width='15%' id = "city1"></td>
+					<td width='15%' id = "distict1"></td>
+					<td width='15%' id = "phoneModel1"></td>
+				</tr>
+				<tr>  
+					<td width='15%'><input type="text" id="imei2" onblur="getIMEIinfo2()"></td>
+					<td width='15%' id ="activeTime2"></td>
+					<td width='15%' id = "province2"></td>
+					<td width='15%' id = "city2"></td>
+					<td width='15%' id = "distict2"></td>
+					<td width='15%' id = "phoneModel2"></td>
+				</tr>
+				<tr>  
+					<td width='15%'><input type="text" id="imei3" onblur="getIMEIinfo3()"></td>
+					<td width='15%' id ="activeTime3"></td>
+					<td width='15%' id = "province3"></td>
+					<td width='15%' id = "city3"></td>
+					<td width='15%' id = "distict3"></td>
+					<td width='15%' id = "phoneModel3"></td>
+				</tr>
+				<tr>  
+					<td width='15%'><input type="text" id="imei4" onblur="getIMEIinfo4()"></td>
+					<td width='15%' id ="activeTime4"></td>
+					<td width='15%' id = "province4"></td>
+					<td width='15%' id = "city4"></td>
+					<td width='15%' id = "distict4"></td>
+					<td width='15%' id = "phoneModel4"></td>
+				</tr>
+				<tr>  
+					<td width='15%'><input type="text" id="imei5" onblur="getIMEIinfo5()"></td>
+					<td width='15%' id ="activeTime5"></td>
+					<td width='15%' id = "province5"></td>
+					<td width='15%' id = "city5"></td>
+					<td width='15%' id = "distict5"></td>
+					<td width='15%' id = "phoneModel5"></td>
+				</tr>
+				<tr>  
+					<td width='15%'><input type="text" id="imei6" onblur="getIMEIinfo6()"></td>
+					<td width='15%' id ="activeTime6"></td>
+					<td width='15%' id = "province6"></td>
+					<td width='15%' id = "city6"></td>
+					<td width='15%' id = "distict6"></td>
+					<td width='15%' id = "phoneModel6"></td>
+				</tr>
+				<tr>  
+					<td width='15%'><input type="text" id="imei7" onblur="getIMEIinfo7()"></td>
+					<td width='15%' id ="activeTime7"></td>
+					<td width='15%' id = "province7"></td>
+					<td width='15%' id = "city7"></td>
+					<td width='15%' id = "distict7"></td>
+					<td width='15%' id = "phoneModel7"></td>
+				</tr>
+				<tr>  
+					<td width='15%'><input type="text" id="imei8" onblur="getIMEIinfo8()"></td>
+					<td width='15%' type="text" id ="activeTime8"></td>
+					<td width='15%' id = "province8"></td>
+					<td width='15%' id = "city8"></td>
+					<td width='15%' id = "distict8"></td>
+					<td width='15%' id = "phoneModel8"></td>
+				</tr>
+				<tr>  
+					<td width='15%'><input type="text" id="imei9" onblur="getIMEIinfo9()"></td>
+					<td width='15%' id ="activeTime9"></td>
+					<td width='15%' id = "province9"></td>
+					<td width='15%' id = "city9"></td>
+					<td width='15%' id = "distict9"></td>
+					<td width='15%' id = "phoneModel9"></td>
+				</tr>
+				<tr>  
+					<td width='15%'><input type="text" id="imei10" onblur="getIMEIinfo10()"></td>
+					<td width='15%' id ="activeTime10"></td>
+					<td width='15%' id = "province10"></td>
+					<td width='15%' id = "city10"></td>
+					<td width='15%' id = "distict10"></td>
+					<td width='15%' id = "phoneModel10"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

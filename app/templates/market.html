@@ -1,0 +1,34 @@
+<div>
+	<div class="container">
+		<div class="navbar">
+			<table style="width:100%;">
+				<tr>
+					<td>售后信息查询</td>
+					<td id="user" style="width:10%;"></td>
+					<td style="width:10%;"><a
+						href="servlet/UserHome?from=logout_market">退出登录</a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="left">
+			<div style="display: block;">
+				<a href="#" class="nav-header"> <i>信息查询</i>
+				</a>
+				<ul class="nav-list" style="list-style:none;">
+					<li><a id="imeil" href="#" onclick="getLinkURL('imeil')">IMEI查询</a></li>
+				</ul>
+
+				<ul class="nav-list" style="list-style:none;">
+					<li><a id="imei_group" href="#" onclick="getLinkURL('imei_group')">IMEI批量查询</a></li>
+				</ul>
+<!-- 				<ul class="nav-list" style="list-style:none;">
+					<li><a id="imeil2" href="#" onclick="getLinkURL('imeil2')">数据统计</a></li>
+				</ul> -->
+			</div>
+		</div>
+		<div class="right">
+			<iframe id="iframe" src="imeilookup.jsp" height=1200px width=100%
+				frameborder="0" scrolling="auto"> </iframe>
+		</div>
+	</div>
+</div>

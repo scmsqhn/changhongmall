@@ -1,0 +1,33 @@
+<div>
+	<div class="container">
+		<div class="navbar">
+			<table style="width:100%;">
+				<tr>
+					<td>售后信息查询</td>
+					<td id="user" style="width:10%;"></td>
+					<td style="width:10%;"><a
+						href="servlet/UserHome?from=logout_apk">退出登录</a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="left">
+			<div style="display: block;">
+				<a href="#" class="nav-header"> <i>推送管理</i></a>
+				<ul class="nav-list" style="list-style:none;">
+					<li><a href="#" onclick="getLinkURL('apks')">APK管理</a></li>
+				</ul>
+				<ul class="nav-list" style="list-style:none;">
+					<li><a href="#" onclick="getLinkURL('apksrecord')">推送记录</a></li>
+				</ul>
+				<ul class="nav-list" style="list-style:none;">
+					<li><a href="#" onclick="getLinkURL('apksphone')">机型管理</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="right">
+			<iframe id="iframe" src="apks.jsp" height=1200px width=100%
+				frameborder="0" scrolling="auto"> </iframe>
+		</div>
+	</div>
+  {{}}
+</div>

@@ -1,0 +1,9 @@
+{% import "macros.html" as macros %}
+{% for data in datas %}
+    {% if (dev=="m") %}
+        {{macros.render_table_mb(data)}}
+    {% else %}
+        {{macros.render_table(data)}}
+        {% include "divide_line.html" %}
+    {% endif %}
+{% endfor %}

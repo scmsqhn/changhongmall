@@ -3,13 +3,25 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config:
+    #=== db config for mysql ==============================
+    #SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:xxxxx@localhost:3306/test?charset=utf8'
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:root@localhost:3306/ultrax?charset=utf8'
+    #SQLALCHEMY_DATABASE_URI = 'mysql://root:qhn614@localhost:3306/userhome?charset=utf8'
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
+    #SQLALCHEMY_TRACK_MODIFICATIONS = False
+    #======================================================
+    HOST = '0,0,0,0'
+    PORT = '5000'
+    CHMALL_CONFIG = '/var/www/chmall/'
+
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
     SSL_DISABLE = False
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_RECORD_QUERIES = True
-    MAIL_SERVER = 'smtp.googlemail.com'
-    MAIL_PORT = 587
+    MAIL_SERVER = 'smtp.126.com'
+    #MAIL_PORT = 587
+    MAIL_PORT = 25
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
@@ -20,16 +32,25 @@ class Config:
     FLASKY_FOLLOWERS_PER_PAGE = 50
     FLASKY_COMMENTS_PER_PAGE = 30
     FLASKY_SLOW_DB_QUERY_TIME=0.5
-
+    TABLENUM = 9 #which is in hostpage
+    PICNUM = 4 #which is in hostpage
+    GOODSNUM=36
+    HUODONGNUM=12
+    
+    
     @staticmethod
     def init_app(app):
         pass
 
-
+'''
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
+'''
+class DevelopmentConfig(Config):
+    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:root@localhost:3306/ultrax?charset=utf8'
 
 
 class TestingConfig(Config):

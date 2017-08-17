@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from datetime import datetime
 import hashlib
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -283,8 +285,85 @@ login_manager.anonymous_user = AnonymousUser
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+    
+'''''
+evevy table has 4 column, every column has 1 item, which has 4 content, which is img_url, href_url, content, timestamp, 
+'''
+class HostPageTable(db.Model):
+    __tablename__ = 'hostpagetable'
+    id = db.Column(db.Integer, primary_key=True)
+    img_url = db.Column(db.String(255))
+    href_url = db.Column(db.String(255))
+    content = db.Column(db.String(255))
+    title = db.Column(db.String(255))
+    price = db.Column(db.Float)
+    rate = db.Column(db.Float)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow())
+        
+    def __repr__(self):
+        return '<HostPageTable %s>' % self.title    
+        
 
+'''''
+evevy table has 4 column, every column has 1 item, which has 4 content, which is img_url, href_url, content, timestamp, 
+'''
+class Pict(db.Model):
+    __tablename__ = 'pict'
+    id = db.Column(db.Integer, primary_key=True)
+    img_url = db.Column(db.String(255))
+    name = db.Column(db.String(255))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow())
+    def __repr__(self):
+        return '<Pict %s>' % self.name
 
+        
+'''''
+ATTENTION IMPORTANT TABLE
+goods table record all the msg off goods
+'''
+class Goods(db.Model):
+    __tablename__ = 'goods'
+    id=db.Column(db.Integer, primary_key=True)
+    code=db.Column(db.String(255),index=True,unique=True)
+    name=db.Column(db.String(255))
+    img=db.Column(db.String(255))
+    link=db.Column(db.String(255))
+    shop=db.Column(db.String(255))
+    price=db.Column(db.Float)
+    soldpermonth=db.Column(db.Integer)
+    rate=db.Column(db.Float)
+    earn=db.Column(db.Float)
+    seller=db.Column(db.String(255))
+    idlinkshort=db.Column(db.String(255))
+    idlink=db.Column(db.String(255))
+    idcmd=db.Column(db.String(255))
+    couponsnum=db.Column(db.Integer)
+    leftcoupon=db.Column(db.Integer)
+    couponvalue=db.Column(db.String(255))
+    couponstart=db.Column(db.String(255))
+    couponend=db.Column(db.String(255))
+    couponlink=db.Column(db.String(255))
+    couponcmd=db.Column(db.String(255))
+    couponshortlink=db.Column(db.String(255))
+    bsellsplan=db.Column(db.Boolean)
+
+    def __repr__(self):
+        return '<Goods %s>' % self.name
+        
+'''''
+evevy table has 4 column, every column has 1 item, which has 4 content, which is img_url, href_url, content, timestamp, 
+'''
+class News(db.Model):
+    __tablename__ = 'news'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255))
+    content = db.Column(db.String(255))
+    link = db.Column(db.String(255))
+    time = db.Column(db.DateTime, index=True, default=datetime.utcnow())
+    def __repr__(self):
+        return '<news %s>' % self.title
+
+        
 class Post(db.Model):
     __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)

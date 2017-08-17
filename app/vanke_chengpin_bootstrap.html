@@ -1,0 +1,501 @@
+{% extends "localbase.html" %}
+{% import "macros.html" as macros %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{%- block html %}
+    {%- block head %}
+        {% block title %} 三宝网 TriBoys {% endblock title %}
+
+        {%- block metas %}    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta name="keywords" content="CHANGHONG,长虹,长虹手机,耳机,蓝牙音箱,长动力" />
+    <meta name="description" content="长虹手机配件官方网站，耳机，音响，手机包，智能硬件，最全的行业咨询，最新的手机配件。" />
+    <link rel="shortcut icon" href="{{url_for('static',filename='logo1.jpg')}}" type="image/x-icon" />
+    <link href="http://cssy.vanclimg.com/css.ashx?href=[/public/autocomplete.css],[/index/global.css,common-header.css,common-footer.css,indexcontentv11.css]&v=20170418102130&compress" type="text/css" rel="stylesheet" charset="utf-8" />
+
+    <link rel="stylesheet" href="http://127.0.0.1:5000/static/bootstrap.css">
+    <meta charset="utf-8"> 
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">  
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function alertValue(){
+            var searchValue = $("#skey").val();
+            var json = {
+                "search" : searchValue
+            }
+            var url=encodeURI("/search?search='"+searchValue+"'");
+            console.log(url);
+            $.ajax({
+                type:'GET',
+                url:url,
+                //data: JSON.stringify(json),
+                //contentType: "application/json; charset=utf-8",//(可以)
+                //contentType: "text/xml",//(可以)
+                //contentType:"application/x-www-form-urlencoded",//(可以)
+                //dataType: "string",
+                contentType:'text/html',
+                dataType:"text",
+                
+                success: function(res){
+                    console.log("!!! SUCC")
+//                    console.log(res)
+                    console.log(res['responseText'])
+                    $("#9tb").empty()
+                    $("#9tb").append(res)
+                },error: function(data, XMLHttpRequest, textStatus, errorThrown){
+                    console.log("!!! WRONG")
+                    alert(data)
+                    alert(XMLHttpRequest)
+                    alert(textStatus)
+                    alert(errorThrown)
+                }
+            });
+        }
+    </script>
+
+
+    
+{%- endblock metas %}
+
+{%- endblock head %}
+    
+<body class="full">    
+<div id="Head" class="vanclHead">
+        <div id="headerTopArea" class="headerTopAreaBox"><div class="headerTopArea"><div class="headerTop"><div class="headerTopRight" style="width: 126px;"><div class="payattention"><em></em><a href="javascript:void(0);" class="vweixinbox"><span class="vweixin" style="background: url(http://i1.vanclimg.com/cms/20150605/w1.jpg) no-repeat left 3px;"></span><b class="vweixinTip"></b></a><a href="//e.weibo.com/vancl" class="track vanclweibo" name="hp-hp-head-weibo-v:n" target="_blank" style="background: url(http://i2.vanclimg.com/cms/20150605/w2.jpg) no-repeat left 3px;"></a></div></div><div class="headerTopLeft"><div id="welcome" class="top loginArea"> 您好,<span class="top">欢迎光临长虹手机配件商城！&nbsp;</span><span><a href="javascript:location.href='https://login.vancl.com/login/login.aspx?'+encodeURIComponent(location.href)" name="hp-hp-head-signin-v:n" class="top track">登录</a>&nbsp;|&nbsp;<a href="javascript:location.href='https://login.vancl.com/login/reg.aspx?'+encodeURIComponent(location.href)" name="hp-hp-head-register-v:n" class="track">注册</a></span></div><div class="recommendArea"><a href="//my.vancl.com/Order/" rel="nofollow" class="track" name="hp-hp-head-order-v:n"> 我的订单</a></div></div><span class="blank0"></span></div></div></div>        
+<!--顶部通栏广告位-->
+        <div id="logoArea" class="vanclLogoSearch">
+        <div class="vanclSearch fr">
+        <div class="searchTab">
+        <div class="search fl">
+        <input type="text" class="searchText ac_input textBox Enter fl" name="k" id="skey" value="爆款钢化膜" defaultkey="钢化膜"/>
+        <input 
+            type="button" 
+            class="" 
+            id="" 
+            onfocus="this.blur()" 
+            href="#" 
+            onclick="alertValue();" 
+            style="background-image:url(static/favicon.ico);width:73px;height:24px;border:0px;margin-left:25px;"/>
+        </div>
+        </div>
+        <div class="hotWord"><p> 热门搜索：<a name="hp-hp-classhotsearch-1_1-v:n" class="track" href="//vt.vancl.com/" target="_blank">钢化膜</a><a name="hp-hp-classhotsearch-1_2-v:n" class="track" href="//s.vancl.com/search?k=%E5%85%8D%E7%83%AB%E8%A1%AC%E8%A1%AB&orig=3" target="_blank">耳机</a><a name="hp-hp-classhotsearch-1_3-v:n" class="track" href="//catalog.vancl.com/hbx.htm" target="_blank">蓝牙音箱</a><a name="hp-hp-classhotsearch-1_4-v:n" class="track" href="//catalog.vancl.com/vanclxbx.html"target="_blank">资讯读物</a><a name="hp-hp-classhotsearch-1_5-v:n" class="track" href="//catalog.vancl.com/polo.html"target="_blank">行业新闻</a></p></div></div></div>
+        
+        <div class="navlist clear" id="mainNavBox" style="z-index:300!important;">
+        <ul><li class="track" style="text-align: left;">
+        <a href=""></a>
+        </li>
+        
+        <li><a href="">首页</a><span class="NavLine"></span></li>
+        
+        <li><a href="" class="track" name="hp-hp-head-nav_1-v:n" target="_blank">耳机<em style="display:block;width:25px; height:13px; background:url(http://i5.vanclimg.com/cms/20170308/new_0308.png) no-repeat scroll; position:absolute;left:62px;top:-5px;"></em></a><span class="NavLine"></span><div class="subNav" style="display: none;*postion:relative;*z-index:300;"><ul></ul></div></li>        
+        
+        <li><a href="//shirts.vancl.com/" class="track" name="hp-hp-head-nav_2-v:n" target="_blank">音响<em style="display:block;width:25px; height:13px; background:url(http://i3.vanclimg.com/cms/20170329/icon_hot.png) no-repeat scroll; position:absolute;left:67px;top:-5px;"></em></a><span class="NavLine"></span><div class="subNav" style="display: none;*postion:relative;*z-index:300;"></div></li>
+        
+        <li><a href="//catalog.vancl.com/hbx.html" class="track" name="hp-hp-head-nav_3-v:n" target="_blank">钢化膜</a><span class="NavLine"></span><div class="subNav" style="display: none;*postion:relative;*z-index:300;"></div></li>
+        
+        <li><a href="//fanbuxie.vancl.com/" class="track" name="hp-hp-head-nav_8-v:n" target="_blank">手机包</a><span class="NavLine"></span><div class="subNav" style="display: none;*postion:relative;*z-index:300;"></div></li>
+        
+        <li><a href="//catalog.vancl.com/fkmpd.html" class="track" name="hp-hp-head-nav_5-v:n" target="_blank">摄像头</a><span class="NavLine"></span><div class="subNav" style="display: none; *postion:relative;*z-index:300;"></div></li>
+        
+        <li><a href="//catalog.vancl.com/srmzt.html" class="track" name="hp-hp-head-nav_6-v:n" target="_blank">充电底座</a><span class="NavLine"></span><div class="subNav" style="display: none;*postion:relative;*z-index:300;"></div></li>
+                
+    </div>
+    <div id="content" class="vanclContent vanclCon">
+        
+<!--焦点区域-->
+<!--<div class="wwwcategoryList">
+  <div class="categpost">
+    <dl>
+      <h3><a target="_blank" href="http://s.vancl.com/27531.html" class="track selectedtips nobg" name="hp-hp-classman-1-v:n">男装</a></h3>
+      <dt><a target="_blank" href="http://vt.vancl.com/" class="track selectedtips nobg" name="hp-hp-classman-1-1-v:n">T恤</a></dt>
+      <dd class="noline"> <a  target="_blank" href="http://vt.vancl.com/#nank" class="track " name="hp-hp-classman-1-1-1-v:n">印花T恤 99元/2件</a> <a href="http://s.vancl.com/search?k=%E6%B0%B4%E6%9F%94%E6%A3%89&orig=3" class="track" name="hp-hp-classman-1-1-2-v:n" target="_blank">水柔棉</a> <a href="http://s.vancl.com/search?k=%E8%B7%91%E6%AD%A5T%20%E7%94%B7&orig=3"class="track" name="hp-hp-classman-1-1-3-v:n" target="_blank">运动速干</a> <a href="http://s.vancl.com/p1.html?k=polo"class="track" name="hp-hp-classman-1-1-3-v:n" target="_blank">POLO</a>
+        <a href="http://s.vancl.com/search?k=%E7%A9%86%E6%97%A6&orig=3"class="track" name="hp-hp-classman-1-1-4-v:n" target="_blank">穆旦</a> <a href="http://s.vancl.com/search?k=%E9%A9%AC%E5%B0%94%E5%85%8B%E6%96%AF&orig=3"class="track" name="hp-hp-classman-1-1-5-v:n" target="_blank">只有上帝</a> <a href="http://s.vancl.com/search?k=%E5%BC%A0%E7%88%B1%E7%8E%B2&orig=3"class="track" name="hp-hp-classman-1-1-6-v:n" target="_blank">雨声潺潺</a>       <dt><a target="_blank" href="http://s.vancl.com/27544.html" class="track selectedtips nobg" name="hp-hp-classman-1-2-v:n">衬衫</a></dt>
+      <dd class="noline"> <a  target="_blank" href="http://s.vancl.com/27544-a264908.html" class="track " name="hp-hp-classman-1-2-1-v:n">免烫</a> <a href="http://s.vancl.com/search?k=%E5%BA%9C%E7%BB%B8%E8%A1%AC%E8%A1%AB&orig=3"class="track" name="hp-hp-classman-1-2-2-v:n" target="_blank">府绸衬衫</a> <a href="http://s.vancl.com/27544-a264692.html" class="track" name="hp-hp-classman-1-2-3-v:n" target="_blank">牛津纺</a><a href="http://s.vancl.com/28806-27673-27606-a20301.html" class="track" name="hp-hp-classman-1-2-4-v:n" target="_blank">麻衬衫</a> </dd>
+      <dt><a href="http://s.vancl.com/27554-27707-27553-27552-27551-27550-27549-27548-27556-s1.html" class="track selectedtips nobg" name="hp-hp-classman-1-3-v:n" target="_blank">上装</a></dt>
+      <dd> <a href="http://item.vancl.com/6373824.html"class="track " name="hp-hp-classman-1-3-1-v:n" target="_blank">麻西服</a> <a  href="http://s.vancl.com/27547.html" class="track" name="hp-hp-classman-1-3-2-v:n" target="_blank">针织衫</a> <a  href="http://s.vancl.com/search?k=%E7%94%B7%E6%AC%BE%E7%9A%AE%E8%82%A4%E8%A1%A3&orig=3" class="track" name="hp-hp-classman-1-3-3-v:n" target="_blank">皮肤衣</a></dd>
+      <dt><a href="http://s.vancl.com/27557-27558-27559-27560-27561-27598-27708-s1.html" class="track selectedtips nobg" name="hp-hp-classman-1-4-v:n" target="_blank">裤装</a></dt>
+      <dd class="noline"> <a href="http://s.vancl.com/27559.html" class="track " name="hp-hp-classman-1-4-1-v:n"target="_blank">牛仔裤</a> <a href="http://s.vancl.com/27558.html" class="track" name="hp-hp-classman-1-4-2-v:n"target="_blank">休闲裤</a> <a href="http://s.vancl.com/search?k=%E7%9F%AD%E8%A3%A4&orig=3" class="track" name="hp-hp-classman-1-4-3-v:n"target="_blank">短裤</a><a href="http://s.vancl.com/search?k=%E9%BA%BB%E8%A3%A4&orig=3" class="track" name="hp-hp-classman-1-4-4-v:n"target="_blank">棉麻裤</a></dd>
+    </dl>
+    <dl>
+      <h3><a target="_blank" href="http://s.vancl.com/27532.html" class="track selectedtips nobg" name="hp-hp-woman-2-v:n">女装</a></h3>
+      <dd class="noline"  style="padding:5px 0px 8px 30px"><a href="http://vt.vancl.com/#nvk" class="track " name="hp-hp-classwoman-2-1-1-v:n"target="_blank">印花T恤 99元/2件</a> <a href="http://zhenzhishan.vancl.com" class="track" name="hp-hp-classwoman-2-1-2-v:n"target="_blank">空调衫</a><a href="http://s.vancl.com/search?k=%E5%A5%B3%E6%AC%BE%E7%9A%AE%E8%82%A4%E8%A1%A3&orig=3" class="track" name="hp-hp-classwoman-2-1-3-v:n"target="_blank">皮肤衣</a> <a href="http://s.vancl.com/search?k=%E8%A1%AC%E8%A1%AB%E8%A3%99&orig=3" class="track" name="hp-hp-classwoman-2-1-4-v:n"target="_blank">衬衫裙</a>
+       <a href="http://s.vancl.com/27652-27656-27660-27665-s1.html" class="track" name="hp-hp-classwoman-2-1-5-v:n"target="_blank">牛仔裤</a> <a href="http://s.vancl.com/search?k=%E6%89%93%E5%BA%95%E8%83%8C%E5%BF%83&orig=3" class="track" name="hp-hp-classwoman-2-1-6-v:n"target="_blank">打底背心</a> 
+    </dl>
+    <dl>
+      <h3><a target="_blank" href="http://s.vancl.com/search?k=%E5%B8%86%E5%B8%83%E9%9E%8B&orig=3" class="track selectedtips nobg" name="hp-hp-classchildren-3-v:n">帆布鞋 199元/2双</a></h3>
+      <dd class="noline"  style="padding:5px 0px 8px 30px"> <a href="http://s.vancl.com/search?k=%E7%94%B7%E6%AC%BE%E5%B8%86%E5%B8%83%E9%9E%8B&orig=3" class="track " name="hp-hp-classchildren-3-1-1-v:n"target="_blank">男款</a> <a href="http://s.vancl.com/search?k=%E5%A5%B3%E6%AC%BE%E5%B8%86%E5%B8%83%E9%9E%8B&orig=3" class="track" name="hp-hp-classchildren-3-1-2-v:n"target="_blank">女款</a>
+      <a href="http://s.vancl.com/search?k=%E9%AB%98%E5%B8%AE%E5%B8%86%E5%B8%83%E9%9E%8B&orig=3" class="track" name="hp-hp-classchildren-3-1-3-v:n"target="_blank">高帮</a>
+      <a href="http://s.vancl.com/search?k=%E4%BD%8E%E5%B8%AE%E5%B8%86%E5%B8%83%E9%9E%8B&orig=3" class="track" name="hp-hp-classchildren-3-1-4-v:n"target="_blank">低帮</a>
+    </dl>
+    <dl>
+      <h3><a href="http://s.vancl.com/search?k=%E5%AE%B6%E5%B1%85&orig=3" class="track" name="hp-hp-classfootgear-4-v:n" target="_blank">其他</a></h3>
+      <dd class="noline"> <a href="http://s.vancl.com/27541.html" class="track" name="hp-hp-classfootgear-4-1-1-v:n"target="_blank">家居</a> <a href="http://s.vancl.com/27537.html" class="track" name="hp-hp-classfootgear-4-1-2-v:n"target="_blank">袜品</a> <a href="http://s.vancl.com/27538.html" class="track" name="hp-hp-classfootgear-4-1-3-v:n"target="_blank">配饰</a><a href="http://s.vancl.com/search?k=%E7%AB%A5%E8%A3%85&orig=3" class="track" name="hp-hp-classfootgear-4-1-4-v:n"target="_blank">童装</a></dd>
+    </dl>
+  </div>
+</div>-->
+<style type="text/css">
+.foucsTab .prev, .foucsTab .next {
+    cursor: pointer;
+    height: 60px;
+    width: 28px;
+    z-index: 10;
+    text-indent: -9999px;
+    display: inline-block;
+}
+.foucsTab .prev {
+    background: url(http://i3.vanclimg.com/cms/20160918/focus_lr0918.png) no-repeat scroll 0px 0px;
+    left: 10px;
+    position: absolute;
+    top: 230px;
+}
+.foucsTab .prev:hover {
+    background: url(http://i3.vanclimg.com/cms/20160918/focus_lr0918.png) no-repeat scroll 0px -61px;
+}
+.foucsTab .next {
+    background: url(http://i3.vanclimg.com/cms/20160918/focus_lr0918.png) no-repeat scroll -52px 0px;
+    position: absolute;
+    right: 10px;
+    top: 230px;
+}
+.foucsTab .next:hover {
+    background: url(http://i3.vanclimg.com/cms/20160918/focus_lr0918.png) no-repeat scroll -52px -61px;
+}
+</style>
+
+<div class="vanclFocusAd ">
+  <div style="width: 100%; height: 2px;"> </div>
+  <div class="vanclFocus ">
+    <div class="foucsTab">
+      <ul id="slider" class="rslides rslides1">           
+        <li data-focusflag="other1" style="background: url(https://ws1.sinaimg.cn/large/610dc034ly1fiednrydq8j20u011itfz.jpg) no-repeat scroll center 0px;"> <a title="凡客童装T恤熊本熊" href=" http://catalog.vancl.com/xbxtz.html" class="track" name="hp-hp-focus-1_1-v:n"
+           target="_blank"></a></li>
+        <li data-focusflag="other1" style="background: url(https://ws1.sinaimg.cn/large/610dc034ly1fid5poqfznj20u011imzm.jpg) no-repeat scroll center 0px;"> <a title="暑期大放价" href="http://catalog.vancl.com/sqdfj.html" class="track" name="hp-hp-focus-1_2-v:n"
+           target="_blank"></a></li>
+        <li data-focusflag="other1" style="background: url(https://ws1.sinaimg.cn/large/610dc034ly1fibksd2mbmj20u011iacx.jpg) no-repeat scroll center 0px;"> <a title="高级定制" href="http://catalog.vancl.com/gjdz.html" class="track" name="hp-hp-focus-1_3-v:n"
+           target="_blank"></a></li>
+        <li data-focusflag="other1" style="background: url(https://ws1.sinaimg.cn/large/610dc034gy1fi678xgq1ij20pa0vlgo4.jpg) no-repeat scroll center 0px;"> <a title="水柔棉" href="http://catalog.vancl.com/srmhd.html" class="track" name="hp-hp-focus-1_4-v:n"
+           target="_blank"></a></li>
+        <li data-focusflag="other1" style="background: url(https://ws1.sinaimg.cn/large/610dc034gy1fi502l3eqjj20u00hz41j.jpg) no-repeat scroll center 0px;"> <a title="帆布鞋" href="http://fanbuxie.vancl.com/" class="track" name="hp-hp-focus-1_5-v:n"
+           target="_blank"></a></li>
+        <li data-focusflag="other1" style="background: url(https://ws1.sinaimg.cn/large/610dc034gy1fi2okd7dtjj20u011h40b.jpg) no-repeat scroll center 0px;"> <a title="吉国武衬衫" href="http://catalog.vancl.com/jgwzt.html" class="track" name="hp-hp-focus-1_6-v:n"
+           target="_blank"></a></li>
+        <li data-focusflag="other1" style="background: url(http://ww1.sinaimg.cn/large/610dc034ly1fhyeyv5qwkj20u00u0q56.jpg) no-repeat scroll center 0px;"> <a title="牛津纺" href="http://catalog.vancl.com/njf.html" class="track" name="hp-hp-focus-1_7-v:n"
+           target="_blank"></a></li>
+        <li data-focusflag="other1" style="background: url(http://ww1.sinaimg.cn/large/610dc034ly1fhxe0hfzr0j20u011in1q.jpg) no-repeat scroll center 0px;"> <a title="沙滩裤" href="http://catalog.vancl.com/stk.html" class="track" name="hp-hp-focus-1_8-v:n"
+           target="_blank"></a></li>
+        <li data-focusflag="other1" style="background: url(https://ws1.sinaimg.cn/large/610dc034gy1fhvf13o2eoj20u011hjx6.jpg) no-repeat scroll center 0px;"> <a title="现货专区" href="http://catalog.vancl.com/vtzs.html" class="track" name="hp-hp-focus-1_9-v:n"
+           target="_blank"></a></li>
+       
+      </ul>
+    </div>
+  </div>
+</div>
+<script language="javascript" type="text/javascript">
+  
+        $(function () {
+            //-------焦点图
+            if ($("#slider").responsiveSlides) {
+                //根据querystring的值，调整焦点图中的图片顺序
+                var firstKey = $("#slider").attr("data-firstKey");
+                if (firstKey) {
+                    var item = $("li[data-focusflag='" + firstKey + "']", $("#slider"));
+                    if (item.size() == 1 && item.index()> 0) {
+                        $("#slider").prepend(item.clone());
+                        item.remove();
+                    }
+                }
+                $("#slider").responsiveSlides({ auto: true, pager: true, speed: 500, pause: true, nav: true });
+            }
+        });
+                
+    </script>
+
+<span class="blank20"></span> 
+<!---  hotShopping  --->
+<style type="text/css">
+        .qianggoulist ul li
+        {
+            float: left;
+            width: 214px;
+            margin: 0px 30px 32px 0px;
+            border: 1px solid #e8e7ec;
+            display: inline;
+            font-family: "Microsoft YaHei";
+            color: #727171;
+            font-size: 14px;
+            position: relative;
+        }
+        .qianggoulist ul li h3
+        {
+            height: 38px;
+            padding: 0px 11px;
+            line-height: 38px;
+            color: #727171;
+            margin: 8px 0px 2px;
+        }
+        .qianggoulist ul li h3 span
+        {
+            float: right;
+            color: #a10000;
+            font-size: 14px;
+        font-family:Arial;
+        }
+        .qianggoulist ul li em
+        {
+            font-size: 16px;
+            font-family:Arial;
+            color: #a10000;
+            /*font-weight: bold;*/
+        }
+        .qianggoulist ul li span.sale
+        {
+            display: block;
+            height: 42px;
+            padding: 0px 11px;
+            font-size: 16px;
+            line-height: 40px;
+            text-align: center;
+            background: #f1f1f3;
+        }
+        .qianggoulist ul li span.sale em
+        {
+            font-size: 16px;
+        }
+        .qianggoulist ul li span.qiangbtn
+        {
+            display: block;
+            width: 54px;
+            height: 54px;
+            background: url(http://i4.vanclimg.com/cms/20160802/qiangbtn.png) no-repeat 0px 0px;
+            position: absolute;
+            right: 15px;
+            top: 15px;
+        }
+        .shangzhuanglist_top{ *margin-bottom:-30px;}
+        .getMoney{ margin:20px 0px;}
+    </style>
+<div class="getMoney"> <a href="" class="track" name="hp-hp-top-1-v:n" target="_blank"> <img src=""></a></div>
+<div class=" piclist shangzhuanglist shangzhuanglist_top clear">
+<h1>超值热卖</h1>
+
+<!-- import 9 lines table -->
+<div id="9tb">
+{% for data in datas %}
+    {% if (dev=="m") %}
+        {{macros.render_table_mb(data)}}
+    {% else %}
+        {{macros.render_table(data)}}
+        {% include "divide_line.html" %}
+    {% endif %}
+{% endfor %}
+</div>
+
+<!--底部通栏广告位-->
+<div class="blank0"></div>
+<div class="proAreabox clearFix">
+    <style type="text/css">
+.shangzhuanglist {
+    overflow: hidden;
+}
+.shangzhuanglist ul li {
+    float: left;
+    margin-right: 17px;
+    display: inline;
+}
+.shangzhuanglist ul li.pic_one {
+    width: 590px;
+}
+.shangzhuanglist ul li.pic_two {
+    width: 290px;
+}
+.shangzhuanglist ul li.pic_three {
+    width: 286px;
+}
+.shangzhuanglist ul li div {
+    margin-bottom: 16px;
+}
+.shangzhuanglist ul li h3, .kuzhuanglist ul li h3 {
+    height: 28px;
+    padding: 20px 12px;
+    line-height: 28px;
+    border: 1px solid #e8e7ec;
+    border-top: 0px;
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+}
+.shangzhuanglist ul li h3 span, .kuzhuanglist ul li h3 span {
+    float: right;
+    color: #a10000;
+    font-family: Arial;
+    line-height: 24px;
+    font-size: 14px;
+}
+.shangzhuanglist ul li h3 span em, .kuzhuanglist ul li h3 span em {
+    font-size: 16px;
+    padding-left: 10px;
+}
+.kuzhuanglist {
+    overflow: hidden;
+}
+.kuzhuanglist ul li {
+    width: 285px;
+    height: 508px;
+    float: left;
+    display: inline;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+.otherlist {
+    overflow: hidden;
+*margin-bottom:28px;
+}
+.otherlist ul li {
+    float: left;
+    width: 385px;
+    height: 275px;
+    display: inline;
+    margin: 0px 22px 28px 0px;
+}
+.shangzhuanglist_top {
+*margin-bottom:-30px;
+}
+</style>
+
+{% if (dev=="p") %}
+  {{ macros.huo_dong_zhuan_qv(huodong) }}
+{% endif %}
+    
+</div>
+</div>
+    <div class="blank0"></div>
+    <div class="blank0" style="height:32px;"></div>
+    <div class="vanclFoot" style="margin-top:0px;">
+    <div class="vanclCustomer publicfooterclear"><ul><li><a href="//help.vancl.com/Home/contact" rel="nofollow" target="_blank">
+    <p class="onlineCustomer">
+    <img src="//i4.vanclimg.com/cms/20160802/onlinecustomer.png" style="width:auto;height:auto;"></p>
+    
+    <p class="onlineTime"> 微信智能客服</p></a></li><li><a href="//help.vancl.com/Category/43-1.html" rel="nofollow" target="_blank"><p class="seven"><img src="//i2.vanclimg.com/cms/20160802/seven.png" style="width:auto;height:auto;"></p><p> 7天内退换货</p><p> 购物满199元免运费</p></a></li><li class="twocode"><p><img src="//i7.m.vancl.com/oms/2014_8_29_16_39_33_7709.jpg" style="width: 104px; height: 104px;"></p><p> 扫描下载<em>长虹用户中心</em>客户端</p></li></ul></div><div class="vanclOthers publicfooterclear"><ul><li><a href="//www.vancl.com/help/about.htm" target="_blank">关于长虹</a></li><li><a href="" target="_blank">新手指南</a></li><li><a href="" target="_blank">配送范围及时间</a></li><li><a href="" target="_blank">支付方式</a></li><li><a href="" target="_blank">售后服务</a></li><li class="none"><a href="" target="_blank">帮助中心</a></li></ul></div></div>
+    <div id="footerArea" class="">
+    
+    <div class="footBottom">
+    <div class="footBottomTab"><p> Copyright 2007 - 2016 vancl.com All Rights Reserved 蜀ICP证100557号 京公网安备11011502002400号 出版物经营许可证新出发京批字第直110138号</p><p> 四川长虹通讯科技有限公司</p></div></div><span class="blank20"></span>
+    
+    <div class="subFooter"></li><li class="BlackTop"><a href="javascript:;" onclick="javascript:document.getElementById('headerTopArea').scrollIntoView()"></a></li></ul></div>
+    
+    <script type="text/javascript"> $(document).ready(function () { var hostname = window.location.host; if (hostname != "demowww.vancl.com" && hostname != "www.vancl.com" && hostname != "www.fanke.com") { $(".subnavCon em").css({ display: "block" }); $(".subnavCon").hover(function () { $(this).find("em").addClass("emtop"); $(this).parent().find(".categoryList").show(); }, function () { $(this).find("em").removeClass("emtop"); $(this).parent().find(".categoryList").hide(); }); $(".categoryList").hover(function () { $(this).show(); }, function () { $(this).hide(); $(this).parent().find(".subnavCon em").removeClass("emtop"); }); } }); setTimeout(function () { var bp = document.createElement('script'); bp.src = '//push.zhanzhang.baidu.com/push.js'; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(bp, s); }, 1000); $(function () { $(".subNav").hide(); $(".navlist ul li").hover(function () { $(this).find(".subNav").stop(true, true); $(this).find(".subNav").slideDown(); }, function () { $(this).find(".subNav").stop(true, true); $(this).find(".subNav").slideUp(); }); })</script>
+    
+{% if False %}
+    {% include "za_ping_guang_gao.html" %}
+{% endif %}
+    
+            <script type="text/javascript" src="http://jsy.vanclimg.com/js.ashx?href=[/search/jquery.autocomplete.js],[/public/errorhandler.js,cookies_oper.js,ref.js,ct.js,google-analytics.js,union_websource.js],[/www/responsiveslides.js,public.js],[/index/common-header.js,indexcontentv11.js],[/public/trace.js]&v=20160831233828&compress"></script>
+        <script type="text/javascript" src="http://jsx.vanclimg.com/js.ashx?href=[jquery/jquery-1.7.1.min,jquery.lazyload]&compress"></script>
+        
+<script type="text/javascript">
+<!-- 
+var winWidth = 0;
+var winHeight = 0;
+function findDimensions() //函数：获取尺寸
+{
+	//获取窗口宽度
+	if (window.innerWidth)
+		winWidth = window.innerWidth;
+	else if ((document.body) && (document.body.clientWidth))
+		winWidth = document.body.clientWidth;
+
+	//获取窗口高度
+	if (window.innerHeight)
+		winHeight = window.innerHeight;
+	else if ((document.body) && (document.body.clientHeight))
+		winHeight = document.body.clientHeight;
+
+	//通过深入Document内部对body进行检测，获取窗口大小
+	if (document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth) {
+		winHeight = document.documentElement.clientHeight;
+		winWidth = document.documentElement.clientWidth;
+	}
+    console.log(winHeight)
+    console.log(winWidth)
+    return {"winWidth":winWidth, "winHeight":winHeight}
+}//-->
+
+function uaredirect(f) {
+ try {
+  if (document.getElementById("bdmark") != null) {
+   return
+  }
+  var b = false;
+  if (arguments[1]) {
+   var e = window.location.host;
+   var a = window.location.href;
+   if (isSubdomain(arguments[1], e) == 1) {
+    f = f + "/#m/" + a;
+    b = true
+   } else {
+    if (isSubdomain(arguments[1], e) == 2) {
+     f = f + "/#m/" + a;
+     b = true
+    } else {
+     f = a;
+     b = false
+    }
+   }
+  } else {
+   b = true
+  }
+  if (b) {
+   var c = window.location.hash;
+   if (!c.match("fromapp")) {
+    if ((navigator.userAgent.match(/(iPhone|iPod|Android|ios|SymbianOS)/i))) {
+     location.replace(f)
+    }
+   }
+  }
+ } catch(d) {}
+}
+
+function isSubdomain(c, d) {
+ this.getdomain = function(f) {
+  var e = f.indexOf("://");
+  if (e > 0) {
+   var h = f.substr(e + 3)
+  } else {
+   var h = f
+  }
+  var g = /^www\./;
+  if (g.test(h)) {
+   h = h.substr(4)
+  }
+  return h
+ };
+ if (c == d) {
+  return 1
+ } else {
+  var c = this.getdomain(c);
+  var b = this.getdomain(d);
+  if (c == b) {
+   return 1
+  } else {
+   c = c.replace(".", "\\.");
+   var a = new RegExp("\\." + c + "$");
+   if (b.match(a)) {
+    return 2
+   } else {
+    return 0
+   }
+  }
+ }
+};
+
+
+</script>
+        <!--
+        <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
+        <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
+        -->
+</body>
+
+{% endblock %}

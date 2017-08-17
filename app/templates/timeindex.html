@@ -1,0 +1,28 @@
+{% extends 'adminbase.html' %}
+
+{# 添加下面语句 #}
+{% import 'admin/lib.html' as lib with context %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="static/styles/select2.css">
+    <link rel="stylesheet" type="text/css" href="static/styles/daterangepicker-bs2.css">
+{% endblock %}
+{# 添加结束 #}
+
+{# body #}
+{% block body %}
+    <h4>使用Flask-Admin内建的JS控件获取日期和时间</h4>
+    <div>
+        <h5>选择日期</h5>
+        <input data-date-format="YYYY-MM-DD" data-role="datepicker" id="datepicker" name="date" type="text" value="" class="">
+    </div>
+    <div>
+        <h5>选择时间</h5>
+        <input data-date-format="HH:mm:ss" data-role="timepicker" id="timepicker" name="timepicker" type="text" value="" class="">
+    </div>
+{% endblock %}
+{% block tail %}
+    {{ super() }}
+    <script type="text/javascript" src="static/bootstrap-daterangepicker-master/daterangepicker.js"></script>
+    <script type="text/javascript" src="static/admin/form.js"></script>
+{% endblock %}

@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>网点管理</title>
+<script type="text/javascript" src="static/scripts/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="static/scripts/branch.js"></script>
+<link rel="stylesheet" type="text/css" href="static/styles/table.css">
+<script type="text/javascript" src="static/scripts/popup.js"></script>
+<link rel="stylesheet" type="text/css" href="static/styles/popup.css">
+<style type="text/css">
+a{text-decoration: NONE;}	
+</style>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+	<table id="search_well" align="right" style="width:93%;border: solid thin #C0C0C0">
+		<tr><td align="center" style="width:10%; height:25px;">省份：</td>
+			<td style="width:15%;"><select id="province">
+				<option value="0">所有省份</option>
+				<option value="北京">北京</option>
+				<option value="天津">天津</option>
+				<option value="河北">河北</option>
+				<option value="山西">山西</option>
+				<option value="内蒙古">内蒙古</option>
+				<option value="辽宁">辽宁</option>
+				<option value="吉林">吉林</option>
+				<option value="黑龙江">黑龙江</option>
+				<option value="上海">上海</option>
+				<option value="江苏">江苏</option>
+				<option value="浙江">浙江</option>
+				<option value="安徽">安徽</option>
+				<option value="福建">福建</option>
+				<option value="江西">江西</option>
+				<option value="山东">山东</option>
+				<option value="河南">河南</option>
+				<option value="湖北">湖北</option>
+				<option value="湖南">湖南</option>
+				<option value="广东">广东</option>
+				<option value="广西">广西</option>
+				<option value="海南">海南</option>
+				<option value="重庆">重庆</option>
+				<option value="四川">四川</option>
+				<option value="贵州">贵州</option>
+				<option value="云南">云南</option>
+				<option value="西藏">西藏</option>
+				<option value="陕西">陕西</option>
+				<option value="甘肃">甘肃</option>
+				<option value="宁夏">宁夏</option>
+				<option value="新疆">新疆</option>
+				<option value="台湾">台湾</option>
+				<option value="香港">香港</option>
+				<option value="澳门">澳门</option>
+			</select></td>
+			<td align="center" style="width:10%;">品牌商：</td>
+			<td style="width:15%;"><select>
+				<option>长虹</option>
+				</select></td>
+			<td align="center">
+			<img alt="查询" src="static/Image/select.png" style="cursor:hand" onclick="getBranch();"></td>
+		</tr>
+	</table>
+	<div id="result" style="margin-top:18px;">
+	<div><input type="button" class="addApp" value="添加网点" onclick="ShowDiv('MyDiv2','fade2');"></div>
+		<table  id="datagrid" class="table" style="width:100%">
+			<thead>
+				<tr>
+					<th width='8%'>品牌商</th>
+					<th width='8%'>省份</th>
+					<th width='15%'>地址</th>
+					<th width='13%'>网店名称</th>
+					<th width='8%'>座机</th>
+					<th width='8%'>手机</th>
+					<th width='8%'>营业时间</th>
+					<th width='7%'>操作</th>
+				</tr>
+			</thead>
+			<tbody id="tablevlue"></tbody>
+		</table>
+	</div>
+	<!-- 修改网点 -->
+	<div id="fade" class="black_overlay"></div>
+	<div id="MyDiv" style="width:580px;display: none;
+		position: absolute;
+		top: 15%;
+		left: 30%;
+		border: 1px solid lightblue;
+		background-color:#FFFFFF;
+		z-index:1002;">
+		<div class="modal-header"  style="height:15px;background:#F5F5F5;">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="CloseDiv('MyDiv','fade');">×</button>
+	        <font size="2em">修改网点</font>
+    	</div>
+    	<div class="modal-divCenter" style="width:100%">
+    		<table  class="tablePopup" style="margin:0;width:100%">
+    			<tr style="display: none;"><td>
+    				<input id="branchId1">
+    				</td>
+    			</tr>
+    			<tr>
+    				<td style="width:40%" align="right" >省份：</td>
+    				<td style="width:60%"><span id="branchProvince1"></span>
+    				</td>
+    			</tr>
+    			<tr><td style="width:40%" align="right" >品牌商：</td>
+    			<td style="width:60%"><span id="brands1"></span></td>
+    			</tr>
+    			<tr><td style="width:40%" align="right" >地址：</td>
+    			<td style="width:60%"><input id="branchAddr1" type="text"></td>
+    			</tr>
+    			<tr><td style="width:40%" align="right" >网点名称：</td>
+    			<td style="width:60%"><input id="branchName1" type="text"></td>
+    			</tr>
+    			<tr><td style="width:40%" align="right" >座机：</td>
+    			<td style="width:60%"><input id="branchTel1" type="text"></td>
+    			</tr>
+    			<tr><td style="width:40%" align="right" >手机：</td>
+    			<td style="width:60%"><input id="branchMobileTel1" type="text"></td>
+    			</tr>
+    			<tr><td style="width:40%" align="right" >营业时间：</td>
+    			<td style="width:60%"><input id="branchHours1" type="text"></td>
+    			</tr>
+    			<tr><td style="width:40%" align="right" >网点城市：</td>
+    			<td style="width:60%"><input id="branchCity1" type="text"></td>
+    			</tr>
+    		</table>
+    	</div>
+    	<div style="height:50px;background:#F5F5F5;margin-top:10px">
+    	<table style="width:100%;margin-top:10px"><tr>
+    		<td style="width:50%" align="right"><input type="button" value="确定" onclick="updateBranch();"></td>
+    		<td style="width:50%" align="left"><input type="button" value="取消" onclick="CloseDiv('MyDiv','fade');"></td>
+    		</tr>
+    	</table>
+    	</div>
+	</div>
+	<!-- 添加网点 -->
+	<div id="fade2" class="black_overlay">
+	</div>
+	<div id="MyDiv2" style="width:580px;display: none;
+		position: absolute;
+		top: 15%;
+		left: 30%;
+		border: 1px solid lightblue;
+		background-color:#FFFFFF;
+		z-index:1002;">
+		<div class="modal-header"  style="height:15px;background:#CCCCCC;">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="CloseDiv('MyDiv2','fade2');">×</button>
+	        <font size="2em">增加网点</font>
+    	</div>
+    	<div class="modal-divCenter" style="width:100%">
+    		<table  class="tablePopup" style="margin:0;width:100%">
+    			<tr>
+    				<td style="width:40%" align="right" >省份：</td>
+    				<td style="width:60%"><select id="branchProvince">
+    					<option value="">所有省份</option>
+						<option value="北京">北京</option>
+						<option value="天津">天津</option>
+						<option value="河北">河北</option>
+						<option value="山西">山西</option>
+						<option value="内蒙古">内蒙古</option>
+						<option value="辽宁">辽宁</option>
+						<option value="吉林">吉林</option>
+						<option value="黑龙江">黑龙江</option>
+						<option value="上海">上海</option>
+						<option value="江苏">江苏</option>
+						<option value="浙江">浙江</option>
+						<option value="安徽">安徽</option>
+						<option value="福建">福建</option>
+						<option value="江西">江西</option>
+						<option value="山东">山东</option>
+						<option value="河南">河南</option>
+						<option value="湖北">湖北</option>
+						<option value="湖南">湖南</option>
+						<option value="广东">广东</option>
+						<option value="广西">广西</option>
+						<option value="海南">海南</option>
+						<option value="重庆">重庆</option>
+						<option value="四川">四川</option>
+						<option value="贵州">贵州</option>
+						<option value="云南">云南</option>
+						<option value="西藏">西藏</option>
+						<option value="陕西">陕西</option>
+						<option value="甘肃">甘肃</option>
+						<option value="宁夏">宁夏</option>
+						<option value="新疆">新疆</option>
+						<option value="台湾">台湾</option>
+						<option value="香港">香港</option>
+						<option value="澳门">澳门</option>
+    				</select>
+    				</td>
+    			</tr>
+    			<tr><td style="width:40%" align="right" >品牌商：</td>
+    			<td style="width:60%"><select id="brands">
+    				<option>长虹</option>
+    			</select></td>
+    			</tr>
+    			<tr><td style="width:40%" align="right" >地址：</td>
+    			<td style="width:60%"><input id="branchAddr" type="text"></td>
+    			</tr>
+    			<tr><td style="width:40%" align="right" >网点名称：</td>
+    			<td style="width:60%"><input id="branchName" type="text"></td>
+    			</tr>
+    			<tr><td style="width:40%" align="right" >座机：</td>
+    			<td style="width:60%"><input id="branchTel" type="text"></td>
+    			</tr>
+    			<tr><td style="width:40%" align="right" >手机：</td>
+    			<td style="width:60%"><input id="branchMobileTel" type="text"></td>
+    			</tr>
+    			<tr><td style="width:40%" align="right" >营业时间：</td>
+    			<td style="width:60%"><input id="branchHours" type="text"></td>
+    			</tr>
+    			<tr><td style="width:40%" align="right" >网店城市：</td>
+    			<td style="width:60%"><input id="branchCity" type="text"></td>
+    			</tr>
+    		</table>
+    	</div>
+    	<div class="modal-foot" style="height:50px;background:#CCCCCC;margin-top:10px">
+    	<table class="choose" style="width:100%;margin-top:10px"><tr>
+    		<td style="width:50%" align="right"><input type="button" value="确定" onclick="addBranchInfo();"></td>
+    		<td style="width:50%" align="left"><input type="button" value="取消" onclick="CloseDiv('MyDiv2','fade2');"></td>
+    		</tr>
+    	</table>
+    	</div>
+	</div>
+</body>
+</html>

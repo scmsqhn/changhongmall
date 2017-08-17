@@ -1,0 +1,63 @@
+<style type="text/css">
+/*砸屏广告*/
+.screenAdPop{ width:980px; position:absolute;left:50%; top:50%; margin-top:-300px;z-index:999999; margin-left:-490px; overflow:hidden;}
+.screenAdPop .screenAdPopfull{ display:none;}
+.screenAdPop .screenAdPopnarrow{ display:block;}
+.screenAdPop a{ display:block;}
+.screenAdPop a img{ vertical-align:top;}
+.screenAdClose{ display:block; position:absolute; right:14px; top:14px; background:url(http://i3.vanclimg.com/cms/20170417/closedz.png) no-repeat left top; width:29px; height:29px; cursor:pointer;}
+.full .screenAdPop{ width:1200px; margin-left:-600px;}
+.full .screenAdPop .screenAdPopfull{ display:block;}
+.full .screenAdPop .screenAdPopnarrow{ display:none;}
+</style>
+<div id="overlay">
+<div style="background:#000;filter:alpha(opacity=40);opacity:0.4;-moz-opacity:0.4;width:100%;height:100%; position:fixed; _position:absolute;left:0px;top:0px; z-index:999998;"></div>
+<div class="screenAdPop">
+    <p class="screenAdPopfull"><a href="http://catalog.vancl.com/618ms.html" name="hp-hp-billboard-0-v:n" class="track" target="_blank"><img width="1200px" height="600px" src="http://i3.vanclimg.com/cms/20170620/1200x600.jpg" alt=""/></a></p>
+    <p class="screenAdPopnarrow"><a href="http://catalog.vancl.com/618ms.html" name="hp-hp-billboard-0-v:n" class="track" target="_blank"><img width="980px" height="660px" src="http://i5.vanclimg.com/cms/20170620/980x660.jpg" alt=""/></a></p>
+    <span class="screenAdClose"></span>
+</div>
+</div>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        //遮罩层
+        var tipOverlay = $("#overlay");
+        if (tipOverlay.length> 0) {
+            $("span.screenAdClose", tipOverlay).click(function () { closeTipOverlay(); });
+            window.setTimeout(function () { closeTipOverlay(); }, 10000);
+        }
+
+        var setting = { closeTipOverlay: false };
+        var closeTipOverlay = function () {
+            tipOverlay.fadeOut();
+            //-------vjia浮窗
+            if (setting.closeTipOverlay == false && VANCL.www.VjiaFloatad != undefined) {
+                setting.closeTipOverlay = true;
+                VANCL.www.VjiaFloatad.init();
+            }
+        }
+    });
+</script>
+
+<style type="text/css">
+.ipad_pop{ position:fixed;left:0;bottom:0;border:2px solid #bdbdbd;width:290px;height:98px;z-index:9999;display:none;}
+.ipad_pop .ipad_close{width:14px;height:14px;position:absolute;left:5px;top:5px;background-image: url(http://i1.vanclimg.com/Others/ipad_close.jpg);background-repeat: no-repeat;cursor:pointer;}
+.ipad_pop .ipad_down{width:97px;height:30px;position:absolute;left:150px;top:60px;display:inline-block}
+</style>
+<div class="ipad_pop" id="ipad_pop">
+    <img src="http://i2.vanclimg.com/Others/ipad_pop.jpg?v=2" width="290" height="98"/>
+    <span class="ipad_close" id="ipad_close"></span>
+    <a href="https://itunes.apple.com/app/fan-ke-cheng-pin-hd-hu-lian/id442666468?mt=8?source=vancl_android_003" target="_blank" class="ipad_down"></a>
+</div>
+    <script type="text/javascript">        
+        $(document).ready(function(){
+            var h = window.navigator.userAgent;
+            if(h.match(/AppleWebKit\/([\d.]*)/) && /Mobile\//.test(h) && h.match(/iPad|iPod|iPhone/)){
+                $("#ipad_pop").fadeIn();    
+            }
+            $("#ipad_close").click(function(){
+                $("#ipad_pop").fadeOut();
+            });
+            
+        });
+</script>

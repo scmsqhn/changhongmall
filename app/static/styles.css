@@ -105,3 +105,62 @@ div.flask-pagedown-preview h3 {
 .table.followers tr {
     border-bottom: 1px solid #e0e0e0;
 }
+nav{
+    width:100%; 
+    height:60px; 
+    background:#00A2CA;
+    margin:0 auto
+} 
+nav li{
+    display:inline; 
+    height:60px
+} 
+nav li a{
+    display:inline-block; 
+    padding:0 20px; 
+    height:60px; 
+    line-height:60px;
+    color:#FFF; 
+    font-family:"\5FAE\8F6F\96C5\9ED1"; 
+    font-size:16px
+}
+nav li a:hover{
+    background:#0095BB
+}
+div.box_frame{
+    float: left;
+    background-color: #eee; /* standard background color */
+    border: 1px solid #898989; 
+    border-radius: 11px;
+    padding: 2px;
+    margin-left:4%;
+    text-align: center;
+    /* change border to be inside the box */
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
+div.section_zone{
+    margin: 0 auto;
+    padding: 0px;
+    width: 90%;   
+    position: relative;
+    overflow: auto;
+    text-align: center;
+    display: inline-block;
+    clear: both;
+    background-color: #fff;
+    /* border: 1px solid #000; */
+
+    /* change border to be inside the box */
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
+div.box_frame:first-child{
+    margin-left: 0;
+}
+div.box_frame#_15{ /* width 15% */
+    width: 15%;
+    font-size: 35px;
+}

@@ -1,0 +1,44 @@
+<!--<uwsgi>
+<http>0.0.0.0:5000</http>
+<callable>app</callable>
+<wsgi-file>apptest.py</wsgi-file>
+<module>apptest</module>
+<process>1</process>
+</uwsgi>-->
+
+<uwsgi> 
+<socket>/tmp/uwsgi.sock</socket> 
+<virtualenv>/var/www/chmall/env</virtualenv> 
+<pythonpath>/var/www/chmall/apptest</pythonpath> 
+<app mountpoint="/">
+    <script>rootpath_test</script>
+</app>
+<chdir>//var/www/chmall</chdir> 
+<module>apptest</module> 
+<callable>app</callable> 
+<master/> 
+<processes>1</processes> 
+<memory-report/> 
+<chmod-socket>666</chmod-socket> 
+<buffer-size>65536</buffer-size> 
+</uwsgi>
+
+
+<!--<uwsgi>
+  <plugin>python</plugin>
+  <socket>127.0.0.1:9001</socket>
+  <pythonpath>/var/www/example/app/</pythonpath>
+  <app mountpoint="/">
+    <script>wsgi_configuration_module</script>
+  </app>
+  <master/>
+  <processes>4</processes>
+  <reload-mercy>8</reload-mercy>
+  <cpu-affinity>1</cpu-affinity>
+  <max-requests>2000</max-requests>
+  <limit-as>512</limit-as>
+  <reload-on-as>256</reload-on-as>
+  <reload-on-rss>192</reload-on-rss>
+  <no-orphans/>
+  <vacuum/>
+</uwsgi>-->
