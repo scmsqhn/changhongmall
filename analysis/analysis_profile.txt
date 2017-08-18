@@ -1,0 +1,72 @@
+
+119.4.167.222 - - [18/Aug/2017 21:29:34] "GET / HTTP/1.0" 200 -
+<Request 'http://118.89.184.71/' [GET]>
+--------------------------------------------------------------------------------
+PATH: '/'
+         62716 function calls (61849 primitive calls) in 0.086 seconds
+
+   Ordered by: internal time, call count
+   List reduced from 838 to 25 due to restriction <25>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+       19    0.006    0.000    0.006    0.000 {method 'query' of '_mysql.connection' objects}
+        1    0.005    0.005    0.034    0.034 /var/www/chmall/app/main/views.py:169(get_goods_dat)
+     2276    0.004    0.000    0.036    0.000 /var/www/chmall/app/templates/meguo_phone.html:5(root)
+     3115    0.004    0.000    0.004    0.000 {_codecs.utf_8_decode}
+     2284    0.004    0.000    0.007    0.000 {markupsafe._speedups.escape}
+    763/5    0.003    0.000    0.037    0.007 {method 'join' of 'unicode' objects}
+     3128    0.003    0.000    0.009    0.000 {method 'decode' of 'str' objects}
+4085/4079    0.003    0.000    0.003    0.000 {getattr}
+      758    0.003    0.000    0.026    0.000 /var/www/chmall/env/lib/python2.7/site-packages/Jinja2-2.9.6-py2.7.egg/jinja2/runtime.py:233(call)
+     3876    0.003    0.000    0.003    0.000 {hasattr}
+     1556    0.002    0.000    0.002    0.000 {method 'encode' of 'unicode' objects}
+       19    0.002    0.000    0.013    0.001 {built-in method fetch_row}
+      758    0.002    0.000    0.021    0.000 /var/www/chmall/env/lib/python2.7/site-packages/Jinja2-2.9.6-py2.7.egg/jinja2/runtime.py:475(__call__)
+     2284    0.002    0.000    0.005    0.000 /var/www/chmall/env/lib/python2.7/site-packages/MarkupSafe-1.0-py2.7-linux-x86_64.egg/markupsafe/__init__.py:71(__new__)
+      757    0.002    0.000    0.011    0.000 /var/www/chmall/app/templates/macros.html:244(macro)
+     3088    0.002    0.000    0.011    0.000 /var/www/chmall/env/lib/python2.7/site-packages/MySQLdb/connections.py:212(string_decoder)
+     3115    0.002    0.000    0.006    0.000 /var/www/chmall/env/lib64/python2.7/encodings/utf_8.py:15(decode)
+     1516    0.002    0.000    0.003    0.000 /var/www/chmall/env/lib/python2.7/site-packages/Jinja2-2.9.6-py2.7.egg/jinja2/runtime.py:446(__next__)
+     6187    0.002    0.000    0.002    0.000 {method 'append' of 'list' objects}
+      758    0.001    0.000    0.018    0.000 /var/www/chmall/env/lib/python2.7/site-packages/Jinja2-2.9.6-py2.7.egg/jinja2/runtime.py:551(_invoke)
+     2314    0.001    0.000    0.001    0.000 {built-in method __new__ of type object at 0x7f8bf4854d40}
+     2272    0.001    0.000    0.003    0.000 /var/www/chmall/env/lib/python2.7/site-packages/Jinja2-2.9.6-py2.7.egg/jinja2/environment.py:425(getattr)
+        1    0.001    0.001    0.005    0.005 /var/www/chmall/app/templates/macros.html:210(macro)
+     1516    0.001    0.000    0.002    0.000 /var/www/chmall/env/lib/python2.7/site-packages/Jinja2-2.9.6-py2.7.egg/jinja2/runtime.py:428(_safe_next)
+     2101    0.001    0.000    0.001    0.000 {isinstance}
+     
+     
+     ================================================================================
+     
+     
+              13845 function calls (13708 primitive calls) in 0.042 seconds
+
+   Ordered by: internal time, call count
+   List reduced from 1178 to 25 due to restriction <25>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+       28    0.005    0.000    0.005    0.000 {method 'query' of '_mysql.connection' objects}
+        2    0.001    0.000    0.001    0.001 /var/www/chmall/env/lib/python2.7/site-packages/MySQLdb/connections.py:62(__init__)
+        2    0.001    0.000    0.001    0.000 {posix.listdir}
+        8    0.001    0.000    0.001    0.000 /var/www/chmall/env/lib/python2.7/site-packages/sqlalchemy/sql/type_api.py:1288(adapt_type)
+       39    0.001    0.000    0.001    0.000 {method 'sub' of '_sre.SRE_Pattern' objects}
+        1    0.001    0.001    0.023    0.023 /var/www/chmall/app/main/views.py:437(handle_search_whoosh)
+      757    0.001    0.000    0.001    0.000 {method 'append' of 'array.array' objects}
+      752    0.001    0.000    0.001    0.000 {isinstance}
+        1    0.000    0.000    0.001    0.001 /var/www/chmall/env/lib/python2.7/site-packages/whoosh/filedb/filetables.py:223(__init__)
+       18    0.000    0.000    0.003    0.000 /var/www/chmall/env/lib/python2.7/site-packages/sqlalchemy/engine/result.py:196(__init__)
+  408/402    0.000    0.000    0.001    0.000 {getattr}
+        3    0.000    0.000    0.000    0.000 /var/www/chmall/env/lib/python2.7/site-packages/sqlalchemy/engine/base.py:567(begin)
+        1    0.000    0.000    0.001    0.001 /var/www/chmall/env/lib/python2.7/site-packages/whoosh/columns.py:315(_read_offsets_and_lengths)
+       21    0.000    0.000    0.000    0.000 {zlib.decompress}
+       28    0.000    0.000    0.006    0.000 /var/www/chmall/env/lib/python2.7/site-packages/MySQLdb/cursors.py:315(_do_query)
+       48    0.000    0.000    0.001    0.000 /var/www/chmall/env/lib/python2.7/site-packages/sqlalchemy/event/attr.py:123(update_subclass)
+       18    0.000    0.000    0.011    0.001 /var/www/chmall/env/lib/python2.7/site-packages/sqlalchemy/engine/base.py:1104(_execute_context)
+      141    0.000    0.000    0.000    0.000 {_codecs.utf_8_decode}
+       28    0.000    0.000    0.000    0.000 /var/www/chmall/env/lib/python2.7/site-packages/MySQLdb/cursors.py:75(__init__)
+        1    0.000    0.000    0.040    0.040 /var/www/chmall/app/main/views.py:542(crawl)
+       28    0.000    0.000    0.001    0.000 /var/www/chmall/env/lib/python2.7/site-packages/MySQLdb/cursors.py:142(_do_get_result)
+       12    0.000    0.000    0.001    0.000 /var/www/chmall/env/lib/python2.7/site-packages/sqlalchemy/engine/default.py:554(_init_compiled)
+      154    0.000    0.000    0.001    0.000 {method 'decode' of 'str' objects}
+      100    0.000    0.000    0.001    0.000 /var/www/chmall/env/lib/python2.7/site-packages/sqlalchemy/util/langhelpers.py:761(__get__)
+       20    0.000    0.000    0.004    0.000 /var/www/chmall/env/lib/python2.7/site-packages/sqlalchemy/sql/compiler.py:376(__init__)
