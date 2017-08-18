@@ -444,10 +444,14 @@ def handle_search_whoosh(search):
         return []
     pass # printsearch
     wsSearch = globalvar.get_whoosh()
+    searchList = jieba.cut_for_search(search)
+    search = " ".join(searchList)
     output = []
-    #search_result = wsSearch.search("indexer", u"content", search)
+    print search
     search_result = wsSearch.search("indexer", u"content", search,  output)
-    #print search_result
+    print search_result
+    for i in search_result:
+        print i 
     engine=sqlalchemy.create_engine('mysql://root:root@localhost:3306/ultrax?charset=utf8')
     #Config.SQLALCHEMY_DATABASE_URI)
     Session=scoped_session(sessionmaker(bind=engine))
@@ -460,7 +464,7 @@ def handle_search_whoosh(search):
         counter+=1
         pass # printi['path']
         pass # printtype(i['path'])
-        CMD = u'SELECT code, couponlink, img, name , price, couponvalue FROM goods WHERE code="%s" ORDER BY rate DESC ' % i['path']
+        CMD = u'SELECT DISTINCT code, couponlink, img, name , price, couponvalue FROM goods WHERE code="%s" ORDER BY rate DESC ' % i['path']
         sqlData = sess.execute(CMD)
         sqlData = sqlData.cursor._rows
         #print sqlData
@@ -537,7 +541,15 @@ def crawl():
 
 @main.route('/', methods=['GET', 'POST'])
 def crawl():
+    print request
+    for i in request.args:
+        print i
+
+        print request.args[i]
     searchInput = request.args.get('keyWord', 'null')
+    if searchInput == u"膜":
+        searchInput = u"贴膜"
+        
     pass # printsearchInput
     goodsData = []
     if searchInput == "null":
@@ -545,7 +557,7 @@ def crawl():
     else:
         goodsData = handle_search_whoosh(searchInput)
         if len(goodsData)==0:
-             goodsData = get_goods_dat()
+             goodsData = []
     pass # print"[x] show  goodsData" , goodsData
     datas = goodsData
     huodongData = get_huodong_dat()

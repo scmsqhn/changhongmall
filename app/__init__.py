@@ -35,9 +35,6 @@ login_manager = LoginManager()
 login_manager.session_protection = 'strong'
 login_manager.login_view = 'auth.login'
 
-
-
-
 def create_app(config_name):
     app = Flask(__name__)
 #    app.config.from_object('chmall.default_config')
@@ -95,15 +92,15 @@ def create_app(config_name):
         import chardet
         type="utf8"
         codedict[u"title"] = i[0]
+#       ii = i[1]
         tmp = jieba.cut_for_search(i[1])
-        ii  = " ".join(tmp)
+        ii  = ", ".join(tmp)
+        print ii
         try:
             codectmp = chardet.detect(ii)["encoding"]
             codedict[u"content"] = ii.decode(codectmp)
         except ValueError:
-            codedict[u"content"] = ii
-            
-        
+            codedict[u"content"] = ii            
         codedict[u"path"] = i[2]
         import json
         pass # printjson.dumps(codedict)
@@ -111,7 +108,6 @@ def create_app(config_name):
     wsSearch.insert_index()
     wsSearch.add_path_2_index("indexer", codelist)
     #results = wsSearch.search("indexer", u"content", u"dido")
-
     return app
 
 '''''
