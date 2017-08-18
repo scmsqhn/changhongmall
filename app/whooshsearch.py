@@ -34,9 +34,9 @@ class WhooshSearch(object):
             title = i["title"]
             content = i["content"]
             path = i["path"]
-            #print "[x]", type(path), path
-            print "[x]", type(content), content
-            #print "[x]", type(title), title
+            #pass # print "[x]", type(path), path
+            pass # print "[x]", type(content), content
+            #pass # print "[x]", type(title), title
             writer.add_document(title=title, path=path, content=content)
             f.write(str(type(title)))
             f.write(str(type(content)))
@@ -68,15 +68,15 @@ class WhooshSearch(object):
         try:
             ix = self.ix
             searcher = ix.searcher()
-            print searchfrom, type(searchfrom)
-            print searchwhat, type(searchwhat)
+            pass # print searchfrom, type(searchfrom)
+            pass # print searchwhat, type(searchwhat)
             query =QueryParser(searchfrom, ix.schema).parse(searchwhat)
             #ok query =QueryParser(u"content", ix.schema).parse(u"one")
             #query =QueryParser(u"content", ix.schema).parse(u"qin")
             res = searcher.search(query)
             results = res
         except:
-            traceback.print_exc()
+            traceback.trace_back
 
         finally:
             searcher.close
@@ -107,12 +107,12 @@ if "__name__" == "__main__":
     dlst.append(d4)
     woshsearch.add_path_2_index("indexer", dlst)
     woshsearch.insert_demo_data()
-    print woshsearch
-    print sys.argv[1],   sys.argv[2]
+    pass # print woshsearch
+    pass # print sys.argv[1],   sys.argv[2]
     results = woshsearch.search("indexer", sys.argv[1], sys.argv[2])
     #results = woshsearch.search("indexer", "title", u"name")
   except:
-    traceback.print_exc()
+    traceback.trace_back
 
 
 

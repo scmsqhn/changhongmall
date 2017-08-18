@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 #! -- coding=utf-8 --
+
 import sys
 sys.path.append('..')
 sys.path.append('../..')
@@ -63,7 +64,7 @@ def base_table_format(*ldata):
     for i in ldata:
         pass
         #print i, type(i), len(ldata)
-#        pass # print ldata, type(ldata)
+#        pass # pass # printldata, type(ldata)
     ut.prt(ldata[0])
     ut.prt(ldata)
     ut.prts("==========")
@@ -123,8 +124,8 @@ def sortPicDat(alldata):
 def data2Pic_9Tb():
     TABLENUM = current_app.config['TABLENUM']
     alldata = HostPageTable.query.all()
-#    print alldata
-#    pass # print alldata.__dict__
+#    pass # printalldata
+#    pass # pass # printalldata.__dict__
     formatData = sortData(alldata)
     tablelist = []
     for i in range(TABLENUM):
@@ -146,9 +147,9 @@ def make_pic():
 def getPic():
     PICNUM = current_app.config['PICNUM']
     alldata = Pict.query.all()
-    pass # print alldata
+    pass # pass # printalldata
     formatData = sortPicDat(alldata)
-    pass # print formatData
+    pass # pass # printformatData
     return formatData
 
 '''
@@ -199,7 +200,7 @@ def sortGoodsdat(inputData):
             except:
                 pass
         outputList.append(i)
-    pass # print outputList
+    pass # pass # printoutputList
     return outputList
 
     
@@ -216,7 +217,7 @@ def get_huodong_dat():
       item=list(max[i])
       item[2]=item[2].encode('utf-8')
       huodongData.append(item)
-      pass # print item[2]
+      pass # pass # printitem[2]
     return huodongData
         
 
@@ -244,11 +245,11 @@ def sortGoodsDat(alldata):
 @main.route('/test', methods=['GET', 'POST'])
 def testpage():
     func = request.args.get('fun', 'test', type=str)
-    pass # print func
+    pass # pass # printfunc
     return switch(func)
     
 def __testpagemode():
-    pass # print "<div><h1>HELLO, THIS IS TEST PAGE. BE PATIENT PLEASE.</h1></div>"
+    pass # pass # print"<div><h1>HELLO, THIS IS TEST PAGE. BE PATIENT PLEASE.</h1></div>"
     return "<div><h1>HELLO, THIS IS TEST PAGE. BE PATIENT PLEASE.</h1></div>"
       
 def __huodongdate():
@@ -258,20 +259,20 @@ def __huodongdate():
     PICNUM = current_app.config['HUODONGNUM']
     CMD = u'SELECT link,img,name FROM goods ORDER BY soldpermonth DESC LIMIT %d;' % PICNUM
     result = sess.execute(CMD)
-#    pass # print result 
+#    pass # pass # printresult 
     max=result.cursor._rows
-#    pass # print max
+#    pass # pass # printmax
     count=0
     huodongData={}
     for i in range(0,len(max)):
       baseitem=list(max[i])
-#      pass # print baseitem[2].encode('utf-8')
+#      pass # pass # printbaseitem[2].encode('utf-8')
       item=baseitem[2].encode('utf-8')
-#      pass # print item
+#      pass # pass # printitem
       huodongData[count]=item
       count+=1
 #      item=baseitem[2].encode('ascii')
-#      pass # print item
+#      pass # pass # printitem
 #      huodongData[count]=item
 #      count+=1
 #      item=baseitem[2].encode('GBK')
@@ -303,27 +304,27 @@ def __huodongdateone():
     PICNUM = current_app.config['HUODONGNUM']
     CMD = u'SELECT link,img,name FROM goods ORDER BY rate DESC LIMIT %d;' % PICNUM
     result = sess.execute(CMD)
-#    pass # print result 
+#    pass # pass # printresult 
     max=result.cursor._rows
-#    pass # print max
+#    pass # pass # printmax
     count=0
     huodongData={}
     for i in range(0,len(max)):
       baseitem=list(max[i])
-#      pass # print baseitem[2].encode('utf-8')
+#      pass # pass # printbaseitem[2].encode('utf-8')
       item=baseitem[2]#.encode('utf-8')
-#      pass # print item
+#      pass # pass # printitem
       huodongData[count]=item
       count+=1
 #      item=baseitem[2].encode('ascii')
-#      pass # print item
+#      pass # pass # printitem
 #      huodongData[count]=item
 #      count+=1
 #      item=baseitem[2].encode('GBK')
       #print item
 #      huodongData[count]=item
 #      count+=1
-#      pass # print huodongData
+#      pass # pass # printhuodongData
     return render_template('testmode.html', data=json.dumps(huodongData))
     
 '''''
@@ -338,7 +339,7 @@ def switch(argument):
         "huodongall": __huodongdate,
         "huodongone": __huodongdateone,
     }
-    pass # print argument
+    pass # pass # printargument
     func = switcher.get(argument, lambda: "nothing")
     return func()
       
@@ -401,11 +402,11 @@ def handle_search(search):
         for item in sqlData:
             count+=1
             itemList = jieba.analyse.extract_tags(item[1],20)
-            print searchword.encode('utf-8') ,"$$", item[1].encode('utf-8')
+            pass # printsearchword.encode('utf-8') ,"$$", item[1].encode('utf-8')
             if searchword in itemList: # means the search word is in the prod's name
                 codeDict[item[0]]+=self.getScore(count)
     for i in codeDict:
-       print '[x] sort ',i,":",codeDict[i]
+       pass # print'[x] sort ',i,":",codeDict[i]
     BigendingDict = sorted(codeDict.items(), key=lambda d:d[1], reverse = True)
     if len(BigendingDict)==0:
         return []        
@@ -429,7 +430,7 @@ def handle_search(search):
             #print '2  [x] ', len(lineOutput)
             lineOutput = []    
     #print '1  [x] ', len(finalOutput)
-#    print finalOutput
+#    pass # printfinalOutput
     return finalOutput
     
 
@@ -441,7 +442,7 @@ def handle_search_whoosh(search):
     # qin
     if search=="null":
         return []
-    print search
+    pass # printsearch
     wsSearch = globalvar.get_whoosh()
     output = []
     #search_result = wsSearch.search("indexer", u"content", search)
@@ -454,12 +455,12 @@ def handle_search_whoosh(search):
     finalOutput = []
     counter=0
     for i in search_result:
-        print i 
+        pass # printi 
         lineOutput = []
         counter+=1
-        print i['path']
-        print type(i['path'])
-        CMD = u'SELECT code, couponlink, img, name , price, couponvalue FROM goods WHERE code="%s"' % i['path']
+        pass # printi['path']
+        pass # printtype(i['path'])
+        CMD = u'SELECT code, couponlink, img, name , price, couponvalue FROM goods WHERE code="%s" ORDER BY rate DESC ' % i['path']
         sqlData = sess.execute(CMD)
         sqlData = sqlData.cursor._rows
         #print sqlData
@@ -484,7 +485,7 @@ def handle_search_whoosh(search):
 def tb9():
     data = request.args.get('data')
     app.logger.info(data)
-    print '[x]', '3 return tb9'
+    pass # print'[x]', '3 return tb9'
     return render_template('9tb.html', data=data)
     
 @main.route('/search', methods=['GET', 'POST'])
@@ -498,21 +499,21 @@ def search():
     
 #    assert type(searchInput) == unicode
         
-    print '[x]', '1',searchInput
+    pass # print'[x]', '1',searchInput
     
     datas = handle_search(searchInput)
-#    print '[x]', '2',searchData
+#    pass # print'[x]', '2',searchData
     
 #    jsonData = {}
 #    jsonData['searchData']=searchData
-#    print '[x]', '3',jsonData
+#    pass # print'[x]', '3',jsonData
 
 #    jsonData = json.dumps(jsonData)
 #    tm = render_template('9tb.html', datas=searchData, dev='p')
 #    tm = tm.encode('utf-8')
-#    print tm
+#    pass # printtm
     return render_template('9tb.html', datas=datas, dev='p')
-#    print jsonData[0]
+#    pass # printjsonData[0]
 #    return jsonData
     
 '''
@@ -537,7 +538,7 @@ def crawl():
 @main.route('/', methods=['GET', 'POST'])
 def crawl():
     searchInput = request.args.get('keyWord', 'null')
-    print searchInput
+    pass # printsearchInput
     goodsData = []
     if searchInput == "null":
         goodsData = get_goods_dat()
@@ -545,7 +546,7 @@ def crawl():
         goodsData = handle_search_whoosh(searchInput)
         if len(goodsData)==0:
              goodsData = get_goods_dat()
-    print "[x] show  goodsData" , goodsData
+    pass # print"[x] show  goodsData" , goodsData
     datas = goodsData
     huodongData = get_huodong_dat()
     views=getPic()
@@ -593,8 +594,8 @@ def user(username):
 def baidupic():
     col = request.args.get('col', '壁纸', type=str)
     tag = request.args.get('tag', '国家地理', type=str)
-    pass # print col
-    pass # print tag
+    pass # pass # printcol
+    pass # pass # printtag
     piclist={}
     count=0
     target=[count,piclist]
@@ -621,7 +622,7 @@ def baidupic():
         except:
             pass
     sav2DB(target[1])
-    pass # print json.dumps(target[1])
+    pass # pass # printjson.dumps(target[1])
     return json.dumps(target[1])
 
 def sav2DB(items):
@@ -631,7 +632,7 @@ def sav2DB(items):
     CMD = u'SELECT MAX(id) FROM pict;'
     result = s.execute(CMD)
     max=result.cursor._rows[0][0]
-    pass # print type(items)
+    pass # pass # printtype(items)
     count=max+1
     for i in items:
         try:
@@ -644,7 +645,7 @@ def sav2DB(items):
 	        result = s.execute(CMD)
         except:
             traceback.print_exc()
-            pass # print i 
+            pass # pass # printi 
             continue
     
 
@@ -653,11 +654,11 @@ def savePic(tar, urlpath):
         name='pic_'+str(tar[0])
         tar[1][name]=urlpath
         tar[0]+=1
-        pass # print tar[0]
+        pass # pass # printtar[0]
         return tar
     except:
 #        traceback.print_exc()
-        pass # print tar[0]
+        pass # pass # printtar[0]
         return tar
         
 def crawl_data(col='手机',tag='长虹'):
@@ -894,7 +895,7 @@ if __name__=='__main__':
     for i in range(0,len(max)):
       item=list(max[i])
       item[2]=item[2].encode('utf-8')
-      pass # print item[2]
+      pass # pass # printitem[2]
       huodongData.append(item)
 
       

@@ -106,7 +106,7 @@ def create_app(config_name):
         
         codedict[u"path"] = i[2]
         import json
-        print json.dumps(codedict)
+        pass # printjson.dumps(codedict)
         codelist.append(codedict)
     wsSearch.insert_index()
     wsSearch.add_path_2_index("indexer", codelist)
@@ -149,10 +149,10 @@ if __name__=='__main__':
     pass
     '''
     res = craw_baidu_pic(col=u'美女'.encode('gb2312'),tag=u'小清新'.encode('gb2312'))
-    print res
+    pass # printres
     imgs = json.dumps(res)
-    print imgs
-    print imgs['imgs']
+    pass # printimgs
+    pass # printimgs['imgs']
     '''
     
     
