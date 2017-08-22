@@ -25,8 +25,18 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 import jieba
 import jieba.analyse
 import app
-
+from flask import current_app
+from app.whooshsearch import WhooshSearch
 from app import globalvar
+from app import create_app, db
+from app.models import User, Follow, Role, Permission, Post, Comment, HostPageTable,Pict,News
+from flask_script import Manager, Shell
+from flask_migrate import Migrate, MigrateCommand
+from app.whooshsearch import WhooshSearch
+
+#app.logger.debug('A value for debugging')
+#app.logger.debug('A warning occured(%d apples)', 42)
+#app.logger.debug('An error occurred')
 
 
 COV = None
@@ -42,10 +52,6 @@ if os.path.exists('.env'):
         if len(var) == 2:
             os.environ[var[0]] = var[1]
 
-from app import create_app, db
-from app.models import User, Follow, Role, Permission, Post, Comment, HostPageTable,Pict,News
-from flask_script import Manager, Shell
-from flask_migrate import Migrate, MigrateCommand
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 manager = Manager(app)
@@ -85,9 +91,8 @@ def index():
         #type = chardet.detect(i[2])['encoding']
         #codedict[u"path"] = i[2].decode(type)
         import json
-        print json.dumps(codedict)
+        pass # print json.dumps(codedict)
         codelist.append(codedict)
-    from app.whooshsearch import WhooshSearch
     woshsearch = WhooshSearch()
     woshsearch.insert_index()
     woshsearch.add_path_2_index("indexer", codelist)
@@ -146,7 +151,6 @@ def deploy():
 
 if __name__ == '__main__':
   try:
-    from app.whooshsearch import WhooshSearch
     app.wsgi_app = ProxyFix(app.wsgi_app)
     manager.run()
   except:

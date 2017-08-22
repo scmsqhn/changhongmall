@@ -43,6 +43,10 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 import jieba
 import jieba.analyse
 from app import globalvar
+from ..mylog import logtools
+from flask import current_app
+import json
+
 #"""Table = \
 #u'<table  border="0" cellpadding="0" cellspacing="0"  align="center">
 #  <tr>
@@ -59,12 +63,13 @@ from app import globalvar
 #</table>
 #'
 #"""
+
 def base_table_format(*ldata):
     ldata = ldata[0][0]
     for i in ldata:
         pass
-        #print i, type(i), len(ldata)
-#        pass # pass # printldata, type(ldata)
+#       print i, type(i), len(ldata)
+#       pass # pass # printldata, type(ldata)
     ut.prt(ldata[0])
     ut.prt(ldata)
     ut.prts("==========")
@@ -74,12 +79,11 @@ def base_table_format(*ldata):
 def after_request(response):
     for query in get_debug_queries():
         if query.duration >= current_app.config['FLASKY_SLOW_DB_QUERY_TIME']:
-            current_app.logger.warning(
+            current_current_app.logger.warning(
                 'Slow query: %s\nParameters: %s\nDuration: %fs\nContext: %s\n'
                 % (query.statement, query.parameters, query.duration,
                    query.context))
     return response
-
 
 @main.route('/shutdown')
 def server_shutdown():
@@ -171,7 +175,7 @@ def get_goods_dat():
     Session=scoped_session(sessionmaker(bind=engine))
     sess=Session()
     PICNUM = current_app.config['GOODSNUM']
-    CMD=u'SELECT couponlink, img, name, price, couponvalue FROM goods ORDER BY soldpermonth DESC'
+    CMD=u'SELECT couponlink, img, name, price, idlink,code FROM goods ORDER BY soldpermonth DESC'
     #CMD=u'SELECT couponlink, img, name, price, couponvalue FROM goods ORDER BY soldpermonth DESC LIMIT %d' % PICNUM
     result = sess.execute(CMD)
     max=result.cursor._rows
@@ -182,10 +186,13 @@ def get_goods_dat():
         item=list(max[i])
         item[2]=item[2].encode('utf-8')
         item[4]=item[4].encode('utf-8')
+        item[5]=item[5].encode('utf-8')
+        if item[0]=="":
+            item[0] = item[4]
         for j in item:
             goodsData.append(j)
             count+=1
-            if count%5==0:
+            if count%6==0:
                 totalGoods.append(goodsData)
                 goodsData=[]
     return totalGoods
@@ -197,19 +204,19 @@ def sortGoodsdat(inputData):
         for j in data:
             try:
                 j=j.encode('utf-8')
-            except:
+            except Exception, e:
+                logging.exception(e)
                 pass
         outputList.append(i)
     pass # pass # printoutputList
     return outputList
-
     
 def get_huodong_dat():
     engine = sqlalchemy.create_engine(Config.SQLALCHEMY_DATABASE_URI)
     Session = scoped_session(sessionmaker(bind=engine))
     sess = Session()
     PICNUM = current_app.config['HUODONGNUM']
-    CMD = u'SELECT link,img,name FROM goods ORDER BY rate DESC LIMIT %d;' % PICNUM
+    CMD = u'SELECT idlink,img,name FROM goods ORDER BY rate DESC LIMIT %d;' % PICNUM
     result = sess.execute(CMD)
     max=result.cursor._rows
     huodongData=[]
@@ -415,16 +422,22 @@ def handle_search(search):
     lineOutput = []    
     for i in BigendingDict:
         counter+=1
-        CMD='SELECT link,soldpermonth,img,name FROM goods WHERE code="%s"' % i[0]
+        CMD='SELECT couponlink, soldpermonth, img, name, idlink, code FROM goods WHERE code="%s"' % i[0]
         sqlData = sess.execute(CMD)
         sqlData = list(sqlData.cursor._rows[0])
         sqlData[0] = sqlData[0].encode('utf-8')
         sqlData[2] = sqlData[2].encode('utf-8')
         sqlData[3] = sqlData[3].encode('utf-8')
+        sqlData[4] = sqlData[4].encode('utf-8')
+        sqlData[5] = sqlData[5].encode('utf-8')
+        if sqlData[0] == "":
+            print "[x]", "couponlink is null, turn to idlink;"
+            sqlData[0] = sqlData[4]
         lineOutput.append(sqlData[0])
         lineOutput.append(sqlData[1])
         lineOutput.append(sqlData[2])
         lineOutput.append(sqlData[3])
+        lineOutput.append(sqlData[5])
         if counter%4==0:
             finalOutput.append(lineOutput)
             #print '2  [x] ', len(lineOutput)
@@ -432,7 +445,7 @@ def handle_search(search):
     #print '1  [x] ', len(finalOutput)
 #    pass # printfinalOutput
     return finalOutput
-    
+
 
 def handle_search_whoosh(search):
     # that's how v search
@@ -440,6 +453,11 @@ def handle_search_whoosh(search):
     # get the join of the every matchde product name belong to word
     # sort the word in join table with the num of word appeared
     # qin
+
+#    ('User-Agent', u'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36')
+#    ('Referer', u'http://118.89.184.71/?keyWord=%E8%80%B3%E6%9C%BA&guid=69a587ee3ad248498ca0bfa9ee0666a7')
+#    ('Host', u'118.89.184.71')
+    
     if search=="null":
         return []
     pass # printsearch
@@ -447,11 +465,11 @@ def handle_search_whoosh(search):
     searchList = jieba.cut_for_search(search)
     search = " ".join(searchList)
     output = []
-    print search
+    pass# print search
     search_result = wsSearch.search("indexer", u"content", search,  output)
-    print search_result
+    pass# print search_result
     for i in search_result:
-        print i 
+        pass# print i 
     engine=sqlalchemy.create_engine('mysql://root:root@localhost:3306/ultrax?charset=utf8')
     #Config.SQLALCHEMY_DATABASE_URI)
     Session=scoped_session(sessionmaker(bind=engine))
@@ -464,16 +482,23 @@ def handle_search_whoosh(search):
         counter+=1
         pass # printi['path']
         pass # printtype(i['path'])
-        CMD = u'SELECT DISTINCT code, couponlink, img, name , price, couponvalue FROM goods WHERE code="%s" ORDER BY rate DESC ' % i['path']
+        CMD = u'SELECT DISTINCT couponlink, img, name , price, idlink, code FROM goods WHERE code="%s" ORDER BY rate DESC ' % i['path']
         sqlData = sess.execute(CMD)
         sqlData = sqlData.cursor._rows
         #print sqlData
         sqlData = list(sqlData)
-        sqlData = list(sqlData[0])
-    
-        sqlData[3] = sqlData[3].encode('utf-8')
+        sqlData = list(sqlData[0])# change tuple to list (()) ==> []
+        # add for replace the couponlink to idlink, for sth no coupon
+        print sqlData[1]
+        print "sqlData"
+        if sqlData[0] == "":
+            pass# print "[x]", "couponlink is null, turn to idlink;"
+            sqlData[0] = sqlData[4]
         sqlData[5] = sqlData[5].encode('utf-8')
+        sqlData[2] = sqlData[2].encode('utf-8')
+        sqlData[0] = sqlData[0].encode('utf-8')
 
+        lineOutput.append(sqlData[0])
         lineOutput.append(sqlData[1])
         lineOutput.append(sqlData[2])
         lineOutput.append(sqlData[3])
@@ -488,7 +513,7 @@ def handle_search_whoosh(search):
 @main.route('/9tb', methods=['GET', 'POST'])
 def tb9():
     data = request.args.get('data')
-    app.logger.info(data)
+    current_app.logger.info(data)
     pass # print'[x]', '3 return tb9'
     return render_template('9tb.html', data=data)
     
@@ -537,18 +562,42 @@ def crawl():
     return render_template('vanke_chengpin_bootstrap.html', pics=views, datas=datas, huodong=huodongData, dev="p")
     
 '''
+@main.route('/clkcnt', methods=['GET', 'POST'])
+def clkcnt():
+    current_app.logger.info('clkcnt')
+    current_app.logger.info('[x] clkcnt')
+    dataformat = {}
+#    ('User-Agent', u'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36')
+#    ('Referer', u'http://118.89.184.71/?keyWord=%E8%80%B3%E6%9C%BA&guid=69a587ee3ad248498ca0bfa9ee0666a7')
+#    ('Host', u'118.89.184.71')
+
+    dataformat["remote_addr"] = request.remote_addr
+    dataformat["clkid"] = request.args.get("clkid", "null")
+    dataformat["ua"] = request.headers.get("User-Agent", "null")
+    dataformat["referer"] = request.headers.get("Referer", "null")
+    dataformat["host"] = request.headers.get("Host", "null")
+    print json.dumps(dataformat)
+
+    logtools.sav_log(json.dumps(dataformat))
+
+    response = {}
+    response['dat'] = 'OK'
+    return json.dumps(response)
 
 
 @main.route('/', methods=['GET', 'POST'])
 def crawl():
-    print request
+    current_app.logger.info('crawl')
+    pass# print request
     for i in request.args:
-        print i
-
-        print request.args[i]
+        pass# print i
+        pass# print request.args[i]
     searchInput = request.args.get('keyWord', 'null')
+
     if searchInput == u"膜":
         searchInput = u"贴膜"
+    elif searchInput == u"包":
+        searchInput = u"手机包"
         
     pass # printsearchInput
     goodsData = []
@@ -619,19 +668,23 @@ def baidupic():
         try:
             target=savePic(target,i['thumbnailUrl'])
         except:
+            logging.exception(e)
             pass
         try:
 	        target=savePic(target,i['imageUrl'])
         except:
+            logging.exception(e)
             pass
         try:
 	        target=savePic(target,i['thumbLargeTnUrl'])
         except:
+            logging.exception(e)
             pass
         '''
         try:
 	        target=savePic(target,i['downloadUrl'])
         except:
+            logging.exception(e)
             pass
     sav2DB(target[1])
     pass # pass # printjson.dumps(target[1])
@@ -656,6 +709,7 @@ def sav2DB(items):
 	        CMD = u'INSERT INTO pict VALUES(%d, "%s", "%s", "%s")' %(ID, IMG_URL, NAME, TIMES)
 	        result = s.execute(CMD)
         except:
+            logging.exception(e)
             traceback.print_exc()
             pass # pass # printi 
             continue
@@ -669,6 +723,7 @@ def savePic(tar, urlpath):
         pass # pass # printtar[0]
         return tar
     except:
+        logging.exception(e)
 #        traceback.print_exc()
         pass # pass # printtar[0]
         return tar

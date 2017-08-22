@@ -212,7 +212,7 @@
         {% for i in comment%}
           {% if loop.index < 7 %}
             <div class="swiper-slide"> 
-                <a href="{{i[0]}}"> 
+                <a href="{{i[0]}}" onclick="{$event$}">
                     <img class="lazyLoad" src="" data-src="{{i[1]}}" alt="" />
                 </a> 
             </div> 
@@ -224,13 +224,12 @@
 
 {% macro table1in2col(comment) %}
     <div class="t1001"> 
-        <div> 
-            <a href="{{comment[0]}}" onclick="{$event$}"><img src="{{comment[1]}}" /></a>
-          
-
+        <div>
+            <!-- <a href="{{comment[0]}}" shionclick="{$event$}"><img src="{{comment[1]}}" /></a> -->
+            <a href="{{comment[0]}}" onclick='clkcnt( "{{comment[5]}}" )'><img src="{{comment[1]}}" /></a>
         </div> 
     </div> 
-{% endmacro %}
+{% endmacro %}  
 
 {% macro table1col(comment) %}
 <div class="t10"> 

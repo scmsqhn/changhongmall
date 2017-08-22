@@ -35,6 +35,8 @@ login_manager = LoginManager()
 login_manager.session_protection = 'strong'
 login_manager.login_view = 'auth.login'
 
+from flask import current_app
+
 def create_app(config_name):
     app = Flask(__name__)
 #    app.config.from_object('chmall.default_config')
@@ -95,7 +97,7 @@ def create_app(config_name):
 #       ii = i[1]
         tmp = jieba.cut_for_search(i[1])
         ii  = ", ".join(tmp)
-        print ii
+        #print ii
         try:
             codectmp = chardet.detect(ii)["encoding"]
             codedict[u"content"] = ii.decode(codectmp)

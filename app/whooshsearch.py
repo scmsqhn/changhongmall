@@ -113,7 +113,3 @@ if "__name__" == "__main__":
     #results = woshsearch.search("indexer", "title", u"name")
   except:
     traceback.trace_back
-
-
-
-

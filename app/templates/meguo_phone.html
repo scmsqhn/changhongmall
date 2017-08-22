@@ -3,7 +3,8 @@
 <html lang="zh-cn">
  <head> 
   <meta charset="utf-8" /> 
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" /> 
+  <meta name="viewport" content="
+  width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" /> 
   <title>长虹配件商城</title> 
   <link href="http://i10.m.vancl.com/Content/H5/css/css.css?v1.1" rel="stylesheet" type="text/css" /> 
   <style type="text/css">  
@@ -40,22 +41,58 @@
         .right-arrIcon{display: inline-block; width: 1rem; height: 1rem; margin-left: 10px; background: url('http://i10.m.vancl.com/Content/H5/img/right-arrow.png') no-repeat top center; background-size: contain; }
         .countdown{font-size: 1.2rem; }
     </style> 
-  <link href="http://i10.m.vancl.com/Content/H5/css/swiper.min.css" rel="Stylesheet" /> 
-
+  <link href="http://i10.m.vancl.com/Content/H5/css/swiper.min.css" rel="Stylesheet"/> 
+  <script type="text/javascript" src="../static/jquery-1.8.0.min.js"></script>
+  <script type="text/javascript" src="../static/jquery.cookie.js"></script>
   <script>
+
+
+  $(document).ready(function () {
+  });
+
   <!--拖动滚动条或滚动鼠标轮-->
-window.onscroll=function(){
-if(document.body.scrollTop||document.documentElement.scrollTop>0){
-document.getElementById('rTop').style.display="block"
-}else{
-document.getElementById('rTop').style.display="none"
-}
-}
+// window.onscroll=function(){
+// if(document.body.scrollTop||document.documentElement.scrollTop>0){
+// document.getElementById('rTop').style.display="block"
+// }else{
+// document.getElementById('rTop').style.display="none"
+// }
+// }
 <!--点击“回到顶部”按钮-->
-function toTop(){
-window.scrollTo('0','0');
-document.getElementById('rTop').style.display="none"
-}
+// function toTop(){
+//   window.scrollTo('0','0');
+//   document.getElementById('rTop').style.display="none"
+// }
+
+
+function getQueryURL(idlb) {
+  var url = "/clkcnt";
+  url += "?clkid=" + idlb;// http://118.89.184.71/clkcnt?clkid=101
+  console.log(url)
+  return url;
+};
+
+function clkcnt(intxt){
+    console.log(intxt)
+    idlb = intxt
+    console.log(idlb)
+    $.ajax({
+        type: "GET",
+        url: encodeURI(getQueryURL(idlb)),
+        dataType: "json",
+        success: function (msg) {
+          console.log(msg.dat)          
+          console.log(msg.dat)          
+          console.log("success")
+        },
+        error:function(e){
+          console.log("error")
+        }
+    });
+};
+
+
+
   </script>
  </head> 
  <body> 
@@ -174,10 +211,10 @@ function closeZapin() {
     <div class="hotwords"> 
      <p class="hotwords-tit">热搜</p> 
      <div class="swiper-wrapper"> 
-      <span class="swiper-slide">dido</span> 
-      <span class="swiper-slide">蓝光钢化膜</span> 
-      <span class="swiper-slide">爆款蓝牙耳机</span> 
-      <span class="swiper-slide">可爱贴纸</span> 
+      <span class="swiper-slide">键盘</span> 
+      <span class="swiper-slide">耳机</span> 
+      <span class="swiper-slide">头戴</span> 
+      <span class="swiper-slide">蓝牙音箱</span> 
      </div> 
     </div> 
     <div class="search-history"> 
@@ -223,7 +260,7 @@ function closeZapin() {
     {% if datas == [] %}
     <div class="openVanclAppDiv" id=""> 
         <a class="" href="/"><span>很抱歉，请尝试使用其他搜索词
-        或者点击我，以显示全部商品</span></span></a> 
+        或者点击我，以显示全部商品</span></span></a>
     </div> 
    <div><h1></h1></div>
     {% endif %} 
@@ -342,8 +379,6 @@ function closeZapin() {
                 }
             }
         });
-
-
 
         // 初始化头部状态栏
         // (function(){})(window);
