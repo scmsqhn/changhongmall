@@ -241,3 +241,15 @@
     </div> 
 </div> 
 {% endmacro %}
+
+{% macro rowdatrpt(item) %}
+  <tr class="file">
+      <td class="name left"><a href="#">{{item.time}}</a></td>
+      <td>{{item.remote_addr}}</td>
+      <td>{{item.clkid}}</td>
+      <td>{{item.host}}</td>
+      <td>{{item.referer}}</td>
+      <td>{{item.ua}}</td>        
+      <td class="right" data-ratio="36 40">dummy</td>
+  </tr>
+{% endmacro %}

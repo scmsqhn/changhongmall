@@ -10,11 +10,12 @@ import time
 import datetime
 import json
 
-def sav_log(intxt):
+def sav_log(intxt):	
 	print intxt
 	with open('/var/www/chmall/log/tmplog.txt','a+') as logtxt:
 		formattxt = obtain_log_txt_json(intxt)
 		logtxt.write(formattxt)
+		logtxt.write("\r\n")
 		print "sav_log"
 
 def obtain_log_txt(intxt):
@@ -27,12 +28,13 @@ def obtain_log_txt(intxt):
 	return output
  		
 def obtain_log_txt_json(intxt):
-	print intxt
-	
+
 	now = datetime.datetime.now()
 	otherStyleTime = now.strftime(u"%Y-%m-%d %H:%M:%S")
 	otherStyleTime = otherStyleTime.decode('utf-8')
+	print intxt
 	injson = json.loads(intxt)
+	print injson
 	injson["time"] = otherStyleTime
 	output = json.dumps(injson)
 	return output

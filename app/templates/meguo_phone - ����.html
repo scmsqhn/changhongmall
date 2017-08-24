@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+{% import "macros.html" as macros %}
+<html lang="zh-cn">
+ <head> 
+  <meta charset="utf-8" /> 
+  <meta name="viewport" content="
+  width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" /> 
+  <title>长虹配件商城</title> 
+  <link href="http://i10.m.vancl.com/Content/H5/css/css.css?v1.1" rel="stylesheet" type="text/css" /> 
+  <style type="text/css">  
+		/*wrap*/.wrap{max-width: 640px; margin: 0 auto;overflow: hidden; min-height: 100%;background-color: #fff; } /*底部导航栏*/ .nav{position: fixed; bottom: 0; max-width: 640px; width: 100%; height: 4.25rem; border-top: 1px solid #999; overflow: hidden; background-color: #fff; z-index: 999} .nav a {position: relative; width: 20%; height: 100%; float: left; color: #999; text-align: center; } .nav a span{position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); -webkit-transform: translate(-50%,-50%); width: 3rem; height: 4rem; background-image: url(/Content/H5/img/navBgimgNew.png); background-repeat: no-repeat; background-size: 3rem 40rem; overflow: hidden; } .nav .goods-num,.nav .goods-num-active{font-size: 0.8rem; position: absolute; top: 0.1rem; right: 1.6rem; padding: 0 0.2rem; height: 1rem; display: inline-block; line-height: 1.1rem; color: #fff; border-radius: 1.1rem; background: none; background-color: #b81c22; cursor: default; text-align: center; } .nav .nav-home{background-position: 0rem 0rem; } .nav .nav-home-active {background-position: 0rem -20rem; } .nav .nav-search {background-position: 0rem -4rem; } .nav .nav-search-active{background-position: 0rem -24rem; } .nav .nav-Tshirt{background-position: 0rem -8rem; } .nav .nav-Tshirt-active{background-position: 0rem -28rem; } .nav .nav-shopcart{background-position: 0rem -12rem; } .nav .nav-shopcart-active{background-position: 0rem -32rem; } .nav .nav-me{background-position: 0rem -16rem; } .nav .nav-me-active{background-position: 0rem -36rem; } /*顶部搜索和消息*/ .index-search{position: absolute; top: 3.9rem; max-width: 640px; width: 100%; height: 4rem; overflow: hidden; background: #b81c22; z-index: 999; } .search-form{position: absolute; left:0.9rem; top:50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); width: 85%; height: 2.2rem; line-height: 2.9rem; background-color: #fff; border-radius: 0.3rem; overflow: hidden; } .index-search .search-icon{position: absolute; left:0; top:50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); display: inline-block; margin-left: 0.8rem; width: 1.5rem; height: 1.5rem; border:0;background: url(http://i10.m.vancl.com/Content/H5/img/search2.png) no-repeat; background-size: contain; cursor: pointer; } .index-search .search-input{font-size: inherit; position: absolute; left:3.3rem; top:50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); width: 85%; height: 85%; display: inline-block; border: 0 none; vertical-align:middle;} .index-message{position: absolute; top: 50%; right: 0.9rem; transform: translateY(-50%); -webkit-transform: translateY(-50%); width: 1.8rem; height: 1.3rem; display: inline-block; background: url(http://i10.m.vancl.com/Content/H5/img/msg3.png) no-repeat; background-size: cover; -webkit-background-size: 1.8rem 1.3rem; cursor: pointer; } .index-message .hasNewMsg{position: absolute; top: -0.2rem; right: -0.5rem; border: 0.2rem solid #fff; border-radius: 0.2rem; display: none;} /*头部标题栏*/ .topTitle{position: relative; top: 0; max-width: 640px; width: 100%; height: 4rem; overflow: hidden; background: #b81c22; text-align: center; line-height: 4rem;} .topTitle .topBack{position: absolute; top: 50%; left: 2rem; transform: translateY(-50%) rotate(45deg); -webkit-transform: translateY(-50%) rotate(45deg); width: 1.4rem; height: 1.4rem; border-bottom: 2px solid #fff;border-left: 2px solid #fff;cursor: pointer; } .topTitle .curTitle{display: inline-block; margin: 0 auto; font-size: 1.5rem; color: #fff;s } /*内容部分*/ .index-content{position: relative; top: 4rem; margin-bottom: 4.25rem; max-width: 640px; width: 100%; height: 100%; background-color: #f2f2f2; } .others-content{position: relative; top: 0rem; margin-bottom: 4.25rem; max-width: 640px; width: 100%; height: 100%; background-color: #fff; line-height: 1.5;} /* 弹出搜索框 */.search-popup{position: fixed; top: 7.9rem; max-width: 640px; width: 100%; height: 100%; display: none; color: #fff; background-color: rgba(0,0,0,0.8); z-index: 1000; } .hotwords{width: 100%; padding-bottom: 0.5rem; border-bottom: 1px solid #fff; overflow-x: hidden; } .hotwords p{margin: 0.5rem auto 0.5rem 1rem; color: #999; } .swiper-slide {text-align: center; /*width: 6rem;*/ cursor: pointer; /* Center slide text vertically */ display: -webkit-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; -webkit-justify-content: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; -webkit-align-items: center; align-items: center; } .search-history span{margin: 0.5rem auto 0.5rem 1rem; display: block; color: #999; } .search-history li{margin-top: 0.5rem; padding-left: 1.5rem; padding-bottom: 0.5rem; display: block; border-bottom: 1px solid #fff; cursor: pointer; } .clear-srhHistory{width: 35%; height: 2rem; line-height: 2rem; margin: 1rem auto 0; border: 1px solid #fff; border-radius: 2px; text-align: center; cursor: pointer; } /*打开app*/.openVanclAppDiv{width: 100%;height: 3.9rem;display: -webkit-box;display: -moz-box;display: box; display: -ms-flexbox;display: -webkit-flex;display: flex;-webkit-box-pack: justify;-moz-box-pack: justify;-ms-box-pack:justify; -webkit-justify-content: space-around;justify-content: space-around; -webkit-box-align: center;-moz-box-align: center;-ms-box-align:center; -webkit-align-items: center;align-items: center; background-color: rgba(35,35,35,0.8)} .openVanclAppDiv > *{display: block; color:#fff;width: 45%;} .openVanclAppDiv > .closeVanclAppDiv{width: 1.4rem; height: 1.4rem; background: url("") no-repeat top center; background-size: contain;} .openVanclAppDiv > img{width: 2.7rem; height: 2.7rem;} .openVanclAppDiv > .openVanclApp{width: 8.5rem;line-height: 2.6rem;background-color:#b81c22;text-align: center;} /*rTop 返回顶部*/ .rTop{width:100px;height:25px;text-align:center; font-size:small;line-height:25px; border:1px solid #999;position:fixed;right:0;bottom:0;border-bottom-color:#333;border-right-color:#333;margin:5px;cursor:pointer;display:none}
+    </style> 
+  <style type="text/css">        
+        .t11, .t8, .t9, .t1000, .t10, .t2000 {width: 100%; overflow: hidden; margin-top: 2px; } .t11 > div:first-child {margin-left: -3px; } .t11 > div:last-child {margin-right: -3px; } .t111 {width: 25%; } .t111, .t1001, .t91 {float: left; } .t111 {display: block; line-height: 0; margin: 0 1px; } .t1001, .t82, .t821, .t82 > div:last-child, .t8, .t10, .t91 {display: block; line-height: 0; } .t1000 > div:first-child, .t91:first-child {margin: 0 1px 0 -1px; } .t1000 > div:last-child, .t91:last-child {margin: 0 -1px 0 1px; } .t111 img, .t1001 img, .t10 img, .t91 img, .t2000 img {width: 100%; height: auto; } .t111 a, .t1001 a, .t10 a, .t91 a, .t2000 a {display: block; line-height: 0; width: 100%; } .t1001, .t91 {width: 50%; overflow: hidden; } .t81 {float: left; } .t82 {float: right; } .t8 {height: 18.1em; } .t81, .t82 {width: 50%; height: 18.1em; } .t81 div {width: 100%; height: 100%; } .t821, .t82 > div:last-child {width: 100%; height: 9em; } .t81 img, .t82 img {width: 100%; height: 100%; } .t82 > div:last-child {margin-top: 0.1em; } .t81 {margin-left: -1px; } .t82 {margin-right: -1px; } 
+        .footer {margin-bottom: 5em; } 
+        .box {position: fixed; bottom: 0; left:0; z-index: 999; width:100%;background-color: #ededed;}
+        .img-a{width:100%;display:block;}
+        .img-a img{width:100%;}
+        .off-a{width:2.4em;height:2.4em;position:absolute;top:0;left:0;}
+        
+        /*充值倒计时*/
+        .countDown{width:100%;height:2em;background-color: #b81b22;text-align:center;}
+        .countDown a{width:100%;color:#fff;display:inline-block;line-height:2em;font-weight:bold;}
+        /*.countDown a>span:first-child{font-weight:bold;}
+        .countDown a>span:last-child{font-weight:bold;}*/
+        .countDownShow{margin:0 2em;padding:0 1em; color:#b81b22;background-color:#fff;display: inline-block;transform: skew(-20deg);-webkit-transform: skew(-20deg);}
+        .countDownShow>span{display: inline-block;transform: skew(20deg);}
+        .countDownT a{width:100%;height:2.5em;display:block;background:url(http://i5.m.vancl.com/oms/2016_7_27_15_16_36_5919_640x50.jpg) no-repeat;background-size: cover;}
+        .countDownInA a{width:100%;height:2.5em;display:block;background:url(http://i5.m.vancl.com/oms/2016_7_27_15_16_36_5919_640x50.jpg) no-repeat;background-size: cover;}
+
+        .charge-countDown{display: block; width: 100%; height: 6rem; background: url(http://i9.m.vancl.com/oms/2017_2_8_15_11_46_9884_640x120.jpg) no-repeat top center; background-size: cover; text-align: center; color: #fff;font-size: 1.2rem;}
+        .charge-countDown span{display: inline-block; margin-top: 1rem; font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif; }
+        .charge-countDown .countDown-text{font-size: 1rem;}        
+        /*每日秒杀倒计时*/
+        .daily-seckill{display: block; color:#000; background-color: #fff; margin: 4px 0; padding: 4px 0; }
+        .daily-seckill .clock-icon{display: inline-block; width: 1.4rem; height: 1.4rem; margin-right: 10px; vertical-align: text-bottom; background: url('http://i10.m.vancl.com/Content/H5/img/clock.png') no-repeat top center; background-size: contain; }
+        .daily-seckill .seckill-txt{padding-bottom: 6px; font-size: 1.5rem; font-weight: 600; color: #b81c22; text-align: center; }
+        .enter-seckill{position: absolute; right: 0; margin-top: -1rem; padding: 4px; color: #b81c22; font-size: 1.2rem; }
+        .seckill-countdown{text-align: center; }
+        .font-wbold{font-size: 1.2rem; font-weight: 600; }
+        .right-arrIcon{display: inline-block; width: 1rem; height: 1rem; margin-left: 10px; background: url('http://i10.m.vancl.com/Content/H5/img/right-arrow.png') no-repeat top center; background-size: contain; }
+        .countdown{font-size: 1.2rem; }
+    </style> 
+  <link href="http://i10.m.vancl.com/Content/H5/css/swiper.min.css" rel="Stylesheet"/> 
+  <script type="text/javascript" src="../static/jquery-1.8.0.min.js"></script>
+  <script type="text/javascript" src="../static/jquery.cookie.js"></script>
+  <script>
+
+
+  $(document).ready(function () {
+  });
+
+  <!--拖动滚动条或滚动鼠标轮-->
+// window.onscroll=function(){
+// if(document.body.scrollTop||document.documentElement.scrollTop>0){
+// document.getElementById('rTop').style.display="block"
+// }else{
+// document.getElementById('rTop').style.display="none"
+// }
+// }
+<!--点击“回到顶部”按钮-->
+// function toTop(){
+//   window.scrollTo('0','0');
+//   document.getElementById('rTop').style.display="none"
+// }
+
+
+function getQueryURL(idlb) {
+  var url = "/clkcnt";
+  url += "?clkid=" + idlb;// http://118.89.184.71/clkcnt?clkid=101
+  console.log(url)
+  return url;
+};
+
+function clkcnt(intxt){
+    console.log(intxt)
+    idlb = intxt
+    console.log(idlb)
+    $.ajax({
+        type: "GET",
+        url: encodeURI(getQueryURL(idlb)),
+        dataType: "json",
+        success: function (msg) {
+          console.log(msg.dat)          
+          console.log(msg.dat)          
+          console.log("success")
+        },
+        error:function(e){
+          console.log("error")
+        }
+    });
+};
+
+
+
+  </script>
+ </head> 
+ <body> 
+    <!--<div class="rTop" id="rTop" onClick="toTop()">返回顶部</div>-->
+    <!--<div class="rTop"><a class="ret-top" href="#top"></a></div> -->
+  <!--<title>H5砸屏</title>--> 
+  <style type="text/css">
+            .productlist-1 dd a{position: relative;display: block;}
+            .productlist-2 dd a{position: relative;display: block;}
+        </style> 
+  <style type="text/css">
+#zapin {position: fixed; height: 100%; width: 100%; z-index: 9999; background: white; display: none; }
+#zapin a {width: 100%; max-width: 640px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%); }
+#zapin-close {position: absolute; top: 0; right: 0; width: 3rem; line-height: 3rem; color: #fff; font-size: 4rem; text-align: center; }
+</style> 
+  <div id="zapin"> 
+   <a href="/channel/index/1121?guid=69a587ee3ad248498ca0bfa9ee0666a7"> <img src="http://i8.m.vancl.com/oms/2017_6_20_13_52_22_8749_624x692.jpg" alt="vancl" /> <span id="zapin-close">&times;</span> </a> 
+  </div> 
+  <script>
+
+function showZapin() {
+    var zapinSession = sessionStorage.getItem('zapin');
+    if (zapinSession == null) {
+        document.getElementById('zapin').style.display = 'block';
+        setTimeout(function() {
+            document.getElementById('zapin').style.display = 'none';
+        }, 5000);
+        sessionStorage.setItem('zapin', true);
+    }
+}
+
+function timeCloseZapin() {
+    var startTime = new Date('2017/06/20 14:00:00'); // 璁剧疆鐮稿睆寮€濮嬫椂闂?
+    var endTime = new Date('2017/06/21 00:00:00'); // 璁剧疆鐮稿睆缁撴潫鏃堕棿
+    var nowTiem = new Date();
+    if (startTime < nowTiem && endTime > nowTiem) {
+        showZapin();
+    }
+}
+
+timeCloseZapin();
+
+document.querySelector('#zapin-close').addEventListener('click', function(ev) {
+    closeZapin();
+    ev.preventDefault();
+    ev.stopPropagation();
+});
+
+function closeZapin() {
+    document.getElementById('zapin').style.display = 'none';
+}
+</script> 
+  <script type="text/javascript" src="http://m.vancl.com/Content/H5/js/zepto.min.js"></script> 
+  <script type="text/javascript">
+            $(function () {
+                var allImg = $("body img[data-original]");
+                var len = allImg.length;
+                var imgnum = 12 < len ? 12 : len;
+                for (var i = 0; i < imgnum; i++) {
+                    $(allImg[i]).attr("src",$(allImg[i]).attr("data-original"));
+					$(allImg[i]).attr("isload","true");
+                }				
+				function imgLoad(){
+					var minLoad=$(window).scrollTop();
+					var maxLoad=$(window).scrollTop() + $(window).height();
+					for(var i=0;i<len;i++){
+						var imgBottomLine=$(allImg[i]).offset().top+$(allImg[i]).height();
+                        var imgTopLine=$(allImg[i]).offset().top;
+						if(imgTopLine>maxLoad){
+							return;
+						}
+						if(minLoad<=imgBottomLine){
+							if($(allImg[i]).attr("isload")!="true"){
+								$(allImg[i]).attr("src",$(allImg[i]).attr("data-original"));
+								$(allImg[i]).attr("isload","true");
+							}								 
+						}
+					}
+			    }
+				var scrollStart = 0,
+					scrollEnd=0,  
+					interval = null;
+                window.addEventListener('scroll', function (ev) {
+                    if(interval == null)
+						interval = setInterval(function(){
+							scrollEnd=$(window).scrollTop();
+							if(scrollStart==scrollEnd){
+								clearInterval(interval);
+								interval=null;
+								imgLoad();
+							}else{
+								scrollStart=scrollEnd;
+							}
+						}, 200); 
+                })
+                
+            });
+            
+    </script> 
+  <div class="wrap"> 
+   <div class="openVanclAppDiv" id="openVanclAppDiv"> 
+    <a id="closeVanclAppDiv" class="closeVanclAppDiv" href="javascript:;" title=""></a> 
+    <img src="" alt="ChangHong MALL" /> 
+    <span>广告爆款位置</span> 
+    <a id="" class="openVanclApp" href="http://www.caixin.com" title="">立即打开</a> 
+   </div> 
+   <div id="index-search" class="index-search"> 
+    <form class="search-form" action="/" accept-charset="utf-8"> 
+     <input id="search-btn" type="submit" class="search-icon" value="" /> 
+     <input id="search-input" class="search-input" type="search" name="keyWord" value="" autocomplete="off" placeholder="dido" /> 
+     <input type="hidden" name="guid" value="69a587ee3ad248498ca0bfa9ee0666a7" />
+    </form> 
+    <a class="index-message" href="#Top"> <span class="hasNewMsg"></span> </a> 
+   </div> 
+   <div id="search-popup" class="search-popup"> 
+    <div class="hotwords"> 
+     <p class="hotwords-tit">热搜</p> 
+     <div class="swiper-wrapper"> 
+      <span class="swiper-slide">键盘</span> 
+      <span class="swiper-slide">耳机</span> 
+      <span class="swiper-slide">头戴</span> 
+      <span class="swiper-slide">蓝牙音箱</span> 
+     </div> 
+    </div> 
+    <div class="search-history"> 
+     <span class="search-history-tit">历史搜索</span> 
+     <ul></ul> 
+    </div> 
+    <div id="clear-srhHistory" class="clear-srhHistory">
+     清除历史
+    </div> 
+   </div> 
+   <div class="index-content"> 
+    <div class="swiper-container"> 
+    
+    {{macros.render_table_phone(datas)}}
+     
+     <div class="swiper-pagination"> 
+     </div> 
+    </div> 
+    <a href="/channel/index/1180?guid=69a587ee3ad248498ca0bfa9ee0666a7" title="" id="daily-seckill" class="daily-seckill"> 
+     
+     <div class="seckill-countdown"> 
+      <span id="time-session" class="font-wbold">&nbsp;</span> 
+      <span class="countdown" id="countdown">&nbsp;</span> 
+     </div> </a> 
+    <!--从cms取数据--> 
+    {% for dat in datas %}
+        {% if loop.index is even %}
+            {{ macros.table1in2col(dat) }}
+            </div> 
+        {% else %}
+            <div class="t1000"> 
+            {{ macros.table1in2col(dat) }}
+        {% endif %}
+
+    {% endfor %}
+    <!--数据展示完毕--> 
+   
+    <div class="allAndtop"> 
+     <a class="see-all track" href="/" name="H5cate_bottom_shouye"> <img alt="view more" src="http://i10.m.vancl.com/content/html5v3/images/see-all.jpg" /></a> 
+
+     <a class="ret-top" href="#top"> <img src="http://i10.m.vancl.com/content/html5v3/images/ret-top.jpg" alt="back to top" /></a> 
+    </div>
+    {% if datas == [] %}
+    <div class="openVanclAppDiv" id=""> 
+        <a class="" href="/"><span>很抱歉，请尝试使用其他搜索词
+        或者点击我，以显示全部商品</span></span></a>
+    </div> 
+   <div><h1></h1></div>
+    {% endif %} 
+    </div>
+   </div>
+   
+  </div> 
+  <script src="http://i10.m.vancl.com/Content/H5/js/zepto.min.js"></script> 
+  <script src="http://i10.m.vancl.com/Content/H5/js/h5trace.min.js?v1.8" defer=""></script> 
+  <script type="text/javascript" src="https://lkme.cc/js/linkedme.min.js"></script> 
+  <script type="text/javascript">
+
+    Zepto(function($) {
+
+           var bIsAndroid = false ;
+           var bIsIOS = false ;
+           if ("object" == typeof(AndroidEnv)) {        
+                    // 判断是在Android环境中
+                    bIsAndroid = true ;
+           } 
+           // IOS code: window.webkit.messageHandlers.OOXX.postMessage("Hello WebKit!")
+           else if ("object" == typeof(window.webkit) 
+                    && "object" == typeof(window.webkit.messageHandlers) 
+                    && "object" == typeof(window.webkit.messageHandlers.IOSEnv) 
+                    && "function" == typeof(window.webkit.messageHandlers.IOSEnv.postMessage)) 
+           {        
+                    // 判断是在IOS环境中
+                    bIsIOS = true ;
+           } else {
+                    // 判断不是Android或者Ios
+           }
+           function hideHeaderFooter() { 
+                    $(".topTitle").css('display','none');
+                    $(".nav").css('display','none');
+           }
+           if (bIsAndroid || bIsIOS) {                   // Android IOS 环境下，去掉页头页尾
+                    hideHeaderFooter() ;
+           }
+     });
+
+    Zepto(function($) {
+        // 打开Vancl App panel
+        
+        // 关闭 VanclAppDiv Flag
+        var isCloseVanclAppDiv = false;
+        $('#closeVanclAppDiv').on('click', function(event) {
+            // event.preventDefault();
+            /* Act on the event */
+            $('#openVanclAppDiv').hide();
+            isCloseVanclAppDiv = true;
+            $('#index-search').css({"position":"fixed","top": "0"});
+            $('#search-popup').css("top", "4rem");
+        });
+
+        function getQueryString(name) { 
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+            var r = window.location.search.substr(1).match(reg); 
+            if (r != null) return unescape(r[2]); 
+            return "m"; 
+        }
+        // 根据url设置live或test
+        function getHostName(){
+            var h = window.location.hostname.split(".")[0];
+            if('m' === h){
+                return "live";
+            }else{
+                return "test";
+            }
+        }
+        (function(){
+            var data        = {};
+            data.type       = getHostName();           
+            data.feature    = "";       
+            data.stage      = "";       
+            data.channel    = getQueryString("source");             
+            data.tags       = "m"; 
+            data.ios_custom_url = ""; //iOS平台下App的下载地址   
+            data.android_custom_url = "";
+            
+
+            // 比如详情页面的参数，可以写进去，这样唤起app后可直接跳转到详情页【可选】
+            /*  注意：view 不同的值代表不同的页面
+                商品详情：productDetailView
+                专题页 ：topicView  
+                首页  : index
+            */
+            data.params     = '{"type":"","productID":"","view":"index"}'; //注意单引号和双引号的位置   
+        
+            linkedme.init("0190f9ab74bb830fce0df743129fc33c", data, function(err, data){
+                if(err){
+                    console.error('初始化失败'+err);
+                }
+             });
+            linkedme.link(data, function(err, data){
+                if(err){
+                    console.log('生成深度链接失败，返回错误对象err');
+                }else{
+                    $("#openVanclApp").attr("href", data.url) ;
+                }
+              }
+            ,false);
+        })();
+
+        $(window).on('scroll', function(event) {
+            // event.preventDefault();
+            /* Act on the event */
+            if(!isCloseVanclAppDiv){
+                if($(window).scrollTop() > $('#openVanclAppDiv').height()){
+                    $('#openVanclAppDiv').hide();
+                    $('#index-search').css({"position":"fixed","top": "0"});
+                    $('#search-popup').css("top", "4rem");
+                }else{
+                    $('#openVanclAppDiv').show();
+                    $('#index-search').css({"position":"absolute","top": "3.9rem"});
+                    $('#search-popup').css("top", "7.9rem");
+                }
+            }
+        });
+
+        // 初始化头部状态栏
+        // (function(){})(window);
+        $("#topBack").on('click', function(event) {
+            event.preventDefault();
+            window.history.back();
+            /* Act on the event */
+        });
+
+        // 判断是否有未读消息
+        (function(){
+            var hasNoReadMsg = localStorage.getItem('hasNoReadMsg');
+            if(hasNoReadMsg==null || hasNoReadMsg=='true'){
+                $('.hasNewMsg').show();
+            }else{
+                $('.hasNewMsg').hide();
+            }
+        })(window);
+
+        //激活底部导航栏目标元素
+        (function(){
+            var targetHrefHash = window.location.hash;
+            var targetHref = window.location.pathname=="/"? true:false;
+            switch(targetHrefHash){
+                case "":
+                if (targetHref) {
+                    $("#nav-home").attr('class', 'nav-home-active');
+                }
+                break;
+                case "#nav_search":
+                $("#nav-search").attr('class', 'nav-search-active');
+                break;
+                case "#nav_Tshirt":
+                $("#nav-Tshirt").attr('class', 'nav-Tshirt-active');
+                break;
+                case "#nav_shopcart":
+                $("#nav-shopcart").attr('class', 'nav-shopcart-active');
+                break;
+                case "#nav_me":
+                $("#nav-me").attr('class', 'nav-me-active');
+                break;
+                default:
+                var childs = $("#nav").children().find('span');
+                for (var i = childs.length - 1; i >= 0; i--) {
+                    var child = childs[i];
+                    var childClass = $(child).attr("class");
+                    var hasActiveClass = childClass.indexOf("active")>0? true:false;
+                    var deactiveClass = childClass.substring(0,childClass.indexOf("active")-1);
+                    if(hasActiveClass){
+                        $(child).attr("class",deactiveClass);
+                        break;
+                    }
+                }
+            }
+        })(window);
+
+        // 显示搜索弹出层
+        (function(){
+            // 点击搜索按钮进行搜索
+            $('#search-btn').on('click',function(event){
+                setSearchHis();
+            });
+
+            // 聚焦搜索框时显示搜索层
+            // 
+            $('#search-input').focus(function(event) {
+                /* Act on the event */
+                event.preventDefault();
+                // 清除历史显示节点
+                var dispParent = $('.search-history ul');
+                dispParent.children('li').remove();
+                dispSchHis();
+                $('#search-popup').css('display','block');
+                // slide hotwords
+                var swiper = new Swiper('.hotwords', {
+                    slidesPerView: 5,
+                    // spaceBetween: 0,
+                    freeMode: true
+                });
+            });
+            // $('#search-input').on('focus', function(event) {
+            //     event.preventDefault();
+            //     // 清除历史显示节点
+            //     var dispParent = $('.search-history ul');
+            //     dispParent.children('li').remove();
+            //     dispSchHis();
+            //     $('#search-popup').css('display','block');
+            //     // slide hotwords
+            //     var swiper = new Swiper('.hotwords', {
+            //         slidesPerView: 5,
+            //         // spaceBetween: 0,
+            //         freeMode: true
+            //     });
+            // });
+
+            //根据点击位置显示和隐藏搜索层
+            $('#index-search,#search-popup').on('click', function(event) {
+                var e = event||window.event;
+                var targetEl = e.target||e.srcElement;
+                var targetElClass = $(targetEl).attr('class');
+                var arrClass = new Array('search-input','hotwords-tit','search-history-tit','clear-srhHistory');
+                var isInArr = $.inArray(targetElClass, arrClass)==-1? true:false;
+                if(isInArr){
+                    $('#search-popup').css('display','none');
+                }
+            });
+
+            // 获取搜索历史
+            function getSearchHis(){
+                var strHistory = localStorage.getItem('searchKey');
+                if(strHistory==null){
+                    // strHistory = new Array();
+                    strHistory = '';
+                }/*else{
+                    strHistory = strHistory.split(',');
+                }*/
+                return strHistory;
+            }
+
+            // 设置搜索历史
+            function setSearchHis(){
+                var schHistory = getSearchHis();
+                var currKey = $('#search-input').val().trim();
+                if(currKey==''){
+                    return false;
+                }
+                currKeyLi = '<li>'+currKey+'</li>';
+                schHistory = schHistory.replace(currKeyLi,'');
+                // if(existIndex != -1){
+                //     schHistory.splice(existIndex,1);
+                // }
+                schHistory = currKeyLi + schHistory;
+                localStorage.setItem('searchKey',schHistory);
+            }
+
+            //显示历史搜索
+            function dispSchHis(){
+                var schHistory = getSearchHis();
+                var dispParent = $('.search-history ul');
+                dispParent.html(schHistory);
+                // schHistory.forEach(function(index){
+                //     // var child = $("<li></li>").text(index);
+                //     dispParent.append(child);
+                // });
+            }
+
+            //清空搜索历史
+            (function clearSchHis(){
+                $('#clear-srhHistory').on('click', function(event) {
+                    event.preventDefault();
+                    if(getSearchHis().length<=0)
+                    {
+                        return false;
+                    }
+                    var dispParent = $('.search-history ul');
+                    dispParent.children('li').remove();
+                    localStorage.removeItem('searchKey');
+                });
+            })(window);
+
+            // 点击热搜和历史记录搜索
+            (function(){
+                $('.hotwords span').on('click', function(event) {
+                // event.preventDefault();
+                    var targetVal = getTargetVal(event);
+                    setSchInputVal(targetVal);
+                    doSearch();
+                })
+
+                $('.search-history ul').on('click','li',function(event) {
+                // event.preventDefault();
+                    var targetVal = getTargetVal(event);
+                    setSchInputVal(targetVal);
+                    doSearch();
+                })
+
+                function getTargetVal(event){
+                    e = event||window.event;
+                    var targetEl = e.target||e.srcElement;
+                    return $(targetEl).text();
+                }
+                function setSchInputVal(value){
+                    $('#search-input').val(value);
+                }
+                function doSearch(){
+                    $('#search-btn').click();
+                }
+            })(window)
+
+        })(window);
+
+    });
+    </script> 
+  <script type="text/javascript" src="http://i10.m.vancl.com/Content/H5/js/swiper.min.js"></script> 
+  <script type="text/javascript">
+        function redirectTodown() {
+            var re = /iphone|ipad|iwatch|ios/ig;
+            var userAgent = window.navigator.userAgent;
+            try {
+                if (re.test(userAgent)) {
+                    window.location.href = "https://itunes.apple.com/cn/app/fan-ke-cheng-pinvancl-hu-lian/id412580729?mt=8";
+                } else {
+                    window.location.href = "http://app.mi.com/detail/341";
+                }
+            } catch (e) {
+                console.log(e);
+                window.location.href = "http://m.vancl.com/help/default/142?ref=H5_xiazai";
+            }
+
+        }
+        Zepto(function ($) {
+
+//        充值倒计时初始化
+            //CountDownTime();
+
+            $('#offBox').click(function (e) {
+                e.stopPropagation();
+                $('#floatBox').hide();
+            });
+            var swiper = new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                autoplay: 3000,
+                loop: true,
+                autoplayDisableOnInteraction: false
+            });
+            (function lazyLoad() {
+                var imgs = $(".lazyLoad");
+                var src = '';
+                $.each(imgs, function (index, item) {
+                    src = $(item).attr('data-src');
+                    $(item).attr('src', src);
+                });
+            })();
+        })
+
+        /*每日秒杀倒计时*/
+        seckillCountdown()
+
+        function seckillCountdown(){
+            setInterval(GetRTime,1000);
+            $('#daily-seckill').show();
+        }
+
+        function GetRTime(){
+            var NowTime = new Date();
+            var currentHour=NowTime.getHours(); //获取当前分钟数(0-23)
+            var currentMin=NowTime.getMinutes();     //获取当前分钟数(0-59)
+            var currentSed=NowTime.getSeconds();     //获取当前秒数(0-59)
+            if(currentHour<10){
+                var timeSession = "10点场",
+                    countdown = "即将开始";
+                setRtime(timeSession, countdown);
+            }else if(currentHour>=10&&currentHour<11){
+                var timeSession = "10点场",
+                    countdown = "00"+ "时" + checkTime(60-(currentMin+1))+ "分" + checkTime(60-currentSed)+ "秒";
+                setRtime(timeSession, countdown);
+            }else if(currentHour>=11&&currentHour<15){
+                var timeSession = "15点场",
+                    countdown = "即将开始";
+                setRtime(timeSession, countdown);
+            }else if(currentHour>=15&&currentHour<16){
+                var timeSession = "15点场",
+                    countdown = "00"+ "时" + checkTime(60-(currentMin+1))+ "分" + checkTime(60-currentSed)+ "秒";
+                setRtime(timeSession, countdown);
+            }else if(currentHour>=16&&currentHour<22){
+                var timeSession = "22点场",
+                    countdown = "即将开始";
+                setRtime(timeSession, countdown);
+            }else if(currentHour>=22&&currentHour<23){
+                var timeSession = "22点场",
+                    countdown = "00"+ "时" + checkTime(60-(currentMin+1))+ "分" + checkTime(60-currentSed)+ "秒";
+                setRtime(timeSession, countdown);
+            }else if(currentHour>=23){
+                var timeSession = "明日10点场",
+                    countdown = "即将开始";
+                setRtime(timeSession, countdown);
+            }
+
+            function setRtime(timeSession, countdown){
+                $("#time-session").html(timeSession);
+                $('#countdown').html(countdown);
+            }
+        }
+//        充值倒计时
+        function checkTime(t){
+            if(t<10){
+                t = '0'+t;
+            }
+            return t;
+        }  
+        var Tdistance = 18212080665;
+        function CountDownTime() {
+            //var time_start = new Date().getTime();
+            //var time_end = new Date("2016/7/28 10:00:00").getTime();
+           var time_distance = parseInt(Tdistance/1000);
+            if (time_distance < 0) {
+                // $(".countDown").css("display", "none");
+                $("#charge-countDown").css("display", "none");
+            }else{
+                var int_day = parseInt(time_distance/(24*60*60));
+                var int_hour  = parseInt(time_distance/(60*60)%24);
+                var int_minute = parseInt(time_distance/60%60);
+                var int_second = parseInt(time_distance%60);
+                int_day = checkTime(int_day);
+                int_hour = checkTime(int_hour);
+                int_minute = checkTime(int_minute);
+                int_second = checkTime(int_second);
+                // $(".countDownShow span").text("倒计时: "+int_day + "天" + int_hour + "时" + int_minute + "分" + int_second + "秒");
+                $("#countDown-text").text(int_day + "天" + int_hour + "时" + int_minute + "分" + int_second + "秒");
+                Tdistance=Tdistance-1000;
+                setTimeout("CountDownTime()",1000);
+            }
+        }
+    </script>   
+ </body>
+</html>

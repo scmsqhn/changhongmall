@@ -38,7 +38,7 @@ login_manager.login_view = 'auth.login'
 from flask import current_app
 
 def create_app(config_name):
-    app = Flask(__name__)
+    app = Flask(__name__, static_url_path='/static')
 #    app.config.from_object('chmall.default_config')
 #    app.config.from_envvar(Config['CHMALL_CONFIG'])
     app.host ="0.0.0.0"
@@ -102,6 +102,8 @@ def create_app(config_name):
             codectmp = chardet.detect(ii)["encoding"]
             codedict[u"content"] = ii.decode(codectmp)
         except ValueError:
+            codedict[u"content"] = ii            
+        except TypeError:
             codedict[u"content"] = ii            
         codedict[u"path"] = i[2]
         import json

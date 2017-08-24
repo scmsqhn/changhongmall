@@ -46,6 +46,9 @@ from app import globalvar
 from ..mylog import logtools
 from flask import current_app
 import json
+import re 
+import os
+
 
 #"""Table = \
 #u'<table  border="0" cellpadding="0" cellspacing="0"  align="center">
@@ -465,6 +468,7 @@ def handle_search_whoosh(search):
     searchList = jieba.cut_for_search(search)
     search = " ".join(searchList)
     output = []
+
     pass# print search
     search_result = wsSearch.search("indexer", u"content", search,  output)
     pass# print search_result
@@ -562,6 +566,47 @@ def crawl():
     return render_template('vanke_chengpin_bootstrap.html', pics=views, datas=datas, huodong=huodongData, dev="p")
     
 '''
+
+def resub(input):
+    input = re.sub("['{','}',',','\"','/']","",input)
+    return input
+
+@main.route('/mgrbench', methods=['GET', 'POST'])
+def mgrbench():
+    #print "mgrbench()"
+    with open("/var/www/chmall/log/tmplog.txt", "r") as logtxt:
+     #   print "mgrbench() 2"
+        datas = logtxt.readlines()
+        resultlist = []
+        print datas
+        for i in datas:
+            print i
+            i = re.sub("http://", "", i)
+            i = re.sub("https://", "", i)
+            ilist = i.split("\n")
+            print ilist
+            for j in ilist:
+                print j
+                outputDatas = {}
+                iitem = j.split("\", \"")
+                print iitem
+                for kv in iitem:
+                    print kv
+                    kvpair = kv.split(": ")
+                    try:
+                        k = resub(kvpair[0])
+                        v = resub(kvpair[1])
+                        print k
+                        print v
+                        outputDatas[k] = v
+                    except IndexError, e:
+                        pass
+                        print e 
+                resultlist.append(outputDatas)
+        #print outputDatas
+        return render_template('mgrbench.html', datas=resultlist)
+#        print datas
+
 @main.route('/clkcnt', methods=['GET', 'POST'])
 def clkcnt():
     current_app.logger.info('clkcnt')
@@ -577,16 +622,18 @@ def clkcnt():
     dataformat["referer"] = request.headers.get("Referer", "null")
     dataformat["host"] = request.headers.get("Host", "null")
     print json.dumps(dataformat)
-
     logtools.sav_log(json.dumps(dataformat))
-
     response = {}
     response['dat'] = 'OK'
     return json.dumps(response)
 
+@main.route('/bdunion', methods=['GET', 'POST'])
+def bdunion():
+    return render_template('meguo_phone.html')
 
 @main.route('/', methods=['GET', 'POST'])
-def crawl():
+def crawl(): 
+   
     current_app.logger.info('crawl')
     pass# print request
     for i in request.args:
@@ -612,8 +659,6 @@ def crawl():
     huodongData = get_huodong_dat()
     views=getPic()
     return render_template('meguo_phone.html', pics=views, datas=datas, huodong=huodongData, dev="p")
-#    return render_template('taobao.html')
-
 
        
 @main.route('/craw', methods=['GET', 'POST'])
@@ -713,7 +758,27 @@ def sav2DB(items):
             traceback.print_exc()
             pass # pass # printi 
             continue
-    
+
+@main.route('/bdunion.txt', methods=['GET'])
+def bdunionttx():
+    url = os.path.join("/var/www/chmall/app/static", "bdunion.txt")
+    print url
+    cont = open(url, "r")
+    conts = cont.readlines()[0]
+    print conts
+    return conts
+    #return main.send_file('bdunion.txt')
+
+@main.route('/root.txt', methods=['GET'])
+def roottxt():
+    url = os.path.join("/var/www/chmall/app/static", "root.txt")
+    print url
+    cont = open(url, "r")
+    conts = cont.readlines()[0]
+    print conts
+    return conts
+    #return main.send_file('bdunion.txt')
+
 
 def savePic(tar, urlpath):
     try:
