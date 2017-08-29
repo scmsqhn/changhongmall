@@ -67,6 +67,16 @@ import os
 #'
 #"""
 
+def p(i):
+    print "[x]", i
+
+
+def s(i, j):
+    i = i*(10**j)
+    p(i)
+    time.sleep(i)
+
+
 def base_table_format(*ldata):
     ldata = ldata[0][0]
     for i in ldata:
@@ -450,6 +460,15 @@ def handle_search(search):
     return finalOutput
 
 
+def handle_search_api(search):
+    from app import top_api
+    if search=="null":
+        return []
+    res = top_api.DgItemCoupon(search)
+    #p(res)
+    return res
+
+
 def handle_search_whoosh(search):
     # that's how v search
     # get all the matched word to product name
@@ -514,21 +533,33 @@ def handle_search_whoosh(search):
             #print '2  [x] ', len(lineOutput)
     return finalOutput
 
+
 @main.route('/9tb', methods=['GET', 'POST'])
 def tb9():
     data = request.args.get('data')
     current_app.logger.info(data)
     pass # print'[x]', '3 return tb9'
     return render_template('9tb.html', data=data)
+
     
 @main.route('/search', methods=['GET', 'POST'])
 def search():
+    searchInput = ""
+    searchInput = request.args.get("search")
+    searchInput = urllib.unquote(searchInput) 
+    datas = handle_search_api(searchInput)
+    return render_template('meguo_phone.html', datas=datas, dev='p')
+
+
+@main.route('/local_search', methods=['GET', 'POST'])
+def local_search():
     searchInput = ""
     #if request.method == 'POST':
         #searchInput = request.form.get('search', 'null', type=str)
     #else:
     searchInput = request.args.get("search")
     searchInput = urllib.unquote(searchInput) 
+
     
 #    assert type(searchInput) == unicode
         
@@ -575,12 +606,14 @@ def resub(input):
 def mgrbench():
     #print "mgrbench()"
     with open("/var/www/chmall/log/tmplog.txt", "r") as logtxt:
-     #   print "mgrbench() 2"
+         #   print "mgrbench() 2"
         datas = logtxt.readlines()
         resultlist = []
+        keyslist = ["Accept-Language","Accept-Encoding","X-Forwarded-For","Connection","Accept","User-Agent","Host","X-Requested-With","clkid","Referer","time","Cookie"]
         print datas
         for i in datas:
             print i
+            i = re.sub("^ *$", "", i)
             i = re.sub("http://", "", i)
             i = re.sub("https://", "", i)
             ilist = i.split("\n")
@@ -603,34 +636,130 @@ def mgrbench():
                         pass
                         print e 
                 resultlist.append(outputDatas)
-        #print outputDatas
-        return render_template('mgrbench.html', datas=resultlist)
-#        print datas
+        return render_template('mgrbench.html', datas=resultlist, keyslist=keyslist)
+
 
 @main.route('/clkcnt', methods=['GET', 'POST'])
 def clkcnt():
-    current_app.logger.info('clkcnt')
-    current_app.logger.info('[x] clkcnt')
+    from app import top_api
+    current_app.logger.info(str(request))
     dataformat = {}
+    for i in request.headers:
+        dataformat[i[0]] = i[1]
+    current_app.logger.info('[x] clkcnt')
 #    ('User-Agent', u'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36')
 #    ('Referer', u'http://118.89.184.71/?keyWord=%E8%80%B3%E6%9C%BA&guid=69a587ee3ad248498ca0bfa9ee0666a7')
 #    ('Host', u'118.89.184.71')
-
-    dataformat["remote_addr"] = request.remote_addr
     dataformat["clkid"] = request.args.get("clkid", "null")
-    dataformat["ua"] = request.headers.get("User-Agent", "null")
-    dataformat["referer"] = request.headers.get("Referer", "null")
-    dataformat["host"] = request.headers.get("Host", "null")
-    print json.dumps(dataformat)
+    mylink = request.args.get("link", "null")
+    p('mylink')
+    p(mylink)
     logtools.sav_log(json.dumps(dataformat))
+    res = top_api.TbkSpreadGetRequest(mylink)
+    p(res)
+    redirect_link = res['tbk_spread_get_response']['results']['tbk_spread'][0]['content']
+    p("redirect_link 1")
+    p(redirect_link)
     response = {}
     response['dat'] = 'OK'
+    response['redirect_url'] = redirect_link
+    p("IMPORTAMT!!! response['redirect_url']")
+    p(response['redirect_url'])
     return json.dumps(response)
+
 
 @main.route('/bdunion', methods=['GET', 'POST'])
 def bdunion():
     return render_template('meguo_phone.html')
 
+@main.route('/api', methods=['GET', 'POST'])
+def get_api():
+    p("get_api")
+    current_app.logger.info('get_api()')
+    searchInput = request.args.get('keyWord', u"长虹电视")
+    #print searchInput
+    api = handle_search_api(searchInput)
+    totalst = []
+    for i in api:
+        itemlst = []
+        itemlst.append(i[u'coupon_click_url'])
+        itemlst.append(i[u'pict_url'])
+        itemlst.append(0)
+        itemlst.append(0)
+        itemlst.append(0)
+        itemlst.append(i[u'num_iid'])
+
+        totalst.append(itemlst)
+        # comment[0] couponlink
+        # comment[1] img_link
+        # comment[2] 0
+        # comment[3] 0
+        # comment[4] 0
+        # comment[5] numiid
+    return render_template('meguo_phone.html', datas=totalst, dev="p")
+
+@main.route('/linkchange', methods=['GET', 'POST'])
+def linkchange():
+    from app import top_api
+    current_app.logger.info('link_change()')
+    searchInput = request.args.get('link', )
+    if searchInput == u"0":
+        return None
+    res = top_api.TbkSpreadGetRequest(searchInput)
+    #res = top_api.TbkSpreadGetRequest(searchInput.encode('utf8'))
+    p(searchInput)
+    p(res)
+    redirect_link = res['tbk_spread_get_response']['results']['tbk_spread'][0]['content']
+    p("redirect_link")
+    p(redirect_link)
+    return redirect(url_for(redirect_link))
+
+@main.route('/finalink', methods=['GET', 'POST'])
+def finalink():
+    from app import top_api
+    current_app.logger.info(str(request))
+    dataformat = {}
+    for i in request.headers:
+        dataformat[i[0]] = i[1]
+    dataformat["link"] = request.args.get("link", "null")
+    current_app.logger.info(str(dataformat["link"]))
+    res = top_api.TbkSpreadGetRequest(dataformat["link"])
+    redirect_link = res['tbk_spread_get_response']['results']['tbk_spread'][0]['content']
+    current_app.logger.info(str(redirect_link))
+    return redirect(redirect_link)
+
+@main.route('/', methods=['GET', 'POST'])
+def crawl():
+    from app import top_api
+    p("get_api")
+    current_app.logger.info('get_api()')
+    searchInput = request.args.get('keyWord', u"长虹电视")
+    #print searchInput
+    api = handle_search_api(searchInput)
+    totalst = []
+    for i in api:
+        itemlst = []
+        #itemlst.append(i[u'item_url'])
+        # coupon_click_url = i[u'coupon_click_url']
+        # res = top_api.TbkSpreadGetRequest(coupon_click_url)
+        # redirect_link = res['tbk_spread_get_response']['results']['tbk_spread'][0]['content']
+        itemlst.append(i[u'coupon_click_url'])
+        itemlst.append(i[u'pict_url'])
+        itemlst.append(0)
+        itemlst.append(0)
+        itemlst.append(0)
+        itemlst.append(i[u'num_iid'])
+
+        totalst.append(itemlst)
+        # comment[0] couponlink
+        # comment[1] img_link
+        # comment[2] 0
+        # comment[3] 0
+        # comment[4] 0
+        # comment[5] numiid
+    return render_template('meguo_phone.html', datas=totalst, dev="p")
+
+'''
 @main.route('/', methods=['GET', 'POST'])
 def crawl(): 
    
@@ -651,7 +780,7 @@ def crawl():
     if searchInput == "null":
         goodsData = get_goods_dat()
     else:
-        goodsData = handle_search_whoosh(searchInput)
+        goodsData = handle_search_api(searchInput)
         if len(goodsData)==0:
              goodsData = []
     pass # print"[x] show  goodsData" , goodsData
@@ -659,7 +788,7 @@ def crawl():
     huodongData = get_huodong_dat()
     views=getPic()
     return render_template('meguo_phone.html', pics=views, datas=datas, huodong=huodongData, dev="p")
-
+'''
        
 @main.route('/craw', methods=['GET', 'POST'])
 def index():
@@ -779,6 +908,15 @@ def roottxt():
     return conts
     #return main.send_file('bdunion.txt')
 
+@main.route('/robots.txt', methods=['GET'])
+def robotstxt():
+    url = os.path.join("/var/www/chmall/app/static", "robots.txt")
+    print url
+    cont = open(url, "r")
+    conts = cont.readlines()[0]
+    print conts
+    return conts
+    #return main.send_file('bdunion.txt')
 
 def savePic(tar, urlpath):
     try:

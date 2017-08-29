@@ -112,6 +112,7 @@ def create_app(config_name):
     wsSearch.insert_index()
     wsSearch.add_path_2_index("indexer", codelist)
     #results = wsSearch.search("indexer", u"content", u"dido")
+
     return app
 
 '''''

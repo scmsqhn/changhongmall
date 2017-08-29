@@ -225,11 +225,17 @@
 {% macro table1in2col(comment) %}
     <div class="t1001"> 
         <div>
+<!--           <a id="{{comment[5]}}" target="_blank" href="javascript:clkcnt( "{{comment[5]}}", "{{comment[0]}}" )" onclick=''><img src="{{comment[1]}}" /></a>
+ -->
             <!-- <a href="{{comment[0]}}" shionclick="{$event$}"><img src="{{comment[1]}}" /></a> -->
-            <a href="{{comment[0]}}" onclick='clkcnt( "{{comment[5]}}" )'><img src="{{comment[1]}}" /></a>
+<!--             <a id="{{comment[5]}}" target="_blank" href="javascript:void(0)" onclick='clkcnt( "{{comment[5]}}", "{{comment[0]}}" )'><img src="{{comment[1]}}" /></a>
+ -->
+            <a id="{{comment[5]}}" target="_blank" href="/finalink?link={{comment[0]}}" onclick='clkcnt( "{{comment[5]}}", "{{comment[0]}}" )'><img src="{{comment[1]}}" /></a>
+        
         </div> 
     </div> 
 {% endmacro %}  
+
 
 {% macro table1col(comment) %}
 <div class="t10"> 
@@ -245,11 +251,16 @@
 {% macro rowdatrpt(item) %}
   <tr class="file">
       <td class="name left"><a href="#">{{item.time}}</a></td>
-      <td>{{item.remote_addr}}</td>
-      <td>{{item.clkid}}</td>
-      <td>{{item.host}}</td>
-      <td>{{item.referer}}</td>
-      <td>{{item.ua}}</td>        
+      <td>{{item["Accept-Language"]}}</td>
+      <td>{{item["Accept-Encoding"]}}</td>
+      <td>{{item["X-Forwarded-For"]}}</td>
+      <td>{{item["Connection"]}}</td>
+      <td>{{item["Accept"]}}</td>        
+      <td>{{item["User-Agent"]}}</td>
+      <td>{{item["Host"]}}</td>
+      <td>{{item["X-Requested-With"]}}</td>
+      <td>{{item["Referer"]}}</td>
+      <td>{{item["Cookie"]}}</td>
       <td class="right" data-ratio="36 40">dummy</td>
   </tr>
 {% endmacro %}

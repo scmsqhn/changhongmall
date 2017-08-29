@@ -322,6 +322,7 @@ ATTENTION IMPORTANT TABLE
 goods table record all the msg off goods
 '''
 class Goods(db.Model):
+
     __tablename__ = 'goods'
     id=db.Column(db.Integer, primary_key=True)
     code=db.Column(db.String(255),index=True,unique=True)
@@ -349,6 +350,48 @@ class Goods(db.Model):
 
     def __repr__(self):
         return '<Goods %s>' % self.name
+
+class Coupons(db.Model):
+    
+    __tablename__ = 'coupons'
+    category=db.Column(db.String(255))
+    coupon_click_url=db.Column(db.String(255))
+    coupon_info=db.Column(db.String(255))
+    item_url=db.Column(db.String(255))
+    zk_final_price=db.Column(db.String(255))
+    commission_rate=db.Column(db.String(255))
+    user_type=db.Column(db.String(255))
+    samll_images=db.Column(db.String(255))
+    title=db.Column(db.String(255))
+    num_iid=db.Column(db.String(255), primary_key=True, index=True, unique=True)
+    seller_id=db.Column(db.String(255))
+    coupon_total_count=db.Column(db.String(255))
+    volumn=db.Column(db.String(255))
+    nick=db.Column(db.String(255))
+    pict_url=db.Column(db.String(255))
+    coupon_remain_count=db.Column(db.String(255))
+    coupon_start_time=db.Column(db.String(255))
+    shop_title=db.Column(db.String(255))
+    item_description=db.Column(db.String(255))
+    coupon_end_time=db.Column(db.String(255))
+
+    def __repr__(self):
+        return '<Coupons %s>' % self.title
+
+
+
+
+# set character_set_client = utf8;
+# set character_set_server = utf8;
+# set character_set_connection = utf8;
+# set character_set_database = utf8;
+# set character_set_results = utf8;
+# set collation_connection = utf8_general_ci;
+# set collation_database = utf8_general_ci;
+# set collation_server = utf8_general_ci;
+
+
+
         
 '''''
 evevy table has 4 column, every column has 1 item, which has 4 content, which is img_url, href_url, content, timestamp, 

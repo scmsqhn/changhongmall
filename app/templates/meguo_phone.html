@@ -48,9 +48,23 @@
 
 
   $(document).ready(function () {
+    var datas = "{{datas}}";
+    var datasjsarr = datas.split(',')
+    len = datasjsarr.length
+    for (var i = 0; i < len; i++) {
+      datasjsarr = JSON.parse(datasjsarr[i])
+      console.log(datasjsarr[i][5])
+      console.log(datasjsarr[i][0])
+    }
+    // for (var i = 0; i < len; i++) {
+    //   console.log(datas[i][5])
+    //   console.log(datas[i][0])
+    //   goto(datas[i][5], datas[i][0]);
+    //   break;
+    // };
   });
 
-  <!--拖动滚动条或滚动鼠标轮-->
+<!--拖动滚动条或滚动鼠标轮-->
 // window.onscroll=function(){
 // if(document.body.scrollTop||document.documentElement.scrollTop>0){
 // document.getElementById('rTop').style.display="block"
@@ -65,33 +79,34 @@
 // }
 
 
-function getQueryURL(idlb) {
+function getQueryURL(idlb,redi_link) {
   var url = "/clkcnt";
-  url += "?clkid=" + idlb;// http://118.89.184.71/clkcnt?clkid=101
+  url += "?clkid=" + idlb + "&link=" + redi_link;// http://118.89.184.71/clkcnt?clkid=101
   console.log(url)
   return url;
 };
 
-function clkcnt(intxt){
-    console.log(intxt)
-    idlb = intxt
+function goto(idlb, redirect_link){
+//    document.getElementById(idlb).href = redirect_link
     console.log(idlb)
+    console.log(redirect_link)
+    location.href = redirect_link
+};
+
+function clkcnt(idlb, redi_link){
     $.ajax({
         type: "GET",
-        url: encodeURI(getQueryURL(idlb)),
+        url: encodeURI(getQueryURL(idlb,redi_link)),
         dataType: "json",
         success: function (msg) {
-          console.log(msg.dat)          
-          console.log(msg.dat)          
-          console.log("success")
+            console.log("clkcnt succ")
+//          goto(idlb, msg.redirect_url)
         },
         error:function(e){
-          console.log("error")
+            console.log("error")
         }
     });
 };
-
-
 
   </script>
  </head> 
@@ -195,10 +210,9 @@ function closeZapin() {
   <div class="wrap"> 
    <div class="openVanclAppDiv" id="openVanclAppDiv"> 
     <a id="closeVanclAppDiv" class="closeVanclAppDiv" href="javascript:;" title=""></a> 
-    <img src="" alt="" /> 
-    <span>本期爆款推荐</span> 
-    <a id="" class="openVanclApp" href="https://uland.taobao.com/coupon/edetail?e=VM3YJW3yJ1kN%2BoQUE6FNzEKTjgbtztfgKfdDFYePQ5l4XCybi9VV37bB%2FBU9U3v1gWKbP12ABpXobjeSvbljKEfVXsiLg0F%2BSB9Oxyt7%2BcAThbfw7oT9emJsOaij8QNeEs%2FLCZUNTIX%2FWPVEe%2BHNgq24ykx8ebghHcN5QxAaxvo%3D&pid=mm_126181916_35186454_125004591&af=1
-" title="">打开惊喜</a> 
+    <img src="" alt="ChangHong MALL" /> 
+    <span>广告爆款位置</span> 
+    <a id="" class="openVanclApp" href="http://www.caixin.com" title="">立即打开</a> 
    </div> 
    <div id="index-search" class="index-search"> 
     <form class="search-form" action="/" accept-charset="utf-8"> 
@@ -568,9 +582,7 @@ function closeZapin() {
                     $('#search-btn').click();
                 }
             })(window)
-
         })(window);
-
     });
     </script> 
   <script type="text/javascript" src="http://i10.m.vancl.com/Content/H5/js/swiper.min.js"></script> 
@@ -588,7 +600,6 @@ function closeZapin() {
                 console.log(e);
                 window.location.href = "http://m.vancl.com/help/default/142?ref=H5_xiazai";
             }
-
         }
         Zepto(function ($) {
 

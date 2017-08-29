@@ -6,3 +6,5 @@
 # @Version : $Id$
 
 import os
+
+from . import logtools
